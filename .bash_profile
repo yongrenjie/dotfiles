@@ -11,9 +11,16 @@ set -o ignoreeof;
 alias hiss='tmux split-window -v -p 30 python3'
 alias ihiss='tmux split-window -v -p 30 ipython'
 
+# typo-proof aliases
+alias sl='ls'
+alias gti='git'
+
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 export PATH
+# TopSpin directory
+TS=/opt/topspin4.0.7/exp/stan/nmr
+export TS
 
 # CodeMeter cleanup
 alias cleanuplog='sudo rm /Applications/Cm*.log'

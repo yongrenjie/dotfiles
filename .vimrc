@@ -67,9 +67,14 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'raingo/vim-matlab'
 " Python syntax highlighting
 Plugin 'yongrenjie/python-syntax'
+let g:python_highlight_all=1
+let g:python_highlight_space_errors=0
 " LaTeX
 Plugin 'lervag/vimtex'
 " LaTeX - define mhchem environments as math to avoid incorrect error highlighting
+" HTML
+Plugin 'mattn/emmet-vim'
+let g:user_emmet_leader_key='<C-Z>'
 " taken from https://superuser.com/q/852150/671733
 au FileType tex syn region texMathZoneZ matchgroup=texStatement start="\\ce{"  start="\\cf{" matchgroup=texStatement end="}" end="%stopzone\>"   contains=@texMathZoneGroup
 " LaTeX - ignore indentation for refsection environment
@@ -79,8 +84,6 @@ Plugin 'wellle/targets.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'dhruvasagar/vim-open-url'
-let g:python_highlight_all=1
-let g:python_highlight_space_errors=0
 call vundle#end()
 
 " Fancy commands
