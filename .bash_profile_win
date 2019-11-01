@@ -1,0 +1,16 @@
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\[\e[1;32m\]\u\[\e[m\]@\[\e[1;33m\]\h\[\e[m\]:\\[\e[1;35m\]\w\[\e[m\]\[\e[1;31m\]\$(parse_git_branch)\[\e[m\] \[\e[1;35m\]$ \[\e[m\]"
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+PATH=$PATH:~/doi2bib:~/ps-opt
+
+alias vi='/C/Windows/gvim.bat'
+alias vim='/C/Windows/gvim.bat'
+alias gvim='/C/Windows/gvim.bat'
+alias cc='gcc'
+
+# MinGW tools
+PATH=$PATH:/C/MinGW/bin
+PYTHONPATH=$PYTHONPATH:/c/Users/jonathan.yong/AppData/Local/Programs/Python/Python37-32/lib/site-packages
