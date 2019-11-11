@@ -1,0 +1,27 @@
+[submodule ".vim/papercolor-theme"]
+	path = .vim/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme
+[submodule ".vim/vim-matlab"]
+	path = .vim/vim-matlab
+	url = https://github.com/raingo/vim-matlab
+[submodule ".vim/vimtex"]
+	path = .vim/vimtex
+	url = https://github.com/lervag/vimtex
+[submodule ".vim/emmet-vim"]
+	path = .vim/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule ".vim/targets.vim"]
+	path = .vim/targets.vim
+	url = https://github.com/wellle/targets.vim
+[submodule ".vim/vim-open-url"]
+	path = .vim/vim-open-url
+	url = https://github.com/dhruvasagar/vim-open-url
+[submodule ".vim/vim-fugitive"]
+	path = .vim/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".vim/vim-surround"]
+	path = .vim/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/vim-repeat"]
+	path = .vim/vim-repeat
+	url = https://github.com/tpope/vim-repeat
