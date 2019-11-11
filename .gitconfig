@@ -1,7 +1,0 @@
-[user]
-	email = yongrenjie@gmail.com
-	name = Jonathan Yong
-[alias]
-	unadd = reset HEAD --
-	st = status
-	co = checkout
