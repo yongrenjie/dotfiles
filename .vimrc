@@ -1,7 +1,7 @@
 set number
 set autoindent
 set hidden
-filetype off
+filetype plugin indent on
 syntax on
 
 " Show as much of the last line as possible, instead of @@@@@
@@ -56,36 +56,6 @@ nnoremap ;;P "*P
 nnoremap ;;y "*y
 nnoremap ;;Y "*Y
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-" nice colour schemes
-Plugin 'dikiaap/minimalist'
-Plugin 'NLKNguyen/papercolor-theme'
-" tomorrow-night is manually installed in ~/.vim/colors
-" MATLAB syntax highlighting
-Plugin 'raingo/vim-matlab'
-" Python syntax highlighting
-Plugin 'yongrenjie/python-syntax'
-let g:python_highlight_all=1
-let g:python_highlight_space_errors=0
-" LaTeX
-Plugin 'lervag/vimtex'
-" LaTeX - define mhchem environments as math to avoid incorrect error highlighting
-" HTML
-Plugin 'mattn/emmet-vim'
-let g:user_emmet_leader_key='<C-Z>'
-" taken from https://superuser.com/q/852150/671733
-au FileType tex syn region texMathZoneZ matchgroup=texStatement start="\\ce{"  start="\\cf{" matchgroup=texStatement end="}" end="%stopzone\>"   contains=@texMathZoneGroup
-" LaTeX - ignore indentation for refsection environment
-let g:vimtex_indent_ignored_envs=['refsection']
-" Targets
-Plugin 'wellle/targets.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'dhruvasagar/vim-open-url'
-call vundle#end()
-
 " Fancy commands
 command Hiss below term ++rows=10 python3
 command IHiss below term ++rows=10 ipython
@@ -95,8 +65,6 @@ command Pdflatex !latexmk % -pdf
 " use !Doi2biblatex 10.1021/acs.orglett.9b00971 (or !Doi 10.1021/acs.orglett.9b00971, faster) to put the correct citation into the buffer
 command -nargs=1 Doi2biblatex r !doi2biblatex.py <f-args>
 
-filetype plugin indent on
-set t_Co=256
 set background=dark
 colorscheme PaperColor
 set shiftwidth=4
