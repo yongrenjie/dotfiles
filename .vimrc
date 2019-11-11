@@ -65,8 +65,15 @@ command Pdflatex !latexmk % -pdf
 " use !Doi2biblatex 10.1021/acs.orglett.9b00971 (or !Doi 10.1021/acs.orglett.9b00971, faster) to put the correct citation into the buffer
 command -nargs=1 Doi2biblatex r !doi2biblatex.py <f-args>
 
-set background=dark
+" Colour scheme stuff
+" set t_Co=256
+" The above is not needed if $TERM=xterm-256color in bash, vim
+" should read it automatically
 colorscheme PaperColor
+set background=dark
+set t_ut=""
+
+" Indentation style
 set shiftwidth=4
 set tabstop=4
 set expandtab
