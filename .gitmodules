@@ -25,3 +25,6 @@
 [submodule ".vim/vim-repeat"]
 	path = .vim/vim-repeat
 	url = https://github.com/tpope/vim-repeat
+[submodule ".vim/pack/plugins/start/python-syntax"]
+	path = .vim/pack/plugins/start/python-syntax
+	url = https://github.com/yongrenjie/python-syntax
