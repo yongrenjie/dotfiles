@@ -72,6 +72,8 @@ command -nargs=1 Doi2biblatex r !doi2biblatex.py <f-args>
 colorscheme PaperColor
 set background=dark
 set t_ut=""
+" Turn on Python syntax highlighting
+let g:python_highlight_all=1
 
 " Indentation style
 set shiftwidth=4

@@ -22,8 +22,6 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\[\033[38;5;45m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;40m\]\h:\[$(tput sgr0)\]\[\033[38;5;178m\]\w\[$(tput sgr0)\]\[\033[38;5;202m\]\$(parse_git_branch)\[$(tput sgr0)\] \[\033[38;5;178m\]\\$ \[$(tput sgr0)\]"
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -32,6 +30,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	# TopSpin path
 	TS=/opt/topspin4.0.7/exp/stan/nmr
 	export TS
+    # colourful ls
+    export LSCOLORS=ExFxBxDxCxegedabagacad
+    export CLICOLOR=1
 	# CodeMeter cleanup
 	alias cleanuplog='sudo rm /Applications/Cm*.log'
 	# Switch between light and dark mode for TeXStudio.
@@ -56,11 +57,16 @@ fi
 
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	# Windows home directory
-	WINHOME='/mnt/c/Users/jonathan.yong'
-	export WINHOME
-	alias cdw='cd $WINHOME'
-	# TopSpin directory
-	TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
-	export TS
+    # Windows home directory
+    WINHOME='/mnt/c/Users/jonathan.yong'
+    export WINHOME
+    alias cdw='cd $WINHOME'
+    # TopSpin directory
+    TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
+    export TS
+    # colourful ls
+    alias ls="ls --color=auto"
+    eval "$(dircolors ~/.dircolors)"
+    # enable to show graphs on Windows
+    export DISPLAY=localhost:0.0
 fi
