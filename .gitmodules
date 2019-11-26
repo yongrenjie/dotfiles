@@ -25,3 +25,6 @@
 [submodule ".vim/pack/plugins/start/python-syntax"]
 	path = .vim/pack/plugins/start/python-syntax
 	url = https://github.com/yongrenjie/python-syntax
+[submodule ".vim/pack/plugins/start/vim-octave"]
+	path = .vim/pack/plugins/start/vim-octave
+	url = https://github.com/yongrenjie/vim-octave

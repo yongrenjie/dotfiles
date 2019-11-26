@@ -1,3 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/yongrenjie/.vim'
+let g:netrw_dirhist_2='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/vim-matlab/syntax'
+let g:netrw_dirhist_3='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/papercolor-theme'
+let g:netrw_dirhist_4='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/papercolor-theme/colors'
+let g:netrw_dirhist_5='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/vim-matlab'
+let g:netrw_dirhist_6='/home/yongrenjie/dotfiles/.vim/pack/plugins/start'
+let g:netrw_dirhist_7='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/papercolor-theme'
+let g:netrw_dirhist_8='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/papercolor-theme/colors'
+let g:netrw_dirhist_9='/home/yongrenjie/dotfiles/.vim/pack/plugins/start/vim-matlab/syntax'
