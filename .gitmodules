@@ -28,3 +28,6 @@
 [submodule ".vim/pack/plugins/start/vim-octave"]
 	path = .vim/pack/plugins/start/vim-octave
 	url = https://github.com/yongrenjie/vim-octave
+[submodule ".vim/pack/plugins/start/vim-commentary"]
+	path = .vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
