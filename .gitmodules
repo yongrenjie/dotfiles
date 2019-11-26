@@ -1,9 +1,6 @@
 [submodule ".vim/papercolor-theme"]
 	path = .vim/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme
-[submodule ".vim/vim-matlab"]
-	path = .vim/vim-matlab
-	url = https://github.com/raingo/vim-matlab
 [submodule ".vim/vimtex"]
 	path = .vim/vimtex
 	url = https://github.com/lervag/vimtex
