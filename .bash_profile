@@ -13,6 +13,11 @@ alias sl='ls'
 alias gti='git'
 alias dc='cd'
 
+# ssh aliases
+alias sshar='ssh linc3717@oscgate.arc.ox.ac.uk'
+alias sshal='ssh linc3717@aleph.chem.ox.ac.uk'
+alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
+
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 export PATH
@@ -43,12 +48,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias orcam='open -a Google\ Chrome  ~/Documents/orca_manual_4_1_0.pdf'
 	alias mal='sudo sshfs -o allow_other,defer_permissions linc3717@aleph.chem.ox.ac.uk:/u/fd/linc3717 ~/mnt/aleph'
 	alias umal='sudo umount ~/mnt/aleph'
-	alias sshal='ssh linc3717@aleph.chem.ox.ac.uk'
 	alias opal='open ~/mnt/aleph'
 	alias cdal='cd ~/mnt/aleph'
 	alias mdi='sudo sshfs -o allow_other,defer_permissions linc3717@dirac.chem.ox.ac.uk:/home/dirac/oxford/linc3717 ~/mnt/dirac'
 	alias umdi='sudo umount ~/mnt/dirac'
-	alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 	alias opdi='open ~/mnt/dirac'
 	alias cddi='cd ~/mnt/dirac'
 	alias rs='rm *.sh*'
