@@ -90,3 +90,8 @@ set expandtab
 
 " Auto-detect TopSpin AU programmes as being in C
 :au BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
+
+" Other verbatim environments in LaTeX
+au filetype tex syntax region texZone start='\\begin{cmdline}' end='\\end{cmdline}'
+au filetype tex syntax region texZone start='\\begin{script}' end='\\end{script}'
+let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
