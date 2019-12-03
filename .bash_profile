@@ -20,7 +20,6 @@ alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
-export PATH
 
 # Fancy terminal colors
 parse_git_branch() {
@@ -72,4 +71,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     eval "$(dircolors ~/.dircolors)"
     # enable to show graphs on Windows
     export DISPLAY=localhost:0.0
+    # TeX paths
+    export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
+    export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
+    export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 fi
