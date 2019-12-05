@@ -59,10 +59,11 @@ fi
 
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Windows home directory
-    WINHOME='/mnt/c/Users/jonathan.yong'
-    export WINHOME
-    alias cdw='cd $WINHOME'
+    # Windows home directory and desktop
+    WD='/mnt/c/Users/jonathan.yong/Desktop'
+    WH='/mnt/c/Users/jonathan.yong'
+    export WD
+    export WH
     # TopSpin directory
     TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
     export TS
