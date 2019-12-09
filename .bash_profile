@@ -76,4 +76,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
     export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
     export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+    # OpenMPI 3.1.15 and ORCA 4.2.1
+    export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
+    alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca"
+    # Running ORCA in parallel always requires absolute path, so no point adding to $PATH
+    # export PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:$PATH
 fi
