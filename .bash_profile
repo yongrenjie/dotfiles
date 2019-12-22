@@ -81,4 +81,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca"
     # Running ORCA in parallel always requires absolute path, so no point adding to $PATH
     # export PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:$PATH
+    # Mount aleph.chem.ox.ac.uk - after mounting using SFTP
+    alias mal="sudo mount -t drvfs E: /mnt/aleph"
+    alias cdal="cd /mnt/aleph"
+    alias umal="sudo umount /mnt/aleph"
 fi
