@@ -1,27 +1,3 @@
-[submodule ".vim/papercolor-theme"]
-	path = .vim/papercolor-theme
-	url = https://github.com/NLKNguyen/papercolor-theme
-[submodule ".vim/vimtex"]
-	path = .vim/vimtex
-	url = https://github.com/lervag/vimtex
-[submodule ".vim/emmet-vim"]
-	path = .vim/emmet-vim
-	url = https://github.com/mattn/emmet-vim
-[submodule ".vim/targets.vim"]
-	path = .vim/targets.vim
-	url = https://github.com/wellle/targets.vim
-[submodule ".vim/vim-open-url"]
-	path = .vim/vim-open-url
-	url = https://github.com/dhruvasagar/vim-open-url
-[submodule ".vim/vim-fugitive"]
-	path = .vim/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule ".vim/vim-surround"]
-	path = .vim/vim-surround
-	url = https://github.com/tpope/vim-surround
-[submodule ".vim/vim-repeat"]
-	path = .vim/vim-repeat
-	url = https://github.com/tpope/vim-repeat
 [submodule ".vim/pack/plugins/start/python-syntax"]
 	path = .vim/pack/plugins/start/python-syntax
 	url = https://github.com/yongrenjie/python-syntax
@@ -34,3 +10,21 @@
 [submodule ".vim/pack/plugins/start/vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule ".vim/pack/plugins/start/emmet-vim"]
+	path = .vim/pack/plugins/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule ".vim/pack/plugins/start/papercolor-theme"]
+	path = .vim/pack/plugins/start/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme
+[submodule ".vim/pack/plugins/start/targets.vim"]
+	path = .vim/pack/plugins/start/targets.vim
+	url = https://github.com/wellle/targets.vim
+[submodule ".vim/pack/plugins/start/vim-open-url"]
+	path = .vim/pack/plugins/start/vim-open-url
+	url = https://github.com/dhruvasagar/vim-open-url
+[submodule ".vim/pack/plugins/start/vim-repeat"]
+	path = .vim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule ".vim/pack/plugins/start/vimtex"]
+	path = .vim/pack/plugins/start/vimtex
+	url = https://github.com/lervag/vimtex
