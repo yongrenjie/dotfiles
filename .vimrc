@@ -3,6 +3,7 @@ set autoindent
 set hidden
 filetype plugin indent on
 syntax on
+set backspace=indent,eol,start
 
 " Show as much of the last line as possible, instead of @@@@@
 set display+=lastline
@@ -10,6 +11,12 @@ set display+=lastline
 " present
 set ignorecase
 set smartcase
+
+" Text motions for lines, cf. https://vi.stackexchange.com/q/6101/
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o^
+onoremap al :normal val<CR>
 
 " Leader key
 nnoremap <Space> <Nop>
