@@ -280,6 +280,7 @@ CHR    01;38;5;137 # character device driver
 .dircolors    00;38;5;94
 .gitignore    00;38;5;94
 .gitmodules   00;38;5;94
+.profile      00;38;5;94
 
 # Plain text
 .txt 00;38;5;230
@@ -337,5 +338,7 @@ CHR    01;38;5;137 # character device driver
 .Xauthority 00;38;5;238
 .drjava     00;38;5;238
 .bash_history     00;38;5;238
+.bash_logout      00;38;5;238
 .python_history   00;38;5;238
 .viminfo    00;38;5;238
+.sudo_as_admin_successful    00;38;5;238
