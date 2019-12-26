@@ -22,21 +22,28 @@ alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
 # Fancy terminal colors
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+git_branch() { 
+    git symbolic-ref HEAD --short 2>/dev/null | gsed 's/\(.\+\)/ (\1)/'
 }
-export PS1="\[\033[38;5;45m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;40m\]\h:\[$(tput sgr0)\]\[\033[38;5;178m\]\w\[$(tput sgr0)\]\[\033[38;5;202m\]\$(parse_git_branch)\[$(tput sgr0)\] \[\033[38;5;178m\]\\$ \[$(tput sgr0)\]"
+# https://gist.github.com/justintv/168835#gistcomment-2809621
+LIGHTCYAN='\[\033[38;5;45m\]'
+WHITE='\[\033[38;5;15m\]'
+LIGHTGREEN='\[\033[38;5;40m\]'
+LIGHTYELLOW='\[\033[38;5;178m\]'
+ORANGE='\[\033[38;5;202m\]'
+RESET='\[$(tput sgr0)\]'
+export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
 
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	# GNU grep
+	# GNU utils
 	alias grep='ggrep --color=auto'
+    alias sed='gsed'
+    # ls colors - using GNU ls and GNU dircolors from brew:coreutils
+    alias ls='gls --color=auto'
+    eval "$(gdircolors ~/.dircolors)"
 	# TopSpin path
-	TS=/opt/topspin4.0.7/exp/stan/nmr
-	export TS
-    # colourful ls
-    export LSCOLORS=ExFxBxDxCxegedabagacad
-    export CLICOLOR=1
+	export TS=/opt/topspin4.0.7/exp/stan/nmr
 	# CodeMeter cleanup
 	alias cleanuplog='sudo rm /Applications/Cm*.log'
 	# Switch between light and dark mode for TeXStudio.
@@ -60,13 +67,10 @@ fi
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Windows home directory and desktop
-    WD='/mnt/c/Users/jonathan.yong/Desktop'
-    WH='/mnt/c/Users/jonathan.yong'
-    export WD
-    export WH
+    export WD='/mnt/c/Users/jonathan.yong/Desktop'
+    export WH='/mnt/c/Users/jonathan.yong'
     # TopSpin directory
-    TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
-    export TS
+    export TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
     # colourful ls
     alias ls="ls --color=auto"
     eval "$(dircolors ~/.dircolors)"
@@ -78,9 +82,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
     # OpenMPI 3.1.15 and ORCA 4.2.1
     export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
-    alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca"
-    # Running ORCA in parallel always requires absolute path, so no point adding to $PATH
-    # export PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:$PATH
+    alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
     # Mount aleph.chem.ox.ac.uk - after mounting using SFTP
     alias mal="sudo mount -t drvfs E: /mnt/aleph"
     alias cdal="cd /mnt/aleph"
