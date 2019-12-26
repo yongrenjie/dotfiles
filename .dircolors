@@ -106,14 +106,14 @@ TERM xterm-termite
 # 48;5;COLOR_NUMBER
 
 # Special files
-NORMAL 00;38;5;230 # global default
-FILE   00;38;5;230 # normal file
-DIR    01;38;5;143 # directory
-OTHER_WRITABLE    01;38;5;143 # directories, for WSL
-LINK   07;38;5;106 # symbolic link. ('target'=the color for the file pointed to)
-ORPHAN 07;38;5;160 # symlink to nonexistent file
+NORMAL 00;38;5;15 # global default
+FILE   00;38;5;15 # normal file
+DIR               01;38;5;206 # directory
+OTHER_WRITABLE    01;38;5;206 # directories, for WSL
+LINK   00;38;5;117 # symbolic link. ('target'=the color for the file pointed to)
+ORPHAN 00;38;5;196 # symlink to nonexistent file
 FIFO   07;38;5;137 # pipe
-EXEC   00;38;5;160 # executable
+EXEC   01;38;5;126 # executable
 SOCK   01;38;5;143 # socket
 DOOR   01;38;5;143 # door
 BLK    01;38;5;137 # block device driver
@@ -153,75 +153,75 @@ CHR    01;38;5;137 # character device driver
 .gem    00;38;5;96
 
 # Image formats
-.jpg    00;38;5;220
-.JPG    00;38;5;220
-.jpeg   00;38;5;220
-.gif    00;38;5;220
-.bmp    00;38;5;220
-.pbm    00;38;5;220
-.pgm    00;38;5;220
-.ppm    00;38;5;220
-.tga    00;38;5;220
-.xbm    00;38;5;220
-.xpm    00;38;5;220
-.tif    00;38;5;220
-.tiff   00;38;5;220
-.png    00;38;5;220
-.PNG    00;38;5;220
-.svg    00;38;5;220
-.svgz   00;38;5;220
-.mng    00;38;5;220
-.pcx    00;38;5;220
-.dl     00;38;5;220
-.xcf    00;38;5;220
-.xwd    00;38;5;220
-.yuv    00;38;5;220
-.cgm    00;38;5;220
-.emf    00;38;5;220
-.eps    00;38;5;220
-.CR2    00;38;5;220
-.ico    00;38;5;220
+.jpg    00;38;5;78
+.JPG    00;38;5;78
+.jpeg   00;38;5;78
+.gif    00;38;5;78
+.bmp    00;38;5;78
+.pbm    00;38;5;78
+.pgm    00;38;5;78
+.ppm    00;38;5;78
+.tga    00;38;5;78
+.xbm    00;38;5;78
+.xpm    00;38;5;78
+.tif    00;38;5;78
+.tiff   00;38;5;78
+.png    00;38;5;78
+.PNG    00;38;5;78
+.svg    00;38;5;78
+.svgz   00;38;5;78
+.mng    00;38;5;78
+.pcx    00;38;5;78
+.dl     00;38;5;78
+.xcf    00;38;5;78
+.xwd    00;38;5;78
+.yuv    00;38;5;78
+.cgm    00;38;5;78
+.emf    00;38;5;78
+.eps    00;38;5;78
+.CR2    00;38;5;78
+.ico    00;38;5;78
 
 # Video
-.mov    00;38;5;208
-.MOV    00;38;5;208
-.mpg    00;38;5;208
-.mpeg   00;38;5;208
-.m2v    00;38;5;208
-.mkv    00;38;5;208
-.ogm    00;38;5;208
-.mp4    00;38;5;208
-.m4v    00;38;5;208
-.mp4v   00;38;5;208
-.vob    00;38;5;208
-.qt     00;38;5;208
-.nuv    00;38;5;208
-.wmv    00;38;5;208
-.asf    00;38;5;208
-.rm     00;38;5;208
-.rmvb   00;38;5;208
-.flc    00;38;5;208
-.avi    00;38;5;208
-.fli    00;38;5;208
-.flv    00;38;5;208
-.gl     00;38;5;208
-.m2ts   00;38;5;208
-.divx   00;38;5;208
-.webm   00;38;5;208
+.mov    00;38;5;36
+.MOV    00;38;5;36
+.mpg    00;38;5;36
+.mpeg   00;38;5;36
+.m2v    00;38;5;36
+.mkv    00;38;5;36
+.ogm    00;38;5;36
+.mp4    00;38;5;36
+.m4v    00;38;5;36
+.mp4v   00;38;5;36
+.vob    00;38;5;36
+.qt     00;38;5;36
+.nuv    00;38;5;36
+.wmv    00;38;5;36
+.asf    00;38;5;36
+.rm     00;38;5;36
+.rmvb   00;38;5;36
+.flc    00;38;5;36
+.avi    00;38;5;36
+.fli    00;38;5;36
+.flv    00;38;5;36
+.gl     00;38;5;36
+.m2ts   00;38;5;36
+.divx   00;38;5;36
+.webm   00;38;5;36
 
 # Audio
-.aac    00;38;5;214
-.au     00;38;5;214
-.flac   00;38;5;214
-.mid    00;38;5;214
-.midi   00;38;5;214
-.mka    00;38;5;214
-.mp3    00;38;5;214
-.mpc    00;38;5;214
-.ogg    00;38;5;214
-.ra     00;38;5;214
-.wav    00;38;5;214
-.m4a    00;38;5;214
+.aac    00;38;5;74
+.au     00;38;5;74
+.flac   00;38;5;74
+.mid    00;38;5;74
+.midi   00;38;5;74
+.mka    00;38;5;74
+.mp3    00;38;5;74
+.mpc    00;38;5;74
+.ogg    00;38;5;74
+.ra     00;38;5;74
+.wav    00;38;5;74
+.m4a    00;38;5;74
 
 # Documents/Readables
 .pdf  00;38;5;109
@@ -237,25 +237,25 @@ CHR    01;38;5;137 # character device driver
 .epub 00;38;5;109
 
 # Source code files
-.pl     00;38;5;179
-.PL     00;38;5;179
-.py     00;38;5;179
-.pm     00;38;5;179
-.tt     00;38;5;179
-.yml    00;38;5;179
-.sql    00;38;5;179
-.css    00;38;5;179
-.js     00;38;5;179
-.sh     00;38;5;179
-.R      00;38;5;179
-.r      00;38;5;179
-.hs     00;38;5;179
-.rb     00;38;5;179
-.cc     00;38;5;179
-.c      00;38;5;179
-.lua    00;38;5;179
-.vim    00;38;5;179
-.m      00;38;5;179
+.pl     00;38;5;178
+.PL     00;38;5;178
+.py     00;38;5;178
+.pm     00;38;5;178
+.tt     00;38;5;178
+.yml    00;38;5;178
+.sql    00;38;5;178
+.css    00;38;5;178
+.js     00;38;5;178
+.sh     00;38;5;178
+.R      00;38;5;178
+.r      00;38;5;178
+.hs     00;38;5;178
+.rb     00;38;5;178
+.cc     00;38;5;178
+.c      00;38;5;178
+.lua    00;38;5;178
+.vim    00;38;5;178
+.m      00;38;5;178
 
 # Libraries/Literates/Documentations
 .1      00;38;5;137
@@ -273,6 +273,13 @@ CHR    01;38;5;137 # character device driver
 *config   00;38;5;94
 .conf     00;38;5;94
 .cfg      00;38;5;94
+.vimrc        00;38;5;94
+.inputrc      00;38;5;94
+.bash_profile 00;38;5;94
+.bashrc       00;38;5;94
+.dircolors    00;38;5;94
+.gitignore    00;38;5;94
+.gitmodules   00;38;5;94
 
 # Plain text
 .txt 00;38;5;230
@@ -326,4 +333,9 @@ CHR    01;38;5;137 # character device driver
 .pyc        00;38;5;238
 .class      00;38;5;238
 .cache      00;38;5;238
-
+.DS_Store   00;38;5;238
+.Xauthority 00;38;5;238
+.drjava     00;38;5;238
+.bash_history     00;38;5;238
+.python_history   00;38;5;238
+.viminfo    00;38;5;238
