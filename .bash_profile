@@ -21,9 +21,19 @@ alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
+# Mac OS X - alias GNU utils, needed for git_branch function below
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	# GNU utils
+	alias grep='ggrep --color=auto'
+    alias sed='gsed'
+    # ls colors - using GNU ls and GNU dircolors from brew:coreutils
+    alias ls='gls --color=auto'
+    eval "$(gdircolors ~/.dircolors)"
+fi
+
 # Fancy terminal colors
 git_branch() { 
-    git symbolic-ref HEAD --short 2>/dev/null | gsed 's/\(.\+\)/ (\1)/'
+    git symbolic-ref HEAD --short 2>/dev/null | sed 's/\(.\+\)/ (\1)/'
 }
 # https://gist.github.com/justintv/168835#gistcomment-2809621
 LIGHTCYAN='\[\033[38;5;45m\]'
@@ -36,12 +46,6 @@ export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIG
 
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	# GNU utils
-	alias grep='ggrep --color=auto'
-    alias sed='gsed'
-    # ls colors - using GNU ls and GNU dircolors from brew:coreutils
-    alias ls='gls --color=auto'
-    eval "$(gdircolors ~/.dircolors)"
 	# TopSpin path
 	export TS=/opt/topspin4.0.7/exp/stan/nmr
 	# CodeMeter cleanup
