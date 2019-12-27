@@ -113,7 +113,7 @@ OTHER_WRITABLE    01;38;5;206 # directories, for WSL
 LINK   00;38;5;117 # symbolic link. ('target'=the color for the file pointed to)
 ORPHAN 00;38;5;196 # symlink to nonexistent file
 FIFO   07;38;5;137 # pipe
-EXEC   01;38;5;126 # executable
+EXEC   01;38;5;34  # executable
 SOCK   01;38;5;143 # socket
 DOOR   01;38;5;143 # door
 BLK    01;38;5;137 # block device driver
