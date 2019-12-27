@@ -64,10 +64,6 @@ nnoremap ;;y "*y
 nnoremap ;;Y "*Y
 
 " Fancy commands
-command Hiss below term ++rows=10 python3
-command IHiss below term ++rows=10 ipython
-command Python below term ++rows=10 python3 %
-command IPython below term ++rows=10 ipython %
 command Pdflatex !latexmk % -pdf
 " use !Doi2biblatex 10.1021/acs.orglett.9b00971 (or !Doi 10.1021/acs.orglett.9b00971, faster) to put the correct citation into the buffer
 command -nargs=1 Doi2biblatex r !doi2biblatex.py <f-args>
@@ -81,24 +77,24 @@ set background=dark
 set t_ut=""
 " Turn on Python syntax highlighting
 let g:python_highlight_all=1
+" Remove automatic indentation for certain LaTeX environments
+" cmdline and script are user-defined envs for the SBM comp chem tutorial...
+let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
 
 " Indentation style
 set shiftwidth=4
 set tabstop=4
 set expandtab
 
-" Correct indent style for SE citation manager
-:au BufEnter ~/citation/*.js :set expandtab!
-
-" Correct indent style for TopSpin Python programmes
-:au BufEnter ~/ps-opt/ts/*.py :set expandtab!
-:au BufEnter ~/ps-opt/ts/*.py :set ts=8
-:au BufEnter ~/ps-opt/ts/*.py :set sw=8
-
-" Auto-detect TopSpin AU programmes as being in C
-:au BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
-
-" Other verbatim environments in LaTeX
-au filetype tex syntax region texZone start='\\begin{cmdline}' end='\\end{cmdline}'
-au filetype tex syntax region texZone start='\\begin{script}' end='\\end{script}'
-let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
+if !exists("au_loaded")
+    let au_loaded = 1
+    " Correct indent style for SE citation manager
+    au BufEnter ~/citation/*.js :set expandtab!
+    " Auto-detect TopSpin AU programmes as being in C
+    au BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
+    au BufEnter ~/ps-opt/timerev/au/* :set filetype=c
+    au BufEnter ~/noah-nmr/au/* :set filetype=c
+    " Other verbatim environments in LaTeX
+    au filetype tex syntax region texZone start='\\begin{cmdline}' end='\\end{cmdline}'
+    au filetype tex syntax region texZone start='\\begin{script}' end='\\end{script}'
+endif
