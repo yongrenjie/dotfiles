@@ -80,6 +80,8 @@ let g:python_highlight_all=1
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
 let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
+" Comment string for snippets
+autocmd FileType snippets setlocal commentstring=#\ %s
 
 " Indentation style
 set shiftwidth=4
