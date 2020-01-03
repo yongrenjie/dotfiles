@@ -1,8 +1,30 @@
 snippet main "main() function" b
-int main(int argc, char *argv[])
+int main (int argc, char *argv[])
 {
-	$1
+	$0
 	return 0;
+}
+endsnippet
+
+snippet dvoid "Declaration of void() function" b
+void $1 ($2) ;
+endsnippet
+
+snippet void "New void() function" b
+void $1 ($2)
+{
+	$0
+}
+endsnippet
+
+snippet dint "Declaration of int() function" b
+int $1 ($2) ;
+endsnippet
+
+snippet int "New int() function" b
+int $1 ($2)
+{
+	$0
 }
 endsnippet
 
