@@ -1,0 +1,16 @@
+snippet env "LaTeX environment" b
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+# from https://github.com/SirVer/ultisnips/issues/913
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet it "Item in lists" b
+\item $1
+endsnippet
