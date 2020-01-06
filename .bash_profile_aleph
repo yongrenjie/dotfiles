@@ -44,6 +44,7 @@ alias rs="rm *.sh*"
 alias ci="ls *.inp -l | wc -l"
 alias cpgmx="cp ~/bin/gmx_sub.sh ./"
 alias optconv="grep -i \"rms step\" -A 2 -C 4 *.out"
+alias optenergy="ls *.out | xargs -I % sh -c \"grep -H 'FINAL SINGLE POINT ENERGY' % | tail -1\""
 
 # configure GROMACS
 export GMXLIB=/u/fd/linc3717/gromacs/top
