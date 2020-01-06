@@ -6,6 +6,10 @@ int main (int argc, char *argv[])
 }
 endsnippet
 
+snippet cmt "Comment"
+/* $1 */
+endsnippet
+
 snippet dvoid "Declaration of void() function" b
 void $1 ($2) ;
 endsnippet
@@ -33,5 +37,5 @@ snippet inc "Include library header files" b
 endsnippet
 
 snippet printf "printf function" b
-printf("$1");
+printf("$1"$2);
 endsnippet
