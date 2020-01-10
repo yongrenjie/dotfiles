@@ -63,11 +63,6 @@ nnoremap ;;P "*P
 nnoremap ;;y "*y
 nnoremap ;;Y "*Y
 
-" Fancy commands
-command Pdflatex !latexmk % -pdf
-" use !Doi2biblatex 10.1021/acs.orglett.9b00971 (or !Doi 10.1021/acs.orglett.9b00971, faster) to put the correct citation into the buffer
-command -nargs=1 Doi2biblatex r !doi2biblatex.py <f-args>
-
 " Colour scheme stuff
 " set t_Co=256
 " The above is not needed if $TERM=xterm-256color in bash, vim
@@ -100,7 +95,4 @@ if !exists("au_loaded")
     au BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
     au BufEnter ~/ps-opt/timerev/au/* :set filetype=c
     au BufEnter ~/noah-nmr/au/* :set filetype=c
-    " Other verbatim environments in LaTeX
-    au filetype tex syntax region texZone start='\\begin{cmdline}' end='\\end{cmdline}'
-    au filetype tex syntax region texZone start='\\begin{script}' end='\\end{script}'
 endif
