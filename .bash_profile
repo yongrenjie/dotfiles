@@ -47,9 +47,9 @@ export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIG
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # SSH into WSL on CARP-CRL
-    alias sshcarp="ssh yongrenjie@129.67.68.177 -p 2222"
+    alias sshcarp="ssh yongrenjie@129.67.68.177"
     # SSH into cmd
-    alias sshcarpcmd="ssh jonathan.yong@129.67.68.177"
+    alias sshcarpcmd="ssh jonathan.yong@129.67.68.177 -p 2223"
 	# TopSpin path
 	export TS=/opt/topspin4.0.7/exp/stan/nmr
 	# CodeMeter cleanup
