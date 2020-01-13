@@ -63,6 +63,11 @@ nnoremap ;;P "*P
 nnoremap ;;y "*y
 nnoremap ;;Y "*Y
 
+" Status line
+set laststatus=2 " enables lightline
+set noshowmode " disables the default insert
+let g:lightline = {'colorscheme': 'PaperColor'}
+
 " Colour scheme stuff
 " set t_Co=256
 " The above is not needed if $TERM=xterm-256color in bash, vim
