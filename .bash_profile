@@ -21,6 +21,9 @@ alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
+# Git autocompletion
+source ~/.git-completion.bash
+
 # Mac OS X - alias GNU utils, needed for git_branch function below
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	# GNU utils
