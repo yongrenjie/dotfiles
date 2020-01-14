@@ -1,0 +1,26 @@
+snippet newexp "Snippet for new .md files in dphil/exp" b
+# `date "+%d %b %Y (%A)"`
+
+- __Spectrometer__: ${1:AVB500}
+- __Time__: ${2:1400-1700}
+- __Sample__: ${3:50 mM ferulic acid, DMSO-d6}
+- __Name__: ${5:jy-`date "+%y%m%d"`-${4}}
+
+## Brief overview
+
+${6}
+
+## Spectra
+
+### Expno ${7}
+
+## Data processing
+
+${0}
+endsnippet
+
+snippet expno "Expno heading" b
+### Expno ${1:1}
+
+[${1/(\d+).*/$1/}] ${2:Description}
+endsnippet
