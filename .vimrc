@@ -25,7 +25,7 @@ let mapleader=" "
 function ExpandDOIBib()
     let doi = expand("<cWORD>")
     normal! diW
-    execute 'r !doi2biblatex.py' doi
+    execute 'r !doi2biblatex.py "'.doi.'"'
     normal! =ap}{dd
     " Edge case where it produces an extra line
     if line(".") == 1
