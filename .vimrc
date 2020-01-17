@@ -54,14 +54,14 @@ nnoremap <leader>ex :call ExpandDOIBib() <CR>
 nnoremap <leader>op :call OpenDOIURL() <CR>
 
 " Easy system clipboard yank/paste
-vnoremap ;;p "*p
-vnoremap ;;P "*P
-vnoremap ;;y "*y
-vnoremap ;;Y "*Y
-nnoremap ;;p "*p
-nnoremap ;;P "*P
-nnoremap ;;y "*y
-nnoremap ;;Y "*Y
+vnoremap <leader><leader>p "*p
+vnoremap <leader><leader>P "*P
+vnoremap <leader><leader>y "*y
+vnoremap <leader><leader>Y "*Y
+nnoremap <leader><leader>p "*p
+nnoremap <leader><leader>P "*P
+nnoremap <leader><leader>y "*y
+nnoremap <leader><leader>Y "*Y
 
 " Status line
 set laststatus=2 " enables lightline
