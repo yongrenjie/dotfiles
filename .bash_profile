@@ -45,10 +45,16 @@ LIGHTGREEN='\[\033[38;5;40m\]'
 LIGHTYELLOW='\[\033[38;5;178m\]'
 ORANGE='\[\033[38;5;202m\]'
 RESET='\[$(tput sgr0)\]'
-export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
+
+YELLOWORANGE='\[\033[38;5;179m\]'
+BROWN='\[\033[38;5;130m\]'
+LIGHTBLUE='\[\033[38;5;75m\]'
+DARKBLUE='\[\033[38;5;26m\]'
 
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Colours
+    export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
     # SSH into WSL on CARP-CRL
     alias sshcarp="ssh yongrenjie@129.67.68.177"
     # SSH into cmd
@@ -77,6 +83,8 @@ fi
 
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Colours
+    export PS1="${YELLOWORANGE}\u${RESET}${WHITE}@${RESET}${BROWN}\h:${RESET}${LIGHTBLUE}\w${DARKBLUE}\$(git_branch)${RESET} ${LIGHTBLUE}\$ ${RESET}"
     # Windows home directory and desktop
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
