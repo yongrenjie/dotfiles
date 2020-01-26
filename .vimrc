@@ -86,6 +86,11 @@ let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
 let g:tex_flavor='latex'
 " Comment string for snippets
 autocmd FileType snippets setlocal commentstring=#\ %s
+" PDF viewer for vimtex in WSL
+let s:uname = system("uname")
+if s:uname == "Linux\n"
+    let g:vimtex_view_general_viewer = "okular"
+endif
 
 " Indentation style
 set shiftwidth=4
