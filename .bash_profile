@@ -79,6 +79,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias cddi='cd ~/mnt/dirac'
 	alias rs='rm *.sh*'
 	alias chemcraft='wine ~/.wine/drive_c/Chemcraft/Chemcraft.exe'
+    # Setup Haskell environment variables
+    source $HOME/.ghcup/env
 fi
 
 # WSL-specific
