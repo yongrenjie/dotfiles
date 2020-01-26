@@ -106,3 +106,13 @@ if !exists("au_loaded")
     au BufEnter ~/ps-opt/timerev/au/* :set filetype=c
     au BufEnter ~/noah-nmr/au/* :set filetype=c
 endif
+
+" Show syntax highlighting groups for word under cursor
+" all over the Internet, but e.g. https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
