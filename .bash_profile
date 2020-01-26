@@ -91,7 +91,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
     # TopSpin directory
-    export TS=/mnt/C/opt/topspin4.0.7/exp/stan/nmr
+    export TS='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
     alias ls="ls --color=auto"
     eval "$(dircolors ~/.dircolors)"
@@ -108,4 +108,17 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias mal="sudo mount -t drvfs E: /mnt/aleph"
     alias cdal="cd /mnt/aleph"
     alias umal="sudo umount /mnt/aleph"
+    updateav600 () {
+        rm -r $WH/noah-nmr/* $WH/ps-opt/*
+        export curdir=$PWD
+        cd ~/noah-nmr
+        git checkout-index --prefix=$WH/noah-nmr/ -a
+        cd ~/ps-opt
+        git checkout-index --prefix=$WH/ps-opt/ -a
+        cd /mnt/c
+        cmd.exe /c robocopy C:\\Users\\jonathan.yong\\noah-nmr S:\\data\\mfgroup\\JonY\\noah-nmr /E
+        cmd.exe /c robocopy C:\\Users\\jonathan.yong\\ps-opt S:\\data\\mfgroup\\JonY\\ps-opt /E
+        cd $curdir
+        unset curdir
+    }
 fi
