@@ -8,6 +8,8 @@
 "   Highlight LaTeX documents without the ridiculous amount of complexity used
 "   by the default tex.vim syntax file. See README.md for options.
 
+" Taken from https://github.com/gi1242/vim-tex-syntax/blob/master/syntax/tex.vim
+
 " Load control {{{1
 if exists("b:current_syntax")
   finish
