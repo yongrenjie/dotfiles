@@ -92,6 +92,7 @@ autocmd FileType snippets setlocal commentstring=#\ %s
 " PDF viewer for vimtex in WSL
 let s:uname = system("uname")
 if s:uname == "Linux\n"
+    packadd ultisnips " if I get a new Mac we can make this a default again
     let g:vimtex_view_general_viewer = "okular"
 endif
 
