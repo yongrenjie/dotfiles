@@ -106,6 +106,12 @@ syn region texArgsNormNorm contained transparent
 	    \ matchgroup=texArgDelims start='\[' end='\]'
 	    \ nextgroup=texArgsNormNorm skipwhite skipempty
 	    \ contains=@TopSpell
+" Jon addition 30/01/2020.
+syn region texArgsNormNorm contained transparent
+	    \ matchgroup=texArgDelims start='<' end='>'
+	    \ nextgroup=texArgsNormNorm skipwhite skipempty
+	    \ contains=@TopSpell
+" addition ends.
 syn region texArgsNormNorm contained transparent
 	    \ matchgroup=texArgDelims start='{'
 	    \ end='\v%(\\end\{\a+\*?)@<!}'

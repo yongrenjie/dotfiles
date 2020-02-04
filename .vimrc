@@ -80,10 +80,13 @@ let g:python_highlight_all=1
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
 let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
+let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliography']
 " Set TeX flavour. This is needed for tex.snippets to work.
 " Without this, :set ft? will give 'plaintex'; with it, :set ft? will give
 " 'tex'. See :h tex_flavor for more info
 let g:tex_flavor='latex'
+let g:vimtex_fold_enabled=1
+let g:vimtex_fold_manual=1
 " Comment string for snippets
 autocmd FileType snippets setlocal commentstring=#\ %s
 " PDF viewer for vimtex in WSL
