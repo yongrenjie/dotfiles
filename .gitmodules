@@ -29,7 +29,7 @@
 	path = .vim/pack/plugins/start/vimtex
 	url = https://github.com/lervag/vimtex
 [submodule ".vim/pack/plugins/start/ultisnips"]
-	path = .vim/pack/plugins/start/ultisnips
+	path = .vim/pack/plugins/opt/ultisnips
 	url = https://github.com/SirVer/ultisnips
 [submodule ".vim/pack/plugins/start/lightline"]
 	path = .vim/pack/plugins/start/lightline
