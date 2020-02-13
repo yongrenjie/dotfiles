@@ -104,11 +104,12 @@ set expandtab
 if !exists("au_loaded")
     let au_loaded = 1
     " Correct indent style for SE citation manager
-    au BufEnter ~/citation/*.js :set expandtab!
-    " Auto-detect TopSpin AU programmes as being in C
-    au BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
-    au BufEnter ~/ps-opt/timerev/au/* :set filetype=c
-    au BufEnter ~/noah-nmr/au/* :set filetype=c
+    autocmd BufEnter ~/citation/*.js :set expandtab!
+    " autocmdto-detect TopSpin AU programmes as being in C
+    autocmd BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
+    autocmd BufEnter ~/ps-opt/timerev/au/* :set filetype=c
+    autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
+    autocmd BufWritePost ~/pypopt/pypopt.py :silent execute '! cp % $TS/py/user/pypopt.py'
 endif
 
 " Show syntax highlighting groups for word under cursor
