@@ -75,6 +75,8 @@ let g:lightline = {'colorscheme': 'PaperColor'}
 colorscheme PaperColor
 set background=dark
 set t_ut=""
+" Enable FastFold for all files
+let g:fastfold_minlines=0
 " Turn on Python syntax highlighting
 let g:python_highlight_all=1
 " Remove automatic indentation for certain LaTeX environments
@@ -110,6 +112,7 @@ if !exists("au_loaded")
     autocmd BufEnter ~/ps-opt/timerev/au/* :set filetype=c
     autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
     autocmd BufWritePost ~/pypopt/pypopt.py :silent execute '! cp % $TS/py/user/pypopt.py'
+    autocmd BufWritePost ~/pypopt/pypopt-be.py :silent execute '! cp % $TS/py/user/pypopt/pypopt-be.py'
 endif
 
 " Show syntax highlighting groups for word under cursor
