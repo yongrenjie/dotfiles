@@ -4,10 +4,6 @@ alias please='sudo $(fc -ln -1)'
 # Don't close with Ctrl-D
 set -o ignoreeof;
 
-# tmux aliases
-alias hiss='tmux split-window -v -p 30 python3'
-alias ihiss='tmux split-window -v -p 30 ipython'
-
 # typo-proof aliases
 alias sl='ls'
 alias gti='git'
@@ -60,15 +56,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # SSH into cmd
     alias sshcarpcmd="ssh jonathan.yong@129.67.68.177 -p 2222"
 	# TopSpin path
-	export TS=/opt/topspin4.0.7/exp/stan/nmr
+	export TS=/opt/topspin4.0.8/exp/stan/nmr
 	# CodeMeter cleanup
 	alias cleanuplog='sudo rm /Applications/Cm*.log'
-	# Switch between light and dark mode for TeXStudio.
-	# Since I use vim for LaTeX now these are now pointless... but I'll just keep them anyway
-	alias txslightmode='rm ~/.config/texstudio/stylesheet.qss; echo "TeXstudio: reverted to light mode."'
-	alias txsdarkmode='cp ~/stylesheet.qss ~/.config/texstudio; echo "TeXstudio: dark mode turned on."'
 	# Aliases for computational chemistry.
-	alias orcam='open -a Google\ Chrome  ~/Documents/orca_manual_4_1_0.pdf'
 	alias mal='sudo sshfs -o allow_other,defer_permissions linc3717@aleph.chem.ox.ac.uk:/u/fd/linc3717 ~/mnt/aleph'
 	alias umal='sudo umount ~/mnt/aleph'
 	alias opal='open ~/mnt/aleph'
