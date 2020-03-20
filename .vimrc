@@ -89,6 +89,7 @@ let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliograp
 let g:tex_flavor='latex'
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
+let g:vimtex_syntax_enabled=0 " otherwise it throws an error since I'm not using default syntax file
 " Comment string for snippets
 autocmd FileType snippets setlocal commentstring=#\ %s
 " PDF viewer for vimtex in WSL
