@@ -32,9 +32,8 @@ fi
 
 # Fancy terminal colors
 git_branch() { 
-    git symbolic-ref HEAD --short 2>/dev/null | sed 's/\(.\+\)/ (\1)/'
+    git symbolic-ref HEAD --short 2>/dev/null | sed -E 's/.+/ (&)/'
 }
-# https://gist.github.com/justintv/168835#gistcomment-2809621
 LIGHTCYAN='\[\033[38;5;45m\]'
 WHITE='\[\033[38;5;15m\]'
 LIGHTGREEN='\[\033[38;5;40m\]'
