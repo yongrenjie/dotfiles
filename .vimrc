@@ -5,10 +5,14 @@ filetype plugin indent on
 syntax on
 set backspace=indent,eol,start
 
+" Indentation style
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
 " Show as much of the last line as possible, instead of @@@@@
 set display+=lastline
-" Make search (/ and ?) case-insensitive except when capital letters are
-" present
+" Make search (/ and ?) case-insensitive except when capital letters are present
 set ignorecase
 set smartcase
 
@@ -22,19 +26,7 @@ onoremap al :normal val<CR>
 nnoremap <Space> <Nop>
 let mapleader=" "
 
-function ExpandDOIBib()
-    let doi = expand("<cWORD>")
-    normal! diW
-    execute 'r !doi2biblatex.py "'.doi.'"'
-    normal! =ap}{dd
-    " Edge case where it produces an extra line
-    if line(".") == 1
-        if getline(".") !~ '\S'
-            normal! dd
-        endif
-    endif
-endfunction
-
+" Open papers quickly
 function! OpenDOIURL()
     let firstline = line("'{")
     let lastline = line("'}")
@@ -49,19 +41,29 @@ function! OpenDOIURL()
         let i = i + 1
     endwhile
 endfunction
-
-nnoremap <leader>ex :call ExpandDOIBib() <CR>
 nnoremap <leader>op :call OpenDOIURL() <CR>
 
-" Easy system clipboard yank/paste
+" Easy system clipboard access
 vnoremap <leader><leader>p "*p
 vnoremap <leader><leader>P "*P
 vnoremap <leader><leader>y "*y
 vnoremap <leader><leader>Y "*Y
+vnoremap <leader><leader>c "*c
+vnoremap <leader><leader>C "*C
+vnoremap <leader><leader>d "*d
+vnoremap <leader><leader>D "*D
+vnoremap <leader><leader>s "*s
+vnoremap <leader><leader>S "*S
 nnoremap <leader><leader>p "*p
 nnoremap <leader><leader>P "*P
 nnoremap <leader><leader>y "*y
 nnoremap <leader><leader>Y "*Y
+nnoremap <leader><leader>c "*c
+nnoremap <leader><leader>C "*C
+nnoremap <leader><leader>d "*d
+nnoremap <leader><leader>D "*D
+nnoremap <leader><leader>s "*s
+nnoremap <leader><leader>S "*S
 
 " Status line
 set laststatus=2 " enables lightline
@@ -69,52 +71,12 @@ set noshowmode " disables the default insert
 let g:lightline = {'colorscheme': 'PaperColor'}
 
 " Colour scheme stuff
-" set t_Co=256
-" The above is not needed if $TERM=xterm-256color in bash, vim
-" should read it automatically
 colorscheme PaperColor
 set background=dark
 set t_ut=""
+
 " Enable FastFold for all files
 let g:fastfold_minlines=0
-" Turn on Python syntax highlighting
-let g:python_highlight_all=1
-" Remove automatic indentation for certain LaTeX environments
-" cmdline and script are user-defined envs for the SBM comp chem tutorial...
-let g:vimtex_indent_ignored_envs=['document', 'cmdline', 'script']
-let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliography']
-" Set TeX flavour. This is needed for tex.snippets to work.
-" Without this, :set ft? will give 'plaintex'; with it, :set ft? will give
-" 'tex'. See :h tex_flavor for more info
-let g:tex_flavor='latex'
-let g:vimtex_fold_enabled=1
-let g:vimtex_fold_manual=1
-let g:vimtex_syntax_enabled=0 " otherwise it throws an error since I'm not using default syntax file
-" Comment string for snippets
-autocmd FileType snippets setlocal commentstring=#\ %s
-" PDF viewer for vimtex in WSL
-let s:uname = system("uname")
-if s:uname == "Linux\n"
-    let g:vimtex_view_general_viewer = "okular"
-endif
-
-" Indentation style
-set shiftwidth=4
-set tabstop=4
-set expandtab
-
-" Fast compilation of C programmes
-function! CompileKNR()
-    let fname = expand("%")
-    let pname = expand("%:r")
-    :silent let compile = system("cc " . fname . " -o " . pname . " -Wall -ansi")
-    if v:shell_error != 0
-        echo compile
-        " Ideally this would highlight line numbers, but I don't know how to code that yet
-    else
-        echo "Compile successful"
-    endif
-endfunction
 
 if !exists("au_loaded")
     let au_loaded = 1
@@ -126,12 +88,11 @@ if !exists("au_loaded")
     autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
     autocmd BufWritePost ~/pypopt/pypopt.py :silent execute '! cp % $TS/py/user/pypopt.py'
     autocmd BufWritePost ~/pypopt/pypopt-be.py :silent execute '! cp % $TS/py/user/pypopt/pypopt-be.py'
-    autocmd BufEnter *.c nnoremap <leader>cc :call CompileKNR() <CR>
 endif
 
 " Show syntax highlighting groups for word under cursor
 " all over the Internet, but e.g. https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
-nmap <leader>sp :call <SID>SynStack()<CR>
+nnoremap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
