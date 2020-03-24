@@ -103,6 +103,19 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 
+" Fast compilation of C programmes
+function! CompileKNR()
+    let fname = expand("%")
+    let pname = expand("%:r")
+    :silent let compile = system("cc " . fname . " -o " . pname . " -Wall -ansi")
+    if v:shell_error != 0
+        echo compile
+        " Ideally this would highlight line numbers, but I don't know how to code that yet
+    else
+        echo "Compile successful"
+    endif
+endfunction
+
 if !exists("au_loaded")
     let au_loaded = 1
     " Correct indent style for SE citation manager
@@ -113,6 +126,7 @@ if !exists("au_loaded")
     autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
     autocmd BufWritePost ~/pypopt/pypopt.py :silent execute '! cp % $TS/py/user/pypopt.py'
     autocmd BufWritePost ~/pypopt/pypopt-be.py :silent execute '! cp % $TS/py/user/pypopt/pypopt-be.py'
+    autocmd BufEnter *.c nnoremap <leader>cc :call CompileKNR() <CR>
 endif
 
 " Show syntax highlighting groups for word under cursor
