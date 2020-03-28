@@ -22,8 +22,8 @@ source ~/.git-completion.bash
 
 # Mac OS X - alias GNU utils, needed for git_branch function below
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	# GNU utils
-	alias grep='ggrep --color=auto'
+    # GNU utils
+    alias grep='ggrep --color=auto'
     alias sed='gsed'
     # ls colors - using GNU ls and GNU dircolors from brew:coreutils
     alias ls='gls --color=auto'
@@ -61,21 +61,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sshcarp="ssh yongrenjie@129.67.68.177"
     # SSH into cmd
     alias sshcarpcmd="ssh jonathan.yong@129.67.68.177 -p 2222"
-	# TopSpin path
-	export TS=/opt/topspin4.0.8/exp/stan/nmr
-	# CodeMeter cleanup
-	alias cleanuplog='sudo rm /Applications/Cm*.log'
-	# Aliases for computational chemistry.
-	alias mal='sudo sshfs -o allow_other,defer_permissions linc3717@aleph.chem.ox.ac.uk:/u/fd/linc3717 ~/mnt/aleph'
-	alias umal='sudo umount ~/mnt/aleph'
-	alias opal='open ~/mnt/aleph'
-	alias cdal='cd ~/mnt/aleph'
-	alias mdi='sudo sshfs -o allow_other,defer_permissions linc3717@dirac.chem.ox.ac.uk:/home/dirac/oxford/linc3717 ~/mnt/dirac'
-	alias umdi='sudo umount ~/mnt/dirac'
-	alias opdi='open ~/mnt/dirac'
-	alias cddi='cd ~/mnt/dirac'
-	alias rs='rm *.sh*'
-	alias chemcraft='wine ~/.wine/drive_c/Chemcraft/Chemcraft.exe'
+    # TopSpin path
+    export TS=/opt/topspin4.0.8/exp/stan/nmr
+    # CodeMeter cleanup
+    alias cleanuplog='sudo rm /Applications/Cm*.log'
+    # Aliases for computational chemistry.
+    alias mal='sudo sshfs -o allow_other,defer_permissions linc3717@aleph.chem.ox.ac.uk:/u/fd/linc3717 ~/mnt/aleph'
+    alias umal='sudo umount ~/mnt/aleph'
+    alias opal='open ~/mnt/aleph'
+    alias cdal='cd ~/mnt/aleph'
+    alias mdi='sudo sshfs -o allow_other,defer_permissions linc3717@dirac.chem.ox.ac.uk:/home/dirac/oxford/linc3717 ~/mnt/dirac'
+    alias umdi='sudo umount ~/mnt/dirac'
+    alias opdi='open ~/mnt/dirac'
+    alias cddi='cd ~/mnt/dirac'
+    alias rs='rm *.sh*'
+    alias chemcraft='wine ~/.wine/drive_c/Chemcraft/Chemcraft.exe'
     # Setup Haskell environment variables
     source $HOME/.ghcup/env
 fi
