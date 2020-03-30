@@ -40,3 +40,6 @@
 [submodule ".vim/pack/plugins/start/SimpylFold"]
 	path = .vim/pack/plugins/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold
+[submodule ".vim/pack/plugins/start/gruvbox"]
+	path = .vim/pack/plugins/start/gruvbox
+	url = https://github.com/morhetz/gruvbox
