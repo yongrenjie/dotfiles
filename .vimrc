@@ -35,7 +35,7 @@ function! OpenDOIURL()
         let tline = getline(i)
         let doi = matchstr(tline, 'doi = {\zs.*\ze}')
         if !empty(doi)
-            execute "OpenURL https://doi.org/" . doi
+            silent let output = system("open https://doi.org/" . doi)
             break
         endif
         let i = i + 1
