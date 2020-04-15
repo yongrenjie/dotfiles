@@ -30,13 +30,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     eval "$(gdircolors ~/.dircolors)"
 fi
 
-# Quickly compile K&R-era C programmes
-ccc() {
-    if [[ -n ${1} ]]; then
-        cc ${1} -o ${1%.c} -Wall -ansi && echo "compile done"
-    fi
-}
-
 # Fancy terminal colors
 git_branch() { 
     git symbolic-ref HEAD --short 2>/dev/null | sed -E 's/.+/ (&)/'

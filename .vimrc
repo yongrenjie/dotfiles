@@ -9,6 +9,7 @@ set backspace=indent,eol,start
 set shiftwidth=4
 set tabstop=4
 set expandtab
+autocmd FileType make setlocal noexpandtab
 
 " Show as much of the last line as possible, instead of @@@@@
 set display+=lastline
