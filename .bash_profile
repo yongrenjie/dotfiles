@@ -75,6 +75,9 @@ fi
 
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # CMD and PowerShell
+    alias cmd='/mnt/c/Windows/System32/cmd.exe'
+    alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
     # Colours
     export PS1="${YELLOWORANGE}\u${RESET}${WHITE}@${RESET}${BROWN}\h:${RESET}${LIGHTBLUE}\w${DARKBLUE}\$(git_branch)${RESET} ${LIGHTBLUE}\$ ${RESET}"
     # Windows home directory and desktop
