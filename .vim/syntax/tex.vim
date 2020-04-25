@@ -670,7 +670,9 @@ hi def link texCommand		    Statement
 hi def link texComment		    Comment
 
 hi def link texSectionCommands	    PreProc
-hi def link texSpecialCommands	    Special
+" changed the line below from Special -> texCommand because PaperColor
+" highlights Special as white...
+hi def link texSpecialCommands	    texCommand
 hi def link texSpecialArgCommands   texCommand
 hi def link texGenericCommand	    texCommand
 

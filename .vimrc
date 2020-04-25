@@ -4,6 +4,7 @@ set hidden
 filetype plugin indent on
 syntax on
 set backspace=indent,eol,start
+set ttimeoutlen=50
 
 " Indentation style
 set shiftwidth=4
