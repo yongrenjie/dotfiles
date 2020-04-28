@@ -46,3 +46,6 @@
 [submodule ".vim/pack/plugins/start/vim-ps1"]
 	path = .vim/pack/plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1
+[submodule ".vim/pack/plugins/start/vim-haskell-indent"]
+	path = .vim/pack/plugins/start/vim-haskell-indent
+	url = https://github.com/itchyny/vim-haskell-indent
