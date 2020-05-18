@@ -1,8 +1,11 @@
 # I, for one, welcome our new robot overlords
 alias please='sudo $(fc -ln -1)'
 
-# Don't close with Ctrl-D
-set -o ignoreeof;
+# Don't close with Ctrl-D unless I mash it
+export IGNOREEOF=2
+
+# Search lab book for a phrase, run inside ~/dphil/exp
+alias findmd='find . -name "*.md" | xargs ggrep --color=auto'
 
 # typo-proof aliases
 alias sl='ls'
@@ -13,6 +16,12 @@ alias dc='cd'
 alias sshar='ssh linc3717@oscgate.arc.ox.ac.uk'
 alias sshal='ssh linc3717@aleph.chem.ox.ac.uk'
 alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
+
+# Avoid $PATH chaos with tmux, see https://superuser.com/questions/544989
+if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+fi
 
 # Set $PATH
 PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
