@@ -36,7 +36,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sed='gsed'
     # ls colors - using GNU ls and GNU dircolors from brew:coreutils
     alias ls='gls --color=auto'
-    eval "$(gdircolors ~/.dircolors)"
 fi
 
 # Fancy terminal colors
@@ -50,6 +49,14 @@ LIGHTYELLOW='\[\033[38;5;178m\]'
 ORANGE='\[\033[38;5;202m\]'
 RESET='\[$(tput sgr0)\]'
 
+# For light mode
+INDIGO='\[\033[38;5;20m\]'
+BLACK='\[\033[38;5;0m\]'
+GREEN='\[\033[38;5;22m\]'
+DARKGOLD='\[\033[38;5;94m\]'
+BRIGHTRED='\[\033[38;5;161m\]'
+
+# For CARP-CRL
 YELLOWORANGE='\[\033[38;5;179m\]'
 BROWN='\[\033[38;5;130m\]'
 LIGHTBLUE='\[\033[38;5;75m\]'
@@ -58,7 +65,15 @@ DARKBLUE='\[\033[38;5;26m\]'
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Colours
-    export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
+    if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+        # Dark mode
+        export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
+        eval "$(gdircolors ~/.dircolors_dark)"
+    else
+        # Light mode
+        export PS1="${INDIGO}\u${RESET}${BLACK}@${RESET}${GREEN}\h:${RESET}${DARKGOLD}\w${BRIGHTRED}\$(git_branch)${RESET} ${DARKGOLD}\$ ${RESET}"
+        eval "$(gdircolors ~/.dircolors_light)"
+    fi
     # SSH into WSL on CARP-CRL
     alias sshcarp="ssh yongrenjie@129.67.68.177"
     # SSH into cmd
@@ -94,7 +109,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export TS='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
     alias ls="ls --color=auto"
-    eval "$(dircolors ~/.dircolors)"
+    eval "$(gdircolors ~/.dircolors_dark)"
     # enable to show graphs on Windows
     export DISPLAY=localhost:0.0
     # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.

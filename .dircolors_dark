@@ -278,6 +278,8 @@ CHR    01;38;5;137 # character device driver
 .bash_profile 00;38;5;94
 .bashrc       00;38;5;94
 .dircolors    00;38;5;94
+.dircolors_light   00;38;5;94
+.dircolors_dark    00;38;5;94
 .gitignore    00;38;5;94
 .gitmodules   00;38;5;94
 .profile      00;38;5;94
@@ -301,6 +303,8 @@ CHR    01;38;5;137 # character device driver
 .sav   00;38;5;245
 .mat   00;38;5;245
 .json  00;38;5;245
+.yaml  00;38;5;245
+.yml   00;38;5;245
 
 # Special interest
 *README           07;38;5;230
@@ -342,5 +346,8 @@ CHR    01;38;5;137 # character device driver
 .bash_history     00;38;5;238
 .bash_logout      00;38;5;238
 .python_history   00;38;5;238
+.git-completion.bash   00;38;5;238
 .viminfo    00;38;5;238
 .sudo_as_admin_successful    00;38;5;238
+
+# vim: set ft=dircolors:

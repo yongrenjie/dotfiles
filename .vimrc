@@ -74,8 +74,15 @@ let g:lightline = {'colorscheme': 'PaperColor'}
 
 " Colour scheme stuff
 colorscheme PaperColor
-set background=dark
 set t_ut=""
+" Detect light/dark mode automatically
+if stridx(system("uname"), "Darwin") != -1  " if MacOS
+    if stridx(system("defaults read -g AppleInterfaceStyle 2>/dev/null"), "Dark") == -1
+        set background=light
+    else
+        set background=dark
+    endif
+endif
 
 " Enable FastFold for all files
 let g:fastfold_minlines=0

@@ -2,7 +2,8 @@
 files=(".vimrc" \
     ".vim" \
     ".bash_profile" \
-    ".dircolors" \
+    ".dircolors_dark" \
+    ".dircolors_light" \
     ".git-completion.bash" \
     ".tmux.conf" \
     ".bashrc" \
