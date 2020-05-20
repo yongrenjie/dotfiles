@@ -7,6 +7,9 @@ export IGNOREEOF=2
 # Search lab book for a phrase, run inside ~/dphil/exp
 alias findmd='find . -name "*.md" | xargs ggrep --color=auto'
 
+# Print 256 terminal colours
+alias colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash'
+
 # typo-proof aliases
 alias sl='ls'
 alias gti='git'
@@ -24,7 +27,7 @@ if [ -f /etc/profile ]; then
 fi
 
 # Set $PATH
-PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
+PATH=$HOME/peeplatex:$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
 # Git autocompletion
 source ~/.git-completion.bash
@@ -138,3 +141,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         unset curdir
     }
 fi
+
+# Bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# Fzf settings
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -4,7 +4,10 @@ set hidden
 filetype plugin indent on
 syntax on
 set backspace=indent,eol,start
+" Timeout after hitting Esc (in ms)
 set ttimeoutlen=50
+" Navigate between quickfix
+set switchbuf=useopen
 
 " Indentation style
 set shiftwidth=4
@@ -27,6 +30,10 @@ onoremap al :normal val<CR>
 " Leader key
 nnoremap <Space> <Nop>
 let mapleader=" "
+
+" Quickfix
+nnoremap <silent> <leader>] :cnext<CR>	
+nnoremap <silent> <leader>[ :cprevious<CR>
 
 " Open papers quickly
 function! OpenDOIURL()
@@ -75,13 +82,23 @@ let g:lightline = {'colorscheme': 'PaperColor'}
 " Colour scheme stuff
 colorscheme PaperColor
 set t_ut=""
-" Detect light/dark mode automatically
+" Detect light/dark mode automatically.
+" Also set terminal escape codes for italic text.
 if stridx(system("uname"), "Darwin") != -1  " if MacOS
+    set t_ZH=[3m
+    set t_ZR=[23m
     if stridx(system("defaults read -g AppleInterfaceStyle 2>/dev/null"), "Dark") == -1
         set background=light
     else
         set background=dark
     endif
+else  " somewhere else, e.g. WSL
+    set background=dark
+endif
+
+" Load UltiSnips if python3 is enabled.
+if has('python3')
+    packadd ultisnips
 endif
 
 " Enable FastFold for all files
@@ -92,11 +109,7 @@ if !exists("au_loaded")
     " Correct indent style for SE citation manager
     autocmd BufEnter ~/citation/*.js :set expandtab!
     " autocmdto-detect TopSpin AU programmes as being in C
-    autocmd BufEnter /opt/topspin4.0.7/exp/stan/nmr/au/src/* :set filetype=c
-    autocmd BufEnter ~/ps-opt/timerev/au/* :set filetype=c
-    autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
-    autocmd BufWritePost ~/pypopt/pypopt.py :silent execute '! cp % $TS/py/user/pypopt.py'
-    autocmd BufWritePost ~/pypopt/pypopt-be.py :silent execute '! cp % $TS/py/user/pypopt/pypopt-be.py'
+    autocmd BufEnter /opt/topspin4.0.8/exp/stan/nmr/au/src/* :set filetype=c
 endif
 
 " Show syntax highlighting groups for word under cursor
