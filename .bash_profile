@@ -144,5 +144,8 @@ fi
 
 # Bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 # Fzf settings
+# Fix to allow fzf ** to work. See my comment at https://github.com/junegunn/fzf/issues/2035.
+PATH=$HOME/.fzf/bin:$PATH
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
