@@ -4,10 +4,6 @@ set hidden
 filetype plugin indent on
 syntax on
 set backspace=indent,eol,start
-" Timeout after hitting Esc (in ms)
-set ttimeoutlen=50
-" Navigate between quickfix
-set switchbuf=useopen
 
 " Indentation style
 set shiftwidth=4
@@ -15,6 +11,8 @@ set tabstop=4
 set expandtab
 autocmd FileType make setlocal noexpandtab
 
+" Timeout after hitting Esc (in ms)
+set ttimeoutlen=50
 " Show as much of the last line as possible, instead of @@@@@
 set display+=lastline
 " Make search (/ and ?) case-insensitive except when capital letters are present
@@ -32,8 +30,14 @@ nnoremap <Space> <Nop>
 let mapleader=" "
 
 " Quickfix
-nnoremap <silent> <leader>] :cnext<CR>	
-nnoremap <silent> <leader>[ :cprevious<CR>
+set switchbuf=useopen
+nnoremap <leader>] :cnext<CR>	
+nnoremap <leader>[ :cprevious<CR>
+
+" Fzf shortcuts
+nnoremap <leader>f :Files ~<CR>
+nnoremap <leader>g :GFiles<CR>
+nnoremap <leader>r :Rg<CR>
 
 " Open papers quickly
 function! OpenDOIURL()
