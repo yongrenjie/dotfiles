@@ -25,26 +25,25 @@ alias sshar='ssh linc3717@oscgate.arc.ox.ac.uk'
 alias sshal='ssh linc3717@aleph.chem.ox.ac.uk'
 alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
 
-# Avoid $PATH chaos with tmux, see https://superuser.com/questions/544989
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
-fi
-
-# Set $PATH
-PATH=$HOME/peeplatex:$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
-
 # Git autocompletion
 source ~/.git-completion.bash
 
 # Mac OS X - alias GNU utils, needed for git_branch function below
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Avoid $PATH chaos with tmux, see https://superuser.com/questions/544989
+    if [ -f /etc/profile ]; then
+        PATH=""
+        source /etc/profile
+    fi
     # GNU utils
     alias grep='ggrep --color=auto'
     alias sed='gsed'
     # ls colors - using GNU ls and GNU dircolors from brew:coreutils
     alias ls='gls --color=auto'
 fi
+
+# Set $PATH
+PATH=$HOME/peeplatex:$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
 # Fancy terminal colors
 git_branch() { 
@@ -113,11 +112,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Windows home directory and desktop
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
+    # Copy poptpy to Windows desktop without .git
+    alias cpopt='rsync -av --progress $HOME/poptpy $WD --exclude .git'
     # TopSpin directory
     export TS='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
     alias ls="ls --color=auto"
-    eval "$(gdircolors ~/.dircolors_dark)"
+    eval "$(dircolors ~/.dircolors_dark)"
     # enable to show graphs on Windows
     export DISPLAY=localhost:0.0
     # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
