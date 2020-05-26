@@ -8,7 +8,12 @@ export IGNOREEOF=2
 alias findmd='find . -name "*.md" | xargs ggrep --color=auto'
 
 # Print 256 terminal colours
-alias colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash'
+colours () {
+    curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash
+    printf '\n'
+    for i in {0..255}; do printf '\e[38;5;%dm%3d ' $i $i; (((i+3) % 18)) || printf '\e[0m\n'; done
+    printf '\n\n'
+}
 
 # typo-proof aliases
 alias sl='ls'
@@ -149,3 +154,5 @@ fi
 # Fix to allow fzf ** to work. See my comment at https://github.com/junegunn/fzf/issues/2035.
 # PATH=$HOME/.fzf/bin:$PATH
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND="fd --type file"
+export FZF_CTRL_T_COMMAND="fd --type file"

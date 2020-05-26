@@ -1,0 +1,31 @@
+# MS Office backups
+~$*
+
+# Stuff I'm really not interested in
+**/Applications/*
+**/Library/*
+**/Movies/*
+**/Music/*
+**/NMRSIM_SESSION/*
+**/Pictures/*
+**/Public/*
+
+# annoying stuff from a long time ago
+**/PtIIHPLC/*
+**/PtIIIR/*
+**/PtIINMR*/*
+**/Summer attachment 2016/*NMR*/*
+
+# annoying compchem files
+**/SBM Rotation 1/*nmr*/*
+**/SBM Rotation 1/**/shielding/*
+
+# vim source repo
+vim/*
+
+# dphil NMR files and URPs
+**/nmr/jy*
+**/*urp*.txt
+
+# see https://eclecticlight.co/2019/10/11/macos-catalina-boot-volume-layout-revised-for-10-15-release/
+/Systems/Volume/Data/*
