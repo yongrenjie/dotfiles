@@ -4,12 +4,13 @@ set hidden
 filetype plugin indent on
 syntax on
 set backspace=indent,eol,start
+set splitright
+set splitbelow
 
 " Indentation style
 set shiftwidth=4
 set tabstop=4
 set expandtab
-autocmd FileType make setlocal noexpandtab
 
 " Timeout after hitting Esc (in ms)
 set ttimeoutlen=50

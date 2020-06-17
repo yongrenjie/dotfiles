@@ -1,19 +1,29 @@
-export curdir=$PWD
+#!/usr/bin/env bash
+
 cd $HOME/vim/src
 git pull
 make distclean
+make clean
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # make doesn't know where to find the Homebrew installation, so must be manually specified.
-    ./configure --enable-cscope --enable-python3interp --enable-perlinterp --enable-luainterp --with-lua-prefix=/usr/local --enable-rubyinterp --with-ruby-command=/usr/local/opt/ruby/bin/ruby LDFLAGS=-L/usr/local/opt/ruby/lib CPPFLAGS=-I/usr/local/opt/ruby/include
+    CPPFLAGS="-I/usr/local/opt/ruby/include -I/usr/local/include/python3.8" \
+        LDFLAGS="-L/usr/local/opt/ruby/lib" \
+        ./configure \
+        --enable-cscope \
+        --enable-python3interp \
+        --enable-perlinterp \
+        --enable-luainterp \
+        --with-lua-prefix="/usr/local" \
+        --enable-rubyinterp \
+        --with-ruby-command="/usr/local/opt/ruby/bin/ruby"
     make -j
     sudo make install
 fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # requires sudo apt-get install lua5.2 liblua5.2-dev perl libperl-dev python3.8-dev
     # amongst others... but for now everything is fine
-    ./configure --enable-cscope --enable-python3interp --enable-perlinterp --enable-luainterp --enable-rubyinterp
+    ./configure --enable-cscope --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-rubyinterp
     make -j
     sudo make install
 fi
-cd $curdir
-unset curdir

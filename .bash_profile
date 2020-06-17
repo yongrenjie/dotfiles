@@ -16,14 +16,24 @@ colours () {
 }
 
 # typo-proof aliases
-alias sl='ls'
-alias gti='git'
-alias dc='cd'
+alias sl="ls"
+alias gti="git"
+alias dc="cd"
 
 # ssh aliases
-alias sshar='ssh linc3717@oscgate.arc.ox.ac.uk'
-alias sshal='ssh linc3717@aleph.chem.ox.ac.uk'
-alias sshdi='ssh linc3717@dirac.chem.ox.ac.uk'
+alias sshar="ssh linc3717@oscgate.arc.ox.ac.uk"
+alias sshal="ssh linc3717@aleph.chem.ox.ac.uk"
+alias sshdi="ssh linc3717@dirac.chem.ox.ac.uk"
+
+# Venv functions
+venv () {
+    . $(fd -I -p 'bin/activate$') 2&>/dev/null ||
+        . $(fd -I -p 'bin/activate$' ../) 2&>/dev/null ||
+        . $(fd -I -p 'bin/activate$' ../../)  # don't suppress errors on the third go
+}
+dvenv() {
+    deactivate
+}
 
 # Git autocompletion
 source ~/.git-completion.bash
@@ -87,6 +97,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sshcarpcmd="ssh jonathan.yong@129.67.68.177 -p 2222"
     # TopSpin path
     export TS=/opt/topspin4.0.8/exp/stan/nmr
+    export TSDOC=/opt/topspin4.0.8/prog/docu/english/topspin/pdf
     # CodeMeter cleanup
     alias cleanuplog='sudo rm /Applications/Cm*.log'
     # Aliases for computational chemistry.
