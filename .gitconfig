@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+    name = Jonathan Yong
+    email = yongrenjie@gmail.com
+[alias]
+    pushall = !git remote | xargs -L1 git push --all
+    unadd = reset HEAD --
+    last = log -1 HEAD
+    st = status
+    co = checkout
+	recommit = commit --amend --no-edit
+[core]
+    editor = vim
+    autocrlf = input
+[pull]
+	rebase = false

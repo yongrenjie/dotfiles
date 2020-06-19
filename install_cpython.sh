@@ -1,8 +1,7 @@
-# Compile CPython 3.8.3
-cd $HOME/cpython/Python-3.8.3/
-export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
-export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
-cd Python-3.8.3/
+# Change version as appropriate
+cd $HOME/cpython/Python-3.5.9/
+export LDFLAGS="-L/usr/local/opt/tcl-tk/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/tcl-tk/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include"
 CXX=clang++ ./configure \
     --enable-shared \
     --enable-optimizations \
