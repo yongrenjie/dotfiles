@@ -78,6 +78,10 @@ nnoremap <leader><leader>d "*d
 nnoremap <leader><leader>D "*D
 nnoremap <leader><leader>s "*s
 nnoremap <leader><leader>S "*S
+" And make that the default if we're in tmux
+if exists("$TMUX")
+    set clipboard=unnamed,unnamedplus
+endif
 
 " Status line
 set laststatus=2 " enables lightline
@@ -113,10 +117,12 @@ if !exists("au_loaded")
     let au_loaded = 1
     " Correct indent style for SE citation manager
     autocmd BufEnter ~/citation/*.js :set expandtab!
-    " autocmdto-detect TopSpin AU programmes as being in C
+    " autocmd to detect TopSpin AU programmes as being in C
     autocmd BufEnter /opt/topspin4.0.8/exp/stan/nmr/au/src/* :set filetype=c
 endif
 
+" Shortcut for highlighting test
+command Hitest :source $VIMRUNTIME/syntax/hitest.vim
 " Show syntax highlighting groups for word under cursor
 " all over the Internet, but e.g. https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
 nnoremap <leader>sp :call <SID>SynStack()<CR>
@@ -125,4 +131,8 @@ function! <SID>SynStack()
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+endfunction
+
+" Shortcut for executing Python code snippets
+nnoremap <leader>xp :w !python
+vnoremap <leader>xp :w !python

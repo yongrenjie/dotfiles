@@ -539,7 +539,7 @@ Tsy region texVerb matchgroup=texCommand
 	    \ start='\v\\verb\*?\z([^a-zA-Z@])' end='\z1'
 
 Tsy region texVerb
-	    \ start='\v\\begin\{\z(lstlisting|verbatim)}'
+	    \ start='\v\\begin\{\z(lstlisting|verbatim|cmdline)}'
 	    \ end='\v\\end\{\z1\}'
 
 " {{{1 TeX Comments
@@ -709,6 +709,10 @@ hi def link texArgsEnvOpt	    texArgsSpclSpclOpt
 hi def link texBraceError	    Error
 hi def link texEnvError		    Error
 hi def link texEnvEndDoc	    texCommand
+
+" highlight bash code in minted
+" syntax include @bash syntax/bash.vim
+" syntax region bashMinted start="\\begin{minted}{bash}" end="\\end{minted}" contains=@bash containedin=texEnv
 
 " {{{1 Cleanup
 let   b:current_syntax = "tex"

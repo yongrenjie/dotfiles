@@ -92,12 +92,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         eval "$(gdircolors ~/.dircolors_light)"
     fi
     # SSH into WSL on CARP-CRL
-    alias sshcarp="ssh yongrenjie@129.67.68.177"
-    # SSH into cmd
-    alias sshcarpcmd="ssh jonathan.yong@129.67.68.177 -p 2222"
+    alias sshcarp="ssh yongrenjie@129.67.68.177 -p 2346"
+    # SSH into PowerShell
+    alias sshcarpwin="ssh jonathan.yong@129.67.68.177 -p 2345"
     # TopSpin path
-    export TS=/opt/topspin4.0.8/exp/stan/nmr
-    export TSDOC=/opt/topspin4.0.8/prog/docu/english/topspin/pdf
+    export TS=/opt/topspin4.0.9/exp/stan/nmr
+    export TSDOC=/opt/topspin4.0.9/prog/docu/english/topspin/pdf
     # CodeMeter cleanup
     alias cleanuplog='sudo rm /Applications/Cm*.log'
     # Aliases for computational chemistry.

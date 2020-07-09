@@ -4,4 +4,4 @@ setlocal nosmartindent
 
 let maplocalleader='\'
 let g:asyncrun_open=10
-nnoremap <localleader>m :AsyncRun make clean && make html <CR>
+nnoremap <localleader>m :AsyncRun sphinx-build -a -E -b dirhtml . ./_build<CR>
