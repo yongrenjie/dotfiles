@@ -7,7 +7,7 @@ make clean
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # make doesn't know where to find the Homebrew installation, so must be manually specified.
-    CPPFLAGS="-I/usr/local/opt/ruby/include -I/usr/local/include/python3.8" \
+    CPPFLAGS="-I/usr/local/opt/ruby/include -I/Library/Frameworks/Python.framework/Headers/" \
         LDFLAGS="-L/usr/local/opt/ruby/lib" \
         ./configure \
         --enable-cscope \

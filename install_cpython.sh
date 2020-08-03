@@ -1,9 +1,9 @@
 # Change version as appropriate
-cd $HOME/cpython/Python-3.5.9/
+cd $HOME/cpython/Python-3.6.10/
 export LDFLAGS="-L/usr/local/opt/tcl-tk/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
 export CPPFLAGS="-I/usr/local/opt/tcl-tk/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include"
 CXX=clang++ ./configure \
-    --enable-shared \
+    --enable-framework \
     --enable-optimizations \
     --with-lto \
     --with-openssl='/usr/local/opt/openssl@1.1' \

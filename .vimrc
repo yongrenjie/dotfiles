@@ -99,7 +99,12 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
     if stridx(system("defaults read -g AppleInterfaceStyle 2>/dev/null"), "Dark") == -1
         set background=light
     else
-        set background=dark
+        if !empty($JUPYTER_SERVER_ROOT)
+            set t_Co=256  " By default it launches as 8 colors.
+            set background=light
+        else
+            set background=dark
+        endif
     endif
 else  " somewhere else, e.g. WSL
     set background=dark
@@ -118,7 +123,7 @@ if !exists("au_loaded")
     " Correct indent style for SE citation manager
     autocmd BufEnter ~/citation/*.js :set expandtab!
     " autocmd to detect TopSpin AU programmes as being in C
-    autocmd BufEnter /opt/topspin4.0.8/exp/stan/nmr/au/src/* :set filetype=c
+    autocmd BufEnter /opt/topspin4.0.9/exp/stan/nmr/au/src/* :set filetype=c
 endif
 
 " Shortcut for highlighting test

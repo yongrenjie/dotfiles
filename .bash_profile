@@ -53,7 +53,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Set $PATH
-PATH=$HOME/peeplatex:$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
+PATH=$HOME/doi2bib:$HOME/qcnmr-tools:$HOME/ps-opt:$PATH
 
 # Fancy terminal colors
 git_branch() { 
@@ -81,9 +81,18 @@ DARKBLUE='\[\033[38;5;26m\]'
 
 # Mac OS X specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Add framework Python scripts to PATH
+    # Note that Python scripts should no longer be installed to /usr/local/bin,
+    # they should be installed to this directory. If they are in /usr/local/bin,
+    # then they will shadow these, which is bad because those will be linked to
+    # a nonexistent version of Python!
+    PATH=$PATH:/Users/yongrenjie/Library/Python/3.8/bin
+    # if this is in JupyterLab, cd to home directory!
+    [ -n "$JUPYTER_SERVER_ROOT" ] && cd
     # Colours
-    if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
-        # Dark mode
+    if [ -z "$JUPYTER_SERVER_ROOT" ] && [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+        # Dark mode.
+        # We also check that $JUPYTER_SERVER_ROOT is not set, because I'm using a light theme in JupyterLab. It works nicely. :)
         export PS1="${LIGHTCYAN}\u${RESET}${WHITE}@${RESET}${LIGHTGREEN}\h:${RESET}${LIGHTYELLOW}\w${ORANGE}\$(git_branch)${RESET} ${LIGHTYELLOW}\$ ${RESET}"
         eval "$(gdircolors ~/.dircolors_dark)"
     else
