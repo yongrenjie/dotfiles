@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $HOME/vim/src
+cd $HOME/progs/vim/src
 git pull
 make distclean
 make clean

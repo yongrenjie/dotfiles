@@ -89,6 +89,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.8/bin
     # if this is in JupyterLab, cd to home directory!
     [ -n "$JUPYTER_SERVER_ROOT" ] && cd
+    # aliases to start/stop JupyterLab launch service
+    alias startjl='launchctl start jupyterlab_3.8'
+    alias stopjl='launchctl stop jupyterlab_3.8'
     # Colours
     if [ -z "$JUPYTER_SERVER_ROOT" ] && [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
         # Dark mode.
