@@ -4,11 +4,6 @@ syntax region texMathZoneZ matchgroup=texStatement start="\\ce{" start="\\cf{" m
 
 command Pdflatex :! pdflatex % 
 
-" Set TeX flavour. This is needed for tex.snippets to work.
-" Without this, :set ft? will give 'plaintex'; with it, :set ft? will give
-" 'tex'. See :h tex_flavor for more info
-let g:tex_flavor='latex'
-
 " ---------------
 " Vimtex settings
 

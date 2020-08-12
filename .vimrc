@@ -78,8 +78,8 @@ nnoremap <leader><leader>d "*d
 nnoremap <leader><leader>D "*D
 nnoremap <leader><leader>s "*s
 nnoremap <leader><leader>S "*S
-" And make that the default if we're in tmux
-if exists("$TMUX")
+" And make that the default if we're in tmux or jlab
+if exists("$TMUX") || !empty("$JUPYTER_SERVER_ROOT")
     set clipboard=unnamed,unnamedplus
 endif
 
@@ -94,6 +94,7 @@ set t_ut=""
 " Detect light/dark mode automatically.
 " Also set terminal escape codes for italic text.
 if stridx(system("uname"), "Darwin") != -1  " if MacOS
+    let g:tar_cmd="/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
     set t_ZH=[3m
     set t_ZR=[23m
     if stridx(system("defaults read -g AppleInterfaceStyle 2>/dev/null"), "Dark") == -1
@@ -141,3 +142,7 @@ endfunction
 " Shortcut for executing Python code snippets
 nnoremap <leader>xp :w !python
 vnoremap <leader>xp :w !python
+
+" Set tex flavour. Normally I'd put this in /ftplugin/tex.vim, but vimtex
+" nowadays complains on every file if this isn't set.
+let g:tex_flavor = 'latex'

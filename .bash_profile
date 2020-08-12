@@ -7,6 +7,9 @@ export IGNOREEOF=2
 # Search lab book for a phrase, run inside ~/dphil/exp
 alias findmd='find . -name "*.md" | xargs ggrep --color=auto'
 
+# Backup dphil folder
+alias bupd='bup index ~/dphil && bup save -n dphil ~/dphil && echo'
+
 # Print 256 terminal colours
 colours () {
     curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash

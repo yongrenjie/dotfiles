@@ -61,3 +61,6 @@
 [submodule ".vim/pack/plugins/start/asyncrun.vim"]
 	path = .vim/pack/plugins/start/asyncrun.vim
 	url = https://github.com/skywind3000/asyncrun.vim
+[submodule ".vim/pack/plugins/start/vim-pydocstring"]
+	path = .vim/pack/plugins/start/vim-pydocstring
+	url = https://github.com/heavenshell/vim-pydocstring
