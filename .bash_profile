@@ -128,6 +128,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias chemcraft='wine ~/.wine/drive_c/Chemcraft/Chemcraft.exe'
 fi
 
+cpoise() {
+    cd ~/nmrpoise
+    git checkout dev
+    git fetch origin dev
+    git reset --hard origin/dev
+    rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests
+    cd -
+}
+
 # WSL-specific
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # CMD and PowerShell
@@ -138,8 +147,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Windows home directory and desktop
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
-    # Copy poptpy to Windows desktop without .git
-    alias cpopt='rsync -av --progress $HOME/poptpy $WD --exclude .git'
+    # Copy poise to Windows desktop without .git
     # TopSpin directory
     export TS='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
