@@ -30,6 +30,11 @@ onoremap al :normal val<CR>
 nnoremap <Space> <Nop>
 let mapleader=" "
 
+" Vim-pulse
+" Uncomment this to make it only highlight the search pattern.
+" By default it highlights the entire line
+" let g:vim_search_pulse_mode='pattern'
+
 " Quickfix
 set switchbuf=useopen
 nnoremap <leader>] :cnext<CR>	
