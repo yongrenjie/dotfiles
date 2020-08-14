@@ -128,12 +128,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias chemcraft='wine ~/.wine/drive_c/Chemcraft/Chemcraft.exe'
 fi
 
-cpoise() {
+getpoise() {
     cd ~/nmrpoise
     git checkout dev
     git fetch origin dev
     git reset --hard origin/dev
-    rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests
+    # rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests --exclude "nmrpoise-egg.info"
     cd -
 }
 
