@@ -90,6 +90,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # then they will shadow these, which is bad because those will be linked to
     # a nonexistent version of Python!
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.8/bin
+    # python site-packages
+    export sp="$HOME/Library/Python/3.8/lib/python/site-packages"
     # if this is in JupyterLab, cd to home directory!
     [ -n "$JUPYTER_SERVER_ROOT" ] && cd
     # aliases to start/stop JupyterLab launch service
@@ -111,8 +113,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # SSH into PowerShell
     alias sshcarpwin="ssh jonathan.yong@129.67.68.177 -p 2345"
     # TopSpin path
-    export TS=/opt/topspin4.0.9/exp/stan/nmr
-    export TSDOC=/opt/topspin4.0.9/prog/docu/english/topspin/pdf
+    export ts=/opt/topspin4.0.9/exp/stan/nmr
+    export tsdoc=/opt/topspin4.0.9/prog/docu/english/topspin/pdf
     # CodeMeter cleanup
     alias cleanuplog='sudo rm /Applications/Cm*.log'
     # Aliases for computational chemistry.
