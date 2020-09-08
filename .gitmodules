@@ -67,3 +67,6 @@
 [submodule ".vim/pack/plugins/start/vim-search-pulse"]
 	path = .vim/pack/plugins/start/vim-search-pulse
 	url = https://github.com/inside/vim-search-pulse
+[submodule ".vim/pack/plugins/start/CamelCaseMotion"]
+	path = .vim/pack/plugins/start/CamelCaseMotion
+	url = https://github.com/bkad/CamelCaseMotion
