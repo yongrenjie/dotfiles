@@ -70,3 +70,9 @@
 [submodule ".vim/pack/plugins/start/CamelCaseMotion"]
 	path = .vim/pack/plugins/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion
+[submodule ".vim/pack/plugins/start/vim-fugitive"]
+	path = .vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".vim/pack/plugins/start/vim-javascript"]
+	path = .vim/pack/plugins/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
