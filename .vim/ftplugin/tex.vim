@@ -9,7 +9,7 @@ command Pdflatex :! pdflatex %
 
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
-let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliography']
+let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliography', 'minted']
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1
 let g:vimtex_syntax_enabled=0 " otherwise it throws an error since I'm not using default syntax file

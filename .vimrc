@@ -83,10 +83,6 @@ nnoremap <leader><leader>d "*d
 nnoremap <leader><leader>D "*D
 nnoremap <leader><leader>s "*s
 nnoremap <leader><leader>S "*S
-" And make that the default if we're in tmux or jlab
-if exists("$TMUX") || !empty("$JUPYTER_SERVER_ROOT")
-    set clipboard=unnamed,unnamedplus
-endif
 
 " Status line
 set laststatus=2 " enables lightline
