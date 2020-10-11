@@ -7,6 +7,10 @@ set backspace=indent,eol,start
 set splitright
 set splitbelow
 
+if !has('nvim')
+    packadd vim-search-pulse
+endif
+
 " Indentation style
 set shiftwidth=4
 set tabstop=4
@@ -19,6 +23,9 @@ set display+=lastline
 " Make search (/ and ?) case-insensitive except when capital letters are present
 set ignorecase
 set smartcase
+
+" gf: open the file in a new tab
+nnoremap gf :tabedit <cfile><CR>
 
 " Text motions for lines, cf. https://vi.stackexchange.com/q/6101/
 xnoremap il g_o^

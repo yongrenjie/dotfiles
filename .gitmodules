@@ -76,3 +76,9 @@
 [submodule ".vim/pack/plugins/start/vim-javascript"]
 	path = .vim/pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule ".vim/pack/plugins/start/jupyter-vim"]
+	path = .vim/pack/plugins/start/jupyter-vim
+	url = https://github.com/jupyter-vim/jupyter-vim
+[submodule ".vim/pack/plugins/opt/firenvim"]
+	path = .vim/pack/plugins/opt/firenvim
+	url = https://github.com/glacambre/firenvim

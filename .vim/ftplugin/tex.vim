@@ -4,8 +4,18 @@ syntax region texMathZoneZ matchgroup=texStatement start="\\ce{" start="\\cf{" m
 
 command Pdflatex :! pdflatex % 
 
-" ---------------
+" Word count function (relies on pdftotext being installed)
+" ---------------------------------------------------------
+function! WC()
+    let pdfname = expand("%:p:r") .. '.pdf'
+    let command = 'pdftotext ' .. pdfname .. ' - | grep -v "^\s*$" | wc'
+    let result = system(command)
+    echo trim(result)
+endfunction
+command WC :call WC()
+
 " Vimtex settings
+" ---------------
 
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...

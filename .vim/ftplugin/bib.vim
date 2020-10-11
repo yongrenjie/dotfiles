@@ -8,6 +8,7 @@ from peeplatex.peepcls import DOI
 doi = vim.eval('expand("<cWORD>")')
 try:
     citation = DOI(doi).to_citation(type="bib")
+    citation = citation.replace("'", "''")
 except Exception as e:
     citation = "error"
 vim.command("let citation='{}'".format(citation))
