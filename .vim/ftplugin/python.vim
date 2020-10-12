@@ -9,9 +9,9 @@ set textwidth=79
 let maplocalleader='\'
 let $PYTHONUNBUFFERED=1
 let g:asyncrun_open=10
-nnoremap <localleader>p :AsyncRun -raw python % <CR>
+nnoremap <buffer> <localleader>m :AsyncRun -raw python % <CR>
 
 " Path to doq, for pydocstring
 let g:pydocstring_doq_path = '/Users/yongrenjie/Library/Python/3.8/bin/doq'
 let g:pydocstring_formatter = 'numpy'
-nnoremap <localleader>dd :Pydocstring <CR>
+nnoremap <buffer> <localleader>dd :Pydocstring <CR>

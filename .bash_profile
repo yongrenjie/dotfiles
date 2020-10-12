@@ -204,3 +204,4 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_CTRL_T_COMMAND="fd --type file"
+export FZF_ALT_C_COMMAND="fd --type directory"
