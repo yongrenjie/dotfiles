@@ -154,3 +154,40 @@ vnoremap <leader>xp :w !python
 " Set tex flavour. Normally I'd put this in /ftplugin/tex.vim, but vimtex
 " nowadays complains on every file if this isn't set.
 let g:tex_flavor = 'latex'
+
+
+" Expand DOI function. The actual bindings should be implemented in
+" ftplugin/ft.vim.
+function ExpandDOI(type)
+let doi = expand("<cWORD>")
+echo "expanding DOI " .. doi .. "..."
+python3<<EOF
+import vim
+from cygnet import cite
+# get the citation
+doi = vim.eval('expand("<cWORD>")')
+try:
+    citation = cite(doi, type=vim.eval('a:type'))
+    citation = citation.replace("'", "''")
+except Exception as e:
+    citation = "error"
+vim.command("let citation='{}'".format(citation))
+EOF
+if citation != "error"
+    let lineno = line(".")
+    " twiddle with empty lines before citation
+    if !empty(trim(getline(line(".") - 1)))
+        let x = append(line(".") - 1, "")
+        let lineno += 1
+    endif
+    " replace the line with the citation
+    put =citation | redraw
+    " twiddle with empty lines after citation
+    if !empty(trim(getline(line(".") + 1)))
+        let x = append(line("."), "")
+    endif
+    execute lineno .. " delete _"
+else
+    redraw | echohl ErrorMsg | echo "invalid DOI " .. doi | echohl None
+endif
+endfunction

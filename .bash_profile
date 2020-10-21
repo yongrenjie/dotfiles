@@ -12,7 +12,10 @@ alias rsyncd='rsync -av --info=progress2 ~/dphil /Volumes/JonY'
 
 # HTTP server on 8000
 alias http='python -m http.server'
-alias httpdp='python -m http.server 5555 -d ~/dphil/nbsphinx/_build/'
+
+# Set up DPhil lab book
+alias dp1='python -m http.server 5555 -d ~/dphil/nbsphinx/dirhtml/'
+alias dp2='fd -e rst . ~/dphil/nbsphinx | entr sh -c "sphinx-build -a -E -b dirhtml ~/dphil/nbsphinx ~/dphil/nbsphinx/dirhtml"'
 
 # jupyter labextension is a pain to type
 alias jle='jupyter labextension'

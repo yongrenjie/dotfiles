@@ -1,10 +1,12 @@
-" setlocal tabstop=3
-" setlocal shiftwidth=3
 setlocal nosmartindent
 
 let maplocalleader='\'
 let g:asyncrun_open=20
 
+nnoremap <leader>e :call ExpandDOI('rst') <CR>
+nnoremap <leader>E :call ExpandDOI('Rst') <CR>
+
+" Find the Sphinx source directory, i.e. the directory that conf.py is in.
 function! FindSourceDir()
     " Need two layers of expand(), see :h expand()
     let f = expand(expand("%:p"))
@@ -20,10 +22,11 @@ function! FindSourceDir()
     return ""
 endfunction
 
+" Trigger a Sphinx dirhtml build.
 function! BuildSphinx()
     let fname = FindSourceDir()
     if !empty(fname)
-        let build_cmd = "sphinx-build -a -E -b dirhtml " .. fname .. " " .. fname .. "/_build"
+        let build_cmd = "sphinx-build -a -E -b dirhtml " .. fname .. " " .. fname .. "/dirhtml"
         call asyncrun#run("", {}, build_cmd)
     else
         echohl ErrorMsg | echo "BuildSphinx(): Sphinx source directory not found" | echohl None
@@ -31,16 +34,39 @@ function! BuildSphinx()
 endfunction
 nnoremap <buffer> <localleader>m :call BuildSphinx()<CR>
 
+" Replacement for gf.
 function! OpenFile()
-    " 'include' and similar directives in Sphinx resolve relative paths
+    " The matplotlib plot directive in Sphinx resolves relative paths
     " relative to the source directory, which means that when we type 'gf'
     " we need to make sure that the path is being called relative to the
     " source directory.
-    let fname = FindSourceDir()
-    if !empty(fname)
-        execute "tabedit" .. fname .. "/" .. expand("<cfile>")
+    " However, all other directives resolve relative paths relative to the
+    " working directory... and absolute paths are relative to the source
+    " directory. Argh!
+    " First, we figure out whether it's an absolute or relative path.
+    let cfile = expand("<cfile>")
+    if cfile[0] == "/"
+        let pathtype = "absolute"
+        let cfile = cfile[1:]  " strip off the leading /
     else
-        echohl ErrorMsg | echo "OpenFile(): Sphinx source directory not found" | echohl None
+        let pathtype = "relative"
+    endif
+    " Next, figure out if it's a plot directive. If so just turn pathtype back
+    " into absolute, since we want to resolve vs the source dir.
+    if match(getline("."), ".. plot::") > -1
+        let pathtype = "absolute"
+    endif
+    " Now, we can open the file directly if it's meant to be a relative path.
+    if pathtype == "relative"
+        execute "tabedit " .. cfile
+        return
+    else
+        let sourcedir = FindSourceDir()
+        if !empty(sourcedir)
+            execute "tabedit" .. sourcedir .. "/" .. expand("<cfile>")
+        else
+            echohl ErrorMsg | echo "OpenFile(): Sphinx source directory not found" | echohl None
+        endif
     endif
 endfunction
 " Override default gf functionality.

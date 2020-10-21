@@ -15,3 +15,13 @@ nnoremap <buffer> <localleader>m :AsyncRun -raw python % <CR>
 let g:pydocstring_doq_path = '/Users/yongrenjie/Library/Python/3.8/bin/doq'
 let g:pydocstring_formatter = 'numpy'
 nnoremap <buffer> <localleader>dd :Pydocstring <CR>
+
+" import short forms.
+iabbrev inp import numpy as np
+iabbrev iplt import matplotlib.pyplot as plt
+iabbrev isns import seaborn as sns
+iabbrev ipg import penguins as pg
+iabbrev ipd import pandas as pd
+iabbrev inmrd from penguins.private import nmrd
+iabbrev iandro from penguins.private import Andrographolide as Andro
+iabbrev izolmi from penguins.private import Zolmitriptan as Zolmi
