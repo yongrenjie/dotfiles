@@ -20,8 +20,6 @@ alias dp2='fd -e rst . ~/dphil/nbsphinx | entr sh -c "sphinx-build -a -E -b dirh
 # jupyter labextension is a pain to type
 alias jle='jupyter labextension'
 
-alias nvim='$HOME/progs/nvim/bin/nvim'
-
 # Print 256 terminal colours
 colours () {
     curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash

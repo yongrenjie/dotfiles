@@ -82,3 +82,6 @@
 [submodule ".vim/pack/plugins/opt/firenvim"]
 	path = .vim/pack/plugins/opt/firenvim
 	url = https://github.com/glacambre/firenvim
+[submodule ".vim/pack/plugins/opt/onedark.vim"]
+	path = .vim/pack/plugins/opt/onedark.vim
+	url = https://github.com/joshdick/onedark.vim

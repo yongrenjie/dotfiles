@@ -7,10 +7,6 @@ set backspace=indent,eol,start
 set splitright
 set splitbelow
 
-if !has('nvim')
-    packadd vim-search-pulse
-endif
-
 " Indentation style
 set shiftwidth=4
 set tabstop=4
@@ -94,10 +90,12 @@ nnoremap <leader><leader>S "*S
 " Status line
 set laststatus=2 " enables lightline
 set noshowmode " disables the default insert
-let g:lightline = {'colorscheme': 'PaperColor'}
+let g:lightline = {'colorscheme': 'one'}
 
 " Colour scheme stuff
-colorscheme PaperColor
+set termguicolors
+packadd! onedark.vim
+colorscheme onedark
 set t_ut=""
 " Detect light/dark mode automatically.
 " Also set terminal escape codes for italic text.
@@ -147,9 +145,6 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
-" Shortcut for executing Python code snippets
-nnoremap <leader>xp :w !python
-vnoremap <leader>xp :w !python
 
 " Set tex flavour. Normally I'd put this in /ftplugin/tex.vim, but vimtex
 " nowadays complains on every file if this isn't set.
