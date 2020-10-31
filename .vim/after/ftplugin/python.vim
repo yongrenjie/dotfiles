@@ -1,5 +1,5 @@
 function RecalcFolds()
     call SimpylFold#Recache()
-    FastFoldUpdate!
+    FastFoldUpdate
 endfunction
 autocmd BufWritePre <buffer> call RecalcFolds()

@@ -3,8 +3,8 @@ let g:python_highlight_all=1
 " Enable preview of folded docstrings
 let g:SimpylFold_docstring_preview = 1
 
-" Maximum line width for `gq`.
-set textwidth=79
+" PEP 8. Also helps with `gq`.
+setlocal textwidth=79
 
 let maplocalleader='\'
 let $PYTHONUNBUFFERED=1

@@ -16,9 +16,18 @@ set expandtab
 set ttimeoutlen=50
 " Show as much of the last line as possible, instead of @@@@@
 set display+=lastline
+
+" Searching in vim.
 " Make search (/ and ?) case-insensitive except when capital letters are present
 set ignorecase
 set smartcase
+" incsearch settings. copied from :h incsearch
+set incsearch
+augroup vimrc-incsearch-highlight
+    autocmd!
+    autocmd CmdlineEnter /,\? :set hlsearch
+    autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
 
 " gf: open the file in a new tab
 nnoremap gf :tabedit <cfile><CR>

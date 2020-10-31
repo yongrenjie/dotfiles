@@ -15,7 +15,15 @@ alias http='python -m http.server'
 
 # Set up DPhil lab book
 alias dp1='python -m http.server 5555 -d ~/dphil/nbsphinx/dirhtml/'
-alias dp2='fd -e rst . ~/dphil/nbsphinx | entr sh -c "sphinx-build -a -E -b dirhtml ~/dphil/nbsphinx ~/dphil/nbsphinx/dirhtml"'
+dp2 () {
+    while true; do
+        # the sleep 0.5 is needed in order to get a nonzero exit code when mashing Ctrl-C.
+        # entr by itself only returns nonzero if entr itself failed; it doesn't care what 
+        # sphinx-build did or didn't do.
+        sleep 0.5 && fd -e rst -e py . ~/dphil/nbsphinx | entr -pzd sh -c 'sphinx-build -a -E -b dirhtml ~/dphil/nbsphinx ~/dphil/nbsphinx/dirhtml'
+        if [[ $? -ne 0 && $? -ne 2 ]]; then break; else continue; fi
+    done
+}
 
 # jupyter labextension is a pain to type
 alias jle='jupyter labextension'
