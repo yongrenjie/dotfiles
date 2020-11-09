@@ -140,6 +140,8 @@ if !exists("au_loaded")
     autocmd BufEnter ~/citation/*.js :set expandtab!
     " autocmd to detect TopSpin AU programmes as being in C
     autocmd BufEnter /opt/topspin4.0.9/exp/stan/nmr/au/src/* :set filetype=c
+    autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
+    autocmd BufEnter ~/gennoah/processing/au/* :set filetype=c
 endif
 
 " Shortcut for highlighting test

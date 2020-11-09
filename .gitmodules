@@ -43,6 +43,9 @@
 [submodule ".vim/pack/plugins/start/gruvbox"]
 	path = .vim/pack/plugins/start/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule ".vim/pack/plugins/start/gruvbox-material"]
+	path = .vim/pack/plugins/start/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material
 [submodule ".vim/pack/plugins/start/vim-ps1"]
 	path = .vim/pack/plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1

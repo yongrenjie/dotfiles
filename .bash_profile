@@ -104,6 +104,8 @@ DARKBLUE='\[\033[38;5;26m\]'
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
+    # Rust executables.
+    PATH="$HOME/.cargo/bin:$PATH"
     # Add framework Python scripts to PATH
     # Note that Python scripts should no longer be installed to /usr/local/bin,
     # they should be installed to this directory. If they are in /usr/local/bin,
@@ -111,7 +113,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # a nonexistent version of Python!
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
     # python site-packages
-    export sp="$HOME/Library/Python/3.9/lib/python/site-packages"
+    sp="$HOME/Library/Python/3.9/lib/python/site-packages"
     # if this is in JupyterLab, cd to home directory!
     [ -n "$JUPYTER_SERVER_ROOT" ] && cd
     # aliases to start/stop JupyterLab launch service
