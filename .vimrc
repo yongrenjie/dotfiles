@@ -129,6 +129,8 @@ endif
 " Load UltiSnips if python3 is enabled.
 if has('python3')
     packadd ultisnips
+    " Tab is reserved for VimCompletesMe
+    let g:UltiSnipsExpandTrigger="<C-S>"
 endif
 
 " Enable FastFold for all files

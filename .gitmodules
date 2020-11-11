@@ -25,9 +25,6 @@
 [submodule ".vim/pack/plugins/start/vim-repeat"]
 	path = .vim/pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule ".vim/pack/plugins/start/vimtex"]
-	path = .vim/pack/plugins/start/vimtex
-	url = https://github.com/lervag/vimtex
 [submodule ".vim/pack/plugins/start/ultisnips"]
 	path = .vim/pack/plugins/opt/ultisnips
 	url = https://github.com/SirVer/ultisnips
@@ -88,3 +85,9 @@
 [submodule ".vim/pack/plugins/opt/onedark.vim"]
 	path = .vim/pack/plugins/opt/onedark.vim
 	url = https://github.com/joshdick/onedark.vim
+[submodule ".vim/pack/plugins/start/vimtex"]
+	path = .vim/pack/plugins/start/vimtex
+	url = git@github.com:yongrenjie/vimtex.git
+[submodule ".vim/pack/plugins/start/VimCompletesMe"]
+	path = .vim/pack/plugins/start/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe

@@ -104,6 +104,8 @@ DARKBLUE='\[\033[38;5;26m\]'
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
+    # Haskell (Cabal) executables.
+    PATH="$HOME/.cabal/bin:$PATH"
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
     # Add framework Python scripts to PATH
