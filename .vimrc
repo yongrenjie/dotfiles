@@ -99,12 +99,11 @@ nnoremap <leader><leader>S "*S
 " Status line
 set laststatus=2 " enables lightline
 set noshowmode " disables the default insert
-let g:lightline = {'colorscheme': 'one'}
 
 " Colour scheme stuff
-set termguicolors
-packadd! onedark.vim
-colorscheme onedark
+if $TERM_PROGRAM ==# "iTerm.app"
+    set termguicolors
+endif
 set t_ut=""
 " Detect light/dark mode automatically.
 " Also set terminal escape codes for italic text.
@@ -112,15 +111,15 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
     let g:tar_cmd="/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
     set t_ZH=[3m
     set t_ZR=[23m
-    if stridx(system("defaults read -g AppleInterfaceStyle 2>/dev/null"), "Dark") == -1
+    if $TERMCS ==# "light"
         set background=light
+        colorscheme PaperColor
+        let g:lightline = {'colorscheme': 'PaperColor'}
     else
-        if !empty($JUPYTER_SERVER_ROOT)
-            set t_Co=256  " By default it launches as 8 colors.
-            set background=light
-        else
-            set background=dark
-        endif
+        set background=dark
+        packadd! onedark.vim
+        colorscheme onedark
+        let g:lightline = {'colorscheme': 'one'}
     endif
 else  " somewhere else, e.g. WSL
     set background=dark
