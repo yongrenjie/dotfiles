@@ -10,6 +10,8 @@
     st = status
     co = checkout
 	recommit = commit --amend --no-edit
+	ci = commit
+	reci = recommit
 [core]
     editor = vim
     autocrlf = input
