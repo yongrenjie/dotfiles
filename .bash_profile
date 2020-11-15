@@ -26,11 +26,6 @@ venv () {
         . $(fd -I -p 'bin/activate$' ../../)  # don't suppress errors on the third go
 }
 alias dvenv="deactivate"
-# fzf settings
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND="fd --type file"
-export FZF_CTRL_T_COMMAND="fd --type file"
-export FZF_ALT_C_COMMAND="fd --type directory"
 ### }}}1
 
 ### Terminal color setup {{{1
@@ -172,6 +167,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
     alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
 fi
+# }}}1
+
+### fzf setup (needs to come at the bottom) {{{1
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND="fd --type file"
+export FZF_CTRL_T_COMMAND="fd --type file"
+export FZF_ALT_C_COMMAND="fd --type directory"
 # }}}1
 
 # vim: foldmethod=marker
