@@ -91,3 +91,6 @@
 [submodule ".vim/pack/plugins/start/VimCompletesMe"]
 	path = .vim/pack/plugins/start/VimCompletesMe
 	url = https://github.com/ajh17/VimCompletesMe
+[submodule ".vim/pack/plugins/start/vim-move"]
+	path = .vim/pack/plugins/start/vim-move
+	url = https://github.com/matze/vim-move

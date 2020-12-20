@@ -1,5 +1,3 @@
-setlocal nosmartindent
-
 let maplocalleader='\'
 let g:asyncrun_open=20
 

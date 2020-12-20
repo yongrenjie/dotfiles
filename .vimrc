@@ -57,6 +57,9 @@ nnoremap <leader>f :Files ~<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>r :Rg<CR>
 
+" Syntax sync -- for long files where vim gets confused
+nnoremap <leader>ssf :syntax sync fromstart<CR>
+
 " Open papers quickly
 function! OpenDOIURL()
     let firstline = line("'{")
@@ -140,9 +143,8 @@ if !exists("au_loaded")
     " Correct indent style for SE citation manager
     autocmd BufEnter ~/citation/*.js :set expandtab!
     " autocmd to detect TopSpin AU programmes as being in C
-    autocmd BufEnter /opt/topspin4.0.9/exp/stan/nmr/au/src/* :set filetype=c
-    autocmd BufEnter ~/noah-nmr/au/* :set filetype=c
-    autocmd BufEnter ~/gennoah/processing/au/* :set filetype=c
+    autocmd BufEnter /opt/topspin4.1.0/exp/stan/nmr/au/src/* :set filetype=c
+    autocmd BufEnter ~/gennoah/scripts/au/* :set filetype=c
 endif
 
 " Shortcut for highlighting test
@@ -197,4 +199,17 @@ if citation != "error"
 else
     redraw | echohl ErrorMsg | echo "invalid DOI " .. doi | echohl None
 endif
+endfunction
+
+" From /u/pdr77.
+function! ReadMan(word)
+    let prg = &l:keywordprg
+    execute ":wincmd n"
+    execute ":setlocal buftype=nofile"
+    execute ":setlocal bufhidden=hide"
+    execute ":setlocal noswapfile"
+    execute ":setlocal nobuflisted"
+    execute ":r!" . prg . " " . a:word
+    execute ":goto"
+    execute ":delete"
 endfunction

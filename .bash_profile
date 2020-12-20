@@ -100,11 +100,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # alias sshcarp="ssh yongrenjie@129.67.68.177 -p 2346"
     # SSH into PowerShell (not working)
     # alias sshcarpwin="ssh jonathan.yong@129.67.68.177 -p 2345"
+    # Shortcut for cygnet
+    cyg () {
+        cygnet ~/papers/"$1"
+    }
     ## DPhil file management {{{2
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
     # Backup dphil folder to SSD
-    alias rsyncd='rsync -av --info=progress2 ~/dphil /Volumes/JonY'
+    rsyncd () {
+        rsync -av --info=progress2 --delete --exclude=expn ~/dphil /Volumes/JonY
+        # we don't want --delete for the expn folder
+        rsync -av --info=progress2 ~/dphil/expn /Volumes/JonY/dphil
+    }
     # Set up DPhil lab book
     alias dp1='python -m http.server 5555 -d ~/dphil/nbsphinx/dirhtml/'
     dp2 () {
