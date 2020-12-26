@@ -76,21 +76,24 @@
 [submodule ".vim/pack/plugins/start/vim-javascript"]
 	path = .vim/pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
-[submodule ".vim/pack/plugins/start/jupyter-vim"]
-	path = .vim/pack/plugins/start/jupyter-vim
-	url = https://github.com/jupyter-vim/jupyter-vim
-[submodule ".vim/pack/plugins/opt/firenvim"]
-	path = .vim/pack/plugins/opt/firenvim
-	url = https://github.com/glacambre/firenvim
 [submodule ".vim/pack/plugins/opt/onedark.vim"]
 	path = .vim/pack/plugins/opt/onedark.vim
 	url = https://github.com/joshdick/onedark.vim
 [submodule ".vim/pack/plugins/start/vimtex"]
 	path = .vim/pack/plugins/start/vimtex
 	url = git@github.com:yongrenjie/vimtex.git
-[submodule ".vim/pack/plugins/start/VimCompletesMe"]
-	path = .vim/pack/plugins/start/VimCompletesMe
-	url = https://github.com/ajh17/VimCompletesMe
 [submodule ".vim/pack/plugins/start/vim-move"]
 	path = .vim/pack/plugins/start/vim-move
 	url = https://github.com/matze/vim-move
+[submodule ".vim/pack/plugins/start/vim-lsp"]
+	path = .vim/pack/plugins/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule ".vim/pack/plugins/start/asyncomplete.vim"]
+	path = .vim/pack/plugins/start/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule ".vim/pack/plugins/start/asyncomplete-lsp.vim"]
+	path = .vim/pack/plugins/start/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
+[submodule ".vim/pack/plugins/start/VimCompletesMe"]
+	path = .vim/pack/plugins/opt/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe

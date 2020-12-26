@@ -11,5 +11,5 @@ set formatprg=brittany
 
 " Hoogle lookup, from /u/pdr77
 setlocal keywordprg=hoogle-info   " requires hoogle and lambdabot executables
-nnoremap <silent> K <Cmd>call ReadMan(expand('<cword>'))<CR>
+" nnoremap <silent> K <Cmd>call ReadMan(expand('<cword>'))<CR>
 setlocal iskeyword+=@-@,',$,<,>,\",!,\|,/,~,%,^

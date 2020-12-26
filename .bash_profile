@@ -77,8 +77,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         PATH=""
         source /etc/profile
     fi
-    # Haskell (Cabal) executables
+    # Haskell executables
     PATH="$HOME/.cabal/bin:$PATH"
+    [ -f "/Users/yongrenjie/.ghcup/env" ] && source "/Users/yongrenjie/.ghcup/env" # ghcup-env
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
     # Python executables
@@ -104,6 +105,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     cyg () {
         cygnet ~/papers/"$1"
     }
+    # Before launching ACNL
+    alias acnl='rm -rf /Users/yongrenjie/.local/share/citra-emu/shaders/opengl'
     ## DPhil file management {{{2
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
