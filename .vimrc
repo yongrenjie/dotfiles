@@ -73,7 +73,7 @@ function! ScrollPopup(val)
     call popup_setoptions(winid[0], #{
         \ firstline: new_firstline,
         \ minwidth: pos.core_width,
-        \ maxwidth: pos.core_width,
+        \ maxwidth: pos.core_width + 1,
         \ }) " Constrain min and maxwidth so that they don't change when scrolling.
 endfunction
 nnoremap <silent><C-J> :call ScrollPopup(3)<CR>
