@@ -1,6 +1,6 @@
 function! DetectBruker()
     if empty(&filetype)
-        if search('\#include <[A-Za-z]\+\.incl>')
+        if search('\#include <[A-Za-z]\+\.incl>', 'n')
             setfiletype bruker
         endif
     endif

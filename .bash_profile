@@ -116,14 +116,34 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         # we don't want --delete for the expn folder
         rsync -av --info=progress2 ~/dphil/expn /Volumes/JonY/dphil
     }
-    # Set up DPhil lab book
-    alias dp1='python -m http.server 5555 -d ~/dphil/nbsphinx/dirhtml/'
+    # Set up Sphinx server and autobuild. These by default launch my DPhil lab book,
+    # but the environment variable can be changed in order to launch a different
+    # set of documentation.
+    export SPHINX_TARGET=dphil
+    dp1 () {
+        if [[ "$SPHINX_TARGET" == "dphil" ]]; then
+            python -m http.server 5555 -d ~/dphil/nbsphinx/dirhtml/
+        elif [[ "$SPHINX_TARGET" == "penguins" ]]; then
+            python -m http.server 5555 -d ~/penguins/docs/dirhtml
+        else
+            echo '$SPHINX_TARGET not set'
+        fi
+    }
     dp2 () {
+        if [[ "$SPHINX_TARGET" == "dphil" ]]; then
+            DP2_SPHINX_SOURCE=~/dphil/nbsphinx
+            DP2_BUILD_FOLDER=dirhtml
+        elif [[ "$SPHINX_TARGET" == "penguins" ]]; then
+            DP2_SPHINX_SOURCE=~/penguins/docs
+            DP2_BUILD_FOLDER=dirhtml
+        else
+            echo '$SPHINX_TARGET not set'
+        fi
         while true; do
             # the sleep 0.5 is needed in order to get a nonzero exit code when mashing Ctrl-C.
             # entr by itself only returns nonzero if entr itself failed; it doesn't care what 
             # sphinx-build did or didn't do.
-            sleep 0.5 && fd -e rst -e py . ~/dphil/nbsphinx | entr -pzd sh -c 'sphinx-build -a -E -b dirhtml ~/dphil/nbsphinx ~/dphil/nbsphinx/dirhtml'
+            sleep 0.5 && fd -e rst -e py . $DP2_SPHINX_SOURCE | entr -pzd sh -c "sphinx-build -a -E -b $DP2_BUILD_FOLDER $DP2_SPHINX_SOURCE $DP2_SPHINX_SOURCE/$DP2_BUILD_FOLDER"
             if [[ $? -ne 0 && $? -ne 2 ]]; then break; else continue; fi
         done
     }

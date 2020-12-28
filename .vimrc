@@ -22,8 +22,6 @@ augroup END
 " Leader key
 nnoremap <Space> <Nop>
 let mapleader=" "
-" gf: open the file in a new tab instead of a new buffer
-nnoremap gf :tabedit <cfile><CR>
 " Syntax sync -- for long files where vim gets confused
 nnoremap <leader>ssf :syntax sync fromstart<CR>
 " Easy system clipboard access with <Space><Space> {{{2
@@ -54,31 +52,6 @@ onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
 " }}}2
-" Scroll in popup windows using C-j and C-k {{{2
-function! ScrollPopup(val)
-    let winid = popup_list()
-    if winid == [] | return 0 | endif
-    let pos = popup_getpos(winid[0])
-    " If there's no scrollbar visible, exit.
-    if pos.scrollbar == 0 | return 0 | endif
-    " Set the first and last lines of the popup buffer.
-    " https://fortime.ws/blog/2020/03/14/20200312-01/
-    let new_firstline = pos.firstline + a:val
-    let new_lastline = str2nr(trim(win_execute(winid[0], "echo line ('$')")))
-    if new_firstline < 1
-        let new_firstline = 1
-    elseif pos.lastline + a:val > new_lastline
-        let new_firstline = new_firstline - a:val + new_lastline - pos.lastline
-    endif
-    call popup_setoptions(winid[0], #{
-        \ firstline: new_firstline,
-        \ minwidth: pos.core_width,
-        \ maxwidth: pos.core_width + 1,
-        \ }) " Constrain min and maxwidth so that they don't change when scrolling.
-endfunction
-nnoremap <silent><C-J> :call ScrollPopup(3)<CR>
-nnoremap <silent><C-K> :call ScrollPopup(-3)<CR>
-" }}}2
 " }}}1
 
 " Basic autocmds {{{1
@@ -92,6 +65,7 @@ autocmd BufEnter ~/gennoah/scripts/au/* :set filetype=c
 let g:netrw_liststyle=1         " Use ls -al style by default
 let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
 " Vim-LSP setup {{{2
+let g:lsp_preview_autoclose=1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " Haskell Language Server {{{3
 if executable('haskell-language-server-wrapper')
@@ -181,6 +155,9 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     nmap <buffer>K             <Plug>(lsp-hover)
     nmap <buffer><leader>[     :lprevious<CR>
     nmap <buffer><leader>]     :lnext<CR>
+    " Scroll in popup windows.
+    nnoremap <silent> <C-j>    :call lsp#ui#vim#output#popup_scroll(3)<CR>
+    nnoremap <silent> <C-k>    :call lsp#ui#vim#output#popup_scroll(-3)<CR>
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>
@@ -203,6 +180,7 @@ let g:tex_flavor='latex'     " Vimtex complains if this isn't in .vimrc.
 let g:fastfold_minlines=0    " Enable FastFold for all files
 " Fzf shortcuts {{{2
 nnoremap <leader>f :Files ~<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>r :Rg<CR>
 " }}}2
