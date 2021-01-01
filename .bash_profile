@@ -85,6 +85,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Python executables
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
     ## Miscellaneous envvars and aliases {{{2
+    # Skimpdf tool
+    alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # Aliases for GNU utils, installed via Homebrew
     alias grep='ggrep --color=auto'
     alias sed='gsed'
@@ -166,6 +168,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         eval "$(gdircolors ~/.dircolors_light)"
     fi
     ## }}}2
+    ## Nix {{{2
+    # added by Nix installer
+    if [ -e /Users/yongrenjie/.nix-profile/etc/profile.d/nix.sh ]; then
+        . /Users/yongrenjie/.nix-profile/etc/profile.d/nix.sh
+    fi
+    # }}}2
 fi
 
 ### }}}1

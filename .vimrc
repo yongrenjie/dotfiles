@@ -116,8 +116,8 @@ endif " }}}3
 " Functions to handle location window for diagnostics. {{{3
 function! UpdateDiagnostics()      " This is meant to be called automatically.
     let winid = win_getid()
-    let qf_isopen = filter(range(1, winnr('$')), 'getwinvar(v:val, "&ft") == "qf"') != []
-    if qf_isopen
+    let loclist_isopen = filter(getwininfo(), 'v:val.loclist == 1') != []
+    if loclist_isopen
         LspDocumentDiagnostics
     call win_gotoid(l:winid)
     else
@@ -129,8 +129,8 @@ function! ToggleLocationWindow()
    " location window, except when there are no diagnostics, in which case it
    " does nothing.
     let winid = win_getid()
-    let qf_isopen = filter(range(1, winnr('$')), 'getwinvar(v:val, "&ft") == "qf"') != []
-    if qf_isopen
+    let loclist_isopen = filter(getwininfo(), 'v:val.loclist == 1') != []
+    if loclist_isopen
         lclose
     else
         if filter(lsp#get_buffer_diagnostics_counts(), "v:val > 0") != {}

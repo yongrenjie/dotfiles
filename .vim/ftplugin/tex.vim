@@ -19,8 +19,10 @@ let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliograp
 " Enable folding
 let g:vimtex_fold_enabled=1
 let g:vimtex_fold_manual=1  " use FastFold
+" Disable preamble folding
+let g:vimtex_fold_types = { 'preamble' : { 'enabled' : 0 } }
 " Disable preamble and section folding (I nowadays supply manual folds)
-let g:vimtex_fold_types = { 'preamble' : {'enabled' : 0}, 'sections' : {'sections' : []} }
+" let g:vimtex_fold_types = { 'preamble' : {'enabled' : 0}, 'sections' : {'sections' : []} }
 
 let g:vimtex_syntax_enabled=1
 " Disable imaps
