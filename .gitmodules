@@ -1,9 +1,9 @@
 [submodule ".vim/pack/plugins/start/python-syntax"]
 	path = .vim/pack/plugins/start/python-syntax
-	url = https://github.com/yongrenjie/python-syntax
+	url = git@github.com:yongrenjie/python-syntax.git
 [submodule ".vim/pack/plugins/start/vim-octave"]
 	path = .vim/pack/plugins/start/vim-octave
-	url = https://github.com/yongrenjie/vim-octave
+	url = git@github.com:yongrenjie/vim-octave.git
 [submodule ".vim/pack/plugins/start/vim-sandwich"]
 	path = .vim/pack/plugins/start/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich
@@ -66,7 +66,7 @@
 	url = https://github.com/heavenshell/vim-pydocstring
 [submodule ".vim/pack/plugins/start/vim-search-pulse"]
 	path = .vim/pack/plugins/start/vim-search-pulse
-	url = https://github.com/inside/vim-search-pulse
+	url = git@github.com:yongrenjie/vim-search-pulse.git
 [submodule ".vim/pack/plugins/start/CamelCaseMotion"]
 	path = .vim/pack/plugins/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion
@@ -78,7 +78,7 @@
 	url = https://github.com/pangloss/vim-javascript
 [submodule ".vim/pack/plugins/opt/onedark.vim"]
 	path = .vim/pack/plugins/opt/onedark.vim
-	url = https://github.com/yongrenjie/onedark.vim
+	url = git@github.com:yongrenjie/onedark.vim.git
 [submodule ".vim/pack/plugins/start/vimtex"]
 	path = .vim/pack/plugins/start/vimtex
 	url = git@github.com:yongrenjie/vimtex.git
