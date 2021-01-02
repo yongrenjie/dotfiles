@@ -81,7 +81,7 @@
 	url = git@github.com:yongrenjie/onedark.vim.git
 [submodule ".vim/pack/plugins/start/vimtex"]
 	path = .vim/pack/plugins/start/vimtex
-	url = git@github.com:yongrenjie/vimtex.git
+	url = https://github.com/lervag/vimtex
 [submodule ".vim/pack/plugins/start/vim-move"]
 	path = .vim/pack/plugins/start/vim-move
 	url = https://github.com/matze/vim-move
