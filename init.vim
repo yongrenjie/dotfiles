@@ -1,3 +1,14 @@
+call plug#begin('~/.nvim/plugged')
+" I deliberately place this outside of source control as nvim is only used for
+" plugin testing purposes. There is no reason to back up these plugins to my
+" dotfiles.
+Plug 'joshdick/onedark.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'machakann/vim-sandwich'
+call plug#end()
+
 " Basic settings {{{1
 set number                            " Enable line numbers
 set autoindent                        " Automatically indent when starting a new line
@@ -69,19 +80,19 @@ let g:lsp_preview_autoclose=1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 " Haskell Language Server {{{3
 if executable('haskell-language-server-wrapper')
-    au User lsp_setup call lsp#register_server(#{
-        \ name: 'hls',
-        \ cmd: ['haskell-language-server-wrapper', '--lsp'],
-        \ allowlist: ['haskell', 'lhaskell'],
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'hls',
+        \ 'cmd': ['haskell-language-server-wrapper', '--lsp'],
+        \ 'allowlist': ['haskell', 'lhaskell'],
         \ })
 endif " }}}3
 " Microsoft Python Language Server {{{3
 if executable('mspyls')
-    au User lsp_setup call lsp#register_server(#{
-        \ name: 'mspyls',
-        \ cmd: ['mspyls'],
-        \ allowlist: ['python'],
-        \ root_uri: {server_info->lsp#utils#path_to_uri(
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'mspyls',
+        \ 'cmd': ['mspyls'],
+        \ 'allowlist': ['python'],
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(
         \       lsp#utils#find_nearest_parent_file_directory(
         \           lsp#utils#get_buffer_path(), [
         \             'setup.py',
@@ -90,24 +101,24 @@ if executable('mspyls')
         \             'requirements.txt',
         \             '.git/'
         \          ]))},
-        \ initialization_options: #{
-        \     analysisUpdates: v:true,
-        \     asyncStartup: v:true,
-        \     displayOptions: {},
-        \     interpreter: #{
-        \         properties: #{
-        \             InterpreterPath: systemlist("which python")[0],
-        \             UseDefaultDatabase: v:true,
-        \             Version: '3.9',
+        \ 'initialization_options': {
+        \     'analysisUpdates': v:true,
+        \     'asyncStartup': v:true,
+        \     'displayOptions': {},
+        \     'interpreter': {
+        \         'properties': {
+        \             'InterpreterPath': systemlist("which python")[0],
+        \             'UseDefaultDatabase': v:true,
+        \             'Version': '3.9',
         \         },
         \     },
         \ },
-        \ workspace_config: #{
-        \   python: #{
-        \     analysis: #{
-        \       errors: [],
-        \       info: [],
-        \       disabled: [],
+        \ 'workspace_config': {
+        \   'python': {
+        \     'analysis': {
+        \       'errors': [],
+        \       'info': [],
+        \       'disabled': [],
         \     },
         \   },
         \ },
@@ -147,19 +158,17 @@ function! s:check_back_space() abort " *** Check if the previous character is a 
 endfunction " }}}3
 function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     setlocal omnifunc=lsp#complete
-    setlocal signcolumn=number
+    setlocal signcolumn=auto   " signcolumn=number doesn't work in nvim
     " Close preview window with K again. (I think Esc only works in neovim)
-	let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
+	" let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer>gd                  <Plug>(lsp-definition)
     nmap <buffer>K                   <Plug>(lsp-hover)
     nmap <buffer><leader>[           :lprevious<CR>
     nmap <buffer><leader>]           :lnext<CR>
     " Scroll in popup windows.
-    nnoremap <buffer><silent><expr><C-j> 
-                \ pumvisible() ? LspPopupScroll(1) : "\<C-j>"
-    nnoremap <buffer><silent><expr><C-k> 
-                \ pumvisible() ? LspPopupScroll(-1) : "\<C-k>"
+    nnoremap <buffer><silent> <C-j>  :LspPopupScroll(3)<CR>
+    nnoremap <buffer><silent> <C-k>  :LspPopupScroll(-3)<CR>
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>
@@ -186,19 +195,6 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>r :Rg<CR>
 " }}}2
-" Load UltiSnips if python3 is enabled {{{2
-if has('python3')
-    packadd ultisnips
-    " Tab is reserved for VimCompletesMe.
-    let g:UltiSnipsExpandTrigger="<C-S>"
-endif
-" }}}2
-" Load VimCompletesMe if we *aren't* using a language server {{{2
-let s:lsp_filetypes=['haskell', 'lhaskell', 'python']
-if index(s:lsp_filetypes, &filetype) == -1
-    packadd! VimCompletesMe
-endif
-" }}}2
 " }}}1
 
 " Colour scheme management {{{1
@@ -219,7 +215,6 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
         let g:lightline = {'colorscheme': 'PaperColor'}
     else
         set background=dark
-        packadd! onedark.vim
         colorscheme onedark
         let g:lightline = {'colorscheme': 'one'}
     endif
