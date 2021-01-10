@@ -107,8 +107,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     cyg () {
         cygnet ~/papers/"$1"
     }
-    # Before launching ACNL
-    alias acnl='rm -rf /Users/yongrenjie/.local/share/citra-emu/shaders/opengl'
     ## DPhil file management {{{2
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
@@ -146,6 +144,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             # entr by itself only returns nonzero if entr itself failed; it doesn't care what 
             # sphinx-build did or didn't do.
             sleep 0.5 && fd -e rst -e py . $DP2_SPHINX_SOURCE | entr -pzd sh -c "sphinx-build -a -E -b $DP2_BUILD_FOLDER $DP2_SPHINX_SOURCE $DP2_SPHINX_SOURCE/$DP2_BUILD_FOLDER"
+            if [[ $? -ne 0 && $? -ne 2 ]]; then break; else continue; fi
+        done
+    }
+    cabal-watch () {
+        while true; do
+            sleep 0.5 && fd -e hs . $CABAL_TOPLEVEL | entr -pzd sh -c "cabal build"
             if [[ $? -ne 0 && $? -ne 2 ]]; then break; else continue; fi
         done
     }

@@ -199,6 +199,10 @@ if index(s:lsp_filetypes, &filetype) == -1
     packadd! VimCompletesMe
 endif
 " }}}2
+" Disable indentLine by default, but make a mapping to toggle it {{{2
+let g:indentLine_enabled=0
+nnoremap <silent> <leader>i :IndentLinesToggle<CR>
+" }}}2
 " }}}1
 
 " Colour scheme management {{{1
