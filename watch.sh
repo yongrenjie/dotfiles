@@ -50,11 +50,27 @@ echo "watch: fd_command is:       ${fd_command}"
 echo "watch: watch_command is:    ${watch_command}"
 echo "watch: Press Space, or edit a file, to trigger the first compilation."
 
+RESET='\033[0m'
+RED='\033[38;5;203m'
+GREEN='\033[38;5;77m'
+
 # Run the loop
 while true; do
     # The sleep 0.5 is needed in order to get a nonzero exit code when mashing
     # Ctrl-C. entr by itself only returns nonzero if entr itself failed; it
     # doesn't care what the command it ran did or didn't do.
     sleep 0.5 && ${fd_command} | entr -pzd sh -c "${watch_command}"
-    if [[ $? -ne 0 && $? -ne 2 ]]; then break; else continue; fi
+    if [[ $? -ne 0 && $? -ne 2 ]]; then
+        echo -n -e "${RED}"
+        date -u +"%Y-%m-%d %H:%M:%S"
+        echo "watch: compile failed"
+        echo -n -e "${RESET}"
+        break
+    else
+        echo -n -e "${GREEN}"
+        date -u +"%Y-%m-%d %H:%M:%S"
+        echo "watch: compile done"
+        echo -n -e "${RESET}"
+        continue
+    fi
 done

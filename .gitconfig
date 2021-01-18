@@ -1,6 +1,4 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
     name = Jonathan Yong
     email = yongrenjie@gmail.com
 [alias]
@@ -12,6 +10,7 @@
 	recommit = commit --amend --no-edit
 	ci = commit
 	reci = recommit
+    lg = log --graph
 [core]
     editor = vim
     autocrlf = input
@@ -20,3 +19,13 @@
 	rebase = false
 [diff]
 	tool = vimdiff
+
+; The colours below are tailored for a light terminal. For a dark terminal
+; simply comment them out.
+[color "decorate"]
+	branch = bold 34
+    remoteBranch = bold 197
+	HEAD = bold 33
+    tag = bold 172
+[color "diff"]
+    commit = 128

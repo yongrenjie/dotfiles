@@ -14,15 +14,17 @@ command WC :call WC()
 " ---------------
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
-let g:vimtex_indent_lists=['itemize', 'description', 'enumerate', 'thebibliography', 'minted']
+let g:vimtex_indent_lists = ['itemize', 'description', 'enumerate', 'thebibliography', 'minted']
 
 " Enable folding
-let g:vimtex_fold_enabled=1
-let g:vimtex_fold_manual=1  " use FastFold
+let g:vimtex_fold_enabled = 1
 " Disable preamble folding
 let g:vimtex_fold_types = { 'preamble' : { 'enabled' : 0 } }
+let g:vimtex_fold_manual = 1  " use FastFold
 " Disable preamble and section folding (I nowadays supply manual folds)
 " let g:vimtex_fold_types = { 'preamble' : {'enabled' : 0}, 'sections' : {'sections' : []} }
+" Disable batteries-included autocomplete (let VimCompletesMe handle it)
+let g:vimtex_include_search_enabled = 0
 
 let g:vimtex_syntax_enabled=1
 " Disable imaps

@@ -157,9 +157,9 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     nmap <buffer><leader>]           :lnext<CR>
     " Scroll in popup windows.
     nnoremap <buffer><silent><expr><C-j> 
-                \ pumvisible() ? LspPopupScroll(1) : "\<C-j>"
-    nnoremap <buffer><silent><expr><C-k> 
-                \ pumvisible() ? LspPopupScroll(-1) : "\<C-k>"
+                \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll 3<CR>" : ":echo 3<CR>"
+    nnoremap <buffer><silent><expr><C-k>
+                \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll -3<CR>" : ":echo -3<CR>"
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>
@@ -219,11 +219,22 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
     set t_ZR=[23m
     if $TERMCS ==# "light"
         set background=light
-        colorscheme PaperColor
-        let g:lightline = {'colorscheme': 'PaperColor'}
+
+        " colorscheme PaperColor
+        " let g:lightline = {'colorscheme': 'PaperColor'}
+
+        let g:one_allow_italics = 1
+        colorscheme one
+        let g:lightline = {'colorscheme': 'one'}
+
+        " Vim-search-pulse default colours are meant for dark mode and look
+        " horrendous on light mode, so we need to override them.
+        let g:vim_search_pulse_color_list = ['#e4e4e4', '#dadada', '#d0d0d0', '#c6c6c6', '#bcbcbc'] 
     else
         set background=dark
+
         packadd! onedark.vim
+        let g:onedark_terminal_italics = 1
         colorscheme onedark
         let g:lightline = {'colorscheme': 'one'}
     endif

@@ -3,7 +3,7 @@ call plug#begin('~/.nvim/plugged')
 " plugin testing purposes. There is no reason to back up these plugins to my
 " dotfiles.
 Plug 'joshdick/onedark.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'yongrenjie/vim-lsp', { 'branch': 'vim8-popup-scroll' }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'machakann/vim-sandwich'
@@ -167,8 +167,10 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     nmap <buffer><leader>[           :lprevious<CR>
     nmap <buffer><leader>]           :lnext<CR>
     " Scroll in popup windows.
-    nnoremap <buffer><silent> <C-j>  :LspPopupScroll(3)<CR>
-    nnoremap <buffer><silent> <C-k>  :LspPopupScroll(-3)<CR>
+    nnoremap <buffer><silent><expr><C-j>
+        \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll 1<CR>" : "\<C-j>"
+    nnoremap <buffer><silent><expr><C-k>
+        \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll -1<CR>" : "\<C-k>"
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>

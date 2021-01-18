@@ -103,3 +103,6 @@
 [submodule ".vim/pack/plugins/start/indentLine"]
 	path = .vim/pack/plugins/start/indentLine
 	url = https://github.com/Yggdroot/indentLine
+[submodule ".vim/pack/plugins/opt/vim-one"]
+	path = .vim/pack/plugins/opt/vim-one
+	url = https://github.com/rakr/vim-one

@@ -31,7 +31,7 @@ iabbrev igrami from penguins.private import Gramicidin as Grami
 function! CompleteNMRD(findstart, base)
     if a:findstart  " equals 1 on first invocation, to locate the start of the word
         let line = getline('.')  " text on current line
-        let pos = col('.') - 1   " current cursor column adjusted for 0-indexing
+        let pos = col('.') - 2   " column just before the cursor, adjusted for 0-indexing
         " Exit silently and leave completion mode if nmrd() is not on the line
         if match(line, '\mnmrd()\s*/\s*[''"]') == -1
             return -3
