@@ -9,11 +9,12 @@ set tabstop=2
 set shiftwidth=2
 set formatprg=brittany
 
-" Hoogle lookup, from /u/pdr77
-setlocal keywordprg=hoogle-info   " requires hoogle and lambdabot executables
-" nnoremap <silent> K <Cmd>call ReadMan(expand('<cword>'))<CR>
 setlocal iskeyword+=@-@,',$,<,>,\",!,\|,/,~,%,^
 
 iabbrev itext import Data.Text (Text)<CR>import qualified Data.Text as T
 iabbrev imap import Data.Map (Map)<CR>import qualified Data.Map as M
 iabbrev iset import Data.Set (Set)<CR>import qualified Data.Set as S
+iabbrev iim import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IS
+iabbrev iintmap import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IS
+iabbrev iis import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS
+iabbrev iintset import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS

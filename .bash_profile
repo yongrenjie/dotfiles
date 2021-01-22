@@ -85,6 +85,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Python executables
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
     ## Miscellaneous envvars and aliases {{{2
+    # Fzf into vim
+    vf () {
+        vfname=$(fzf)
+        if [ ! -z $vfname ]; then
+            vim $vfname
+            unset vfname
+        fi
+    }
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # Aliases for GNU utils, installed via Homebrew
