@@ -239,7 +239,9 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
         let g:lightline = {'colorscheme': 'one'}
     endif
 else  " somewhere else, e.g. WSL
-    set background=dark
+    set background=light
+    colorscheme PaperColor
+    let g:lightline = {'colorscheme': 'PaperColor'}
 endif
 " Shortcut for highlighting test
 command Hitest :source $VIMRUNTIME/syntax/hitest.vim
