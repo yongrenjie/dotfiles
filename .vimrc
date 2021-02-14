@@ -24,6 +24,15 @@ nnoremap <Space> <Nop>
 let mapleader=" "
 " Syntax sync -- for long files where vim gets confused
 nnoremap <leader>ssf :syntax sync fromstart<CR>
+" Open directory containing current file {{{2
+function! OpenCurDir()
+    let l:dir = expand("%:p:h")
+    if !empty(l:dir)
+        execute "e" . l:dir
+    endif
+endfunction
+nnoremap <leader>ls :call OpenCurDir()<CR>
+" }}}2
 " Easy system clipboard access with <Space><Space> {{{2
 vnoremap <leader><leader>p "*p
 vnoremap <leader><leader>P "*P
@@ -67,6 +76,29 @@ let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
 " Vim-LSP setup {{{2
 let g:lsp_preview_autoclose=1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
+" Function to scroll in popup windows using C-j and C-k {{{3
+function! ScrollPopup(val)
+    let winid = popup_list()
+    if winid == [] | return 0 | endif
+    let pos = popup_getpos(winid[0])
+    " If there's no scrollbar visible, exit.
+    if pos.scrollbar == 0 | return 0 | endif
+    " Set the first and last lines of the popup buffer.
+    " https://fortime.ws/blog/2020/03/14/20200312-01/
+    let new_firstline = pos.firstline + a:val
+    let new_lastline = str2nr(trim(win_execute(winid[0], "echo line ('$')")))
+    if new_firstline < 1
+        let new_firstline = 1
+    elseif pos.lastline + a:val > new_lastline
+        let new_firstline = new_firstline - a:val + new_lastline - pos.lastline
+    endif
+    call popup_setoptions(winid[0], #{
+        \ firstline: new_firstline,
+        \ minwidth: pos.core_width,
+        \ maxwidth: pos.core_width + 1,
+        \ }) " Constrain min and maxwidth so that they don't change when scrolling.
+endfunction
+" }}}3
 " Haskell Language Server {{{3
 if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server(#{
@@ -151,15 +183,13 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     " Close preview window with K again. (I think Esc only works in neovim)
 	let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer>gd                  <Plug>(lsp-definition)
-    nmap <buffer>K                   <Plug>(lsp-hover)
-    nmap <buffer><leader>[           :lprevious<CR>
-    nmap <buffer><leader>]           :lnext<CR>
+    nmap <buffer>gd        <Plug>(lsp-definition)
+    nmap <buffer>K         <Plug>(lsp-hover)
+    nmap <buffer><leader>[ :lprevious<CR>
+    nmap <buffer><leader>] :lnext<CR>
     " Scroll in popup windows.
-    nnoremap <buffer><silent><expr><C-j> 
-                \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll 3<CR>" : ":echo 3<CR>"
-    nnoremap <buffer><silent><expr><C-k>
-                \ lsp#ui#vim#output#getpreviewwinid() ? ":LspPopupScroll -3<CR>" : ":echo -3<CR>"
+    nnoremap <silent><C-J> :call ScrollPopup(3)<CR>
+    nnoremap <silent><C-K> :call ScrollPopup(-3)<CR>
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>
@@ -273,16 +303,16 @@ EOF
 if citation != "error"
     let lineno = line(".")
     " twiddle with empty lines before citation
-    if !empty(trim(getline(line(".") - 1)))
-        let x = append(line(".") - 1, "")
-        let lineno += 1
-    endif
+    " if !empty(trim(getline(line(".") - 1)))
+    "     let x = append(line(".") - 1, "")
+    "     let lineno += 1
+    " endif
     " replace the line with the citation
     put =citation | redraw
     " twiddle with empty lines after citation
-    if !empty(trim(getline(line(".") + 1)))
-        let x = append(line("."), "")
-    endif
+    " if !empty(trim(getline(line(".") + 1)))
+    "     let x = append(line("."), "")
+    " endif
     execute lineno .. " delete _"
 else
     redraw | echohl ErrorMsg | echo "invalid DOI " .. doi | echohl None

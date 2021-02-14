@@ -34,6 +34,9 @@ git_branch() {
 }
 RESET='\[$(tput sgr0)\]'
 # True color
+# Note that the ANSI escape sequences themselves begin with \033 and end
+# with m. The surrounding \[ and \] are specific to prompt variables, and
+# are not needed when simply using bash's printf function (for example).
 if [[ $COLORTERM =~ ^(truecolor|24bit)$ ]]; then
     PURPLE='\[\033[38;2;168;131;247m\]'
     BLUE='\[\033[38;2;114;160;252m\]'
@@ -84,6 +87,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH="$HOME/.cargo/bin:$PATH"
     # Python executables
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
+    # Ruby executables (prefer brew over system install).
+    PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
     # Fzf into vim
     vf () {
