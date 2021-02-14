@@ -21,9 +21,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     sudo make install
 fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # requires sudo apt-get install lua5.2 liblua5.2-dev perl libperl-dev python3.8-dev
-    # amongst others... but for now everything is fine
-    ./configure --enable-cscope --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-rubyinterp
+    # requires
+    # sudo apt install lua5.3 liblua5.3-dev perl libperl-dev python3.9-dev
+    # sudo apt install libx11-dev libxtst-dev libxt-dev libsm-dev libxpm-dev
+    # (possibly amongst others)
+    ./configure --enable-cscope --enable-python3interp=yes --enable-perlinterp=yes --enable-luainterp=yes --enable-rubyinterp --with-x
     make -j
     sudo make install
 fi

@@ -201,14 +201,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export TERMCS=light
     if [[ "$TERMCS" == "dark" ]]; then
         export PS1="${PURPLE}\u${BLUE}@\h:${PINK}\w${RED}\$(git_branch) ${ORANGE}\$ ${RESET}"
-        eval "$(gdircolors ~/.dircolors_dark)"
+        eval "$(dircolors ~/.dircolors_dark)"
     else
         export PS1="${LPURPLE}\u${LBLUE}@\h:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
-        eval "$(gdircolors ~/.dircolors_light)"
+        eval "$(dircolors ~/.dircolors_light)"
     fi
     # CMD and PowerShell
     alias cmd='/mnt/c/Windows/System32/cmd.exe'
     alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
+    # ghcup
+    [ -f "/home/yongrenjie/.ghcup/env" ] && source "/home/yongrenjie/.ghcup/env"
     # Windows home directory and desktop
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
@@ -217,7 +219,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # colourful ls
     alias ls="ls --color=auto"
     # enable to show graphs on Windows
-    export DISPLAY=localhost:0.0
+    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
     # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
     # the way to get around this is: sudo env "PATH=$PATH" tlmgr update --all
     export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
