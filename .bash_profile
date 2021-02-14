@@ -197,13 +197,18 @@ fi
 
 ### WSL-specific settings {{{1
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Colorscheme is always dark
-    export TERMCS=dark
+    # Colorscheme is always light, but can be changed via this variable
+    export TERMCS=light
+    if [[ "$TERMCS" == "dark" ]]; then
+        export PS1="${PURPLE}\u${BLUE}@\h:${PINK}\w${RED}\$(git_branch) ${ORANGE}\$ ${RESET}"
+        eval "$(gdircolors ~/.dircolors_dark)"
+    else
+        export PS1="${LPURPLE}\u${LBLUE}@\h:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
+        eval "$(gdircolors ~/.dircolors_light)"
+    fi
     # CMD and PowerShell
     alias cmd='/mnt/c/Windows/System32/cmd.exe'
     alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
-    # Colours
-    export PS1="${CARP_YELLOWORANGE}\u${RESET}${CARP_WHITE}@${RESET}${CARP_BROWN}\h:${RESET}${CARP_LIGHTBLUE}\w${CARP_DARKBLUE}\$(git_branch)${RESET} ${CARP_LIGHTBLUE}\$ ${RESET}"
     # Windows home directory and desktop
     export WD='/mnt/c/Users/jonathan.yong/Desktop'
     export WH='/mnt/c/Users/jonathan.yong'
@@ -211,7 +216,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export ts='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
     alias ls="ls --color=auto"
-    eval "$(dircolors ~/.dircolors_dark)"
     # enable to show graphs on Windows
     export DISPLAY=localhost:0.0
     # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
