@@ -233,9 +233,9 @@ fi
 
 ### fzf setup (needs to come at the bottom) {{{1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND="fd --type file"
-export FZF_CTRL_T_COMMAND="fd --type file"
-export FZF_ALT_C_COMMAND="fd --type directory"
+export FZF_DEFAULT_COMMAND="fd --type file . ~"
+export FZF_CTRL_T_COMMAND="fd --type file . ~"
+export FZF_ALT_C_COMMAND="fd --type directory . ~"
 # }}}1
 ### direnv setup (needs to come at the bottom) {{{1
 eval "$(direnv hook bash)"
