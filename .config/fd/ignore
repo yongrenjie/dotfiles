@@ -20,12 +20,30 @@
 **/SBM Rotation 1/*nmr*/*
 **/SBM Rotation 1/**/shielding/*
 
-# vim source repo
-vim/*
-
 # dphil NMR files and URPs
-**/nmr/jy*
+**/exp/**/nmr/*
+**/expn/nmr/*
 **/*urp*.txt
+# catchall for NMR files outside dphil folder
+# unfortunately there doesn't seem to be an easy way to exclude raw data
+**/pdata/*
+**/acqu
+**/acqu2
+**/acqu2s
+**/acqus
+**/audita.txt
+**/fid
+**/format.temp
+**/fq1list
+**/pdata
+**/precom.output
+**/pulseprogram
+**/scon2
+**/ser
+**/shimvalues
+**/specpar
+**/uxnmr.info
+**/uxnmr.par
 
 # see https://eclecticlight.co/2019/10/11/macos-catalina-boot-volume-layout-revised-for-10-15-release/
 /Systems/Volume/Data/*
