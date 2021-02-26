@@ -105,8 +105,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sed='gsed'
     alias ls='gls --color=auto'
     # TopSpin path
-    export ts=/opt/topspin4.1.0/exp/stan/nmr
-    export tsdoc=/opt/topspin4.1.0/prog/docu/english/topspin/pdf
+    export ts=/opt/topspin4.1.1/exp/stan/nmr
+    export tsdoc=/opt/topspin4.1.1/prog/docu/english/topspin/pdf
     # python site-packages
     sp="$HOME/Library/Python/3.9/lib/python/site-packages"
     # aliases to start/stop JupyterLab launch service
