@@ -169,6 +169,7 @@ function! UpdateDiagnostics()      " This is meant to be called automatically.
     let winid = win_getid()
     let loclist_isopen = filter(getwininfo(), 'v:val.loclist == 1') != []
     if loclist_isopen
+        lclose
         LspDocumentDiagnostics
     call win_gotoid(winid)
     else
@@ -181,14 +182,10 @@ function! ToggleLocationWindow()
    " does nothing.
     let winid = win_getid()
     let loclist_isopen = filter(getwininfo(), 'v:val.loclist == 1') != []
-    if loclist_isopen
+    if loclist_isopen  " was open
         lclose
-    else
-        if filter(lsp#get_buffer_diagnostics_counts(), "v:val > 0") != {}
-            LspDocumentDiagnostics
-        else
-            echomsg "No diagnostics found"
-        endif
+    else               " wasn't open
+        LspDocumentDiagnostics
     endif
     call win_gotoid(l:winid)
 endfunction " }}}3
@@ -218,8 +215,8 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     inoremap <expr><CR>    pumvisible() ? asyncomplete#close_popup() : "\<C-]>\<CR>"
     " Manage diagnostics.
-    autocmd User lsp_diagnostics_updated :call UpdateDiagnostics()
-    nnoremap <silent><buffer><leader>d :call ToggleLocationWindow()<CR>
+    autocmd User lsp_diagnostics_updated :noautocmd :call UpdateDiagnostics()
+    nnoremap <silent><buffer><leader>d :noautocmd :call ToggleLocationWindow()<CR>
 endfunction " }}}3
 augroup lsp_install " *** Turn on LSP. {{{3
     autocmd!
