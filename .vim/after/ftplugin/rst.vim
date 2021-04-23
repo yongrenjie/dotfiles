@@ -9,4 +9,4 @@ function! ExpandHeading()
     execute "normal cc" .. repeat(char, length)
 endfunction
 
-inoremap <C-L><C-L> <Esc>:call ExpandHeading()<CR>o
+inoremap <C-L><C-L> <Esc>:call ExpandHeading()<CR>A

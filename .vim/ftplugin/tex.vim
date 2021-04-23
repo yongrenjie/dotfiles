@@ -18,8 +18,13 @@ let g:vimtex_indent_lists = ['itemize', 'description', 'enumerate', 'thebibliogr
 
 " Enable folding
 let g:vimtex_fold_enabled = 1
-" Disable preamble folding
-let g:vimtex_fold_types = { 'preamble' : { 'enabled' : 0 } }
+" Disable preamble and refsection folding
+let g:vimtex_fold_types = { 
+            \ 'preamble' : { 'enabled' : 0 },
+            \ 'envs': { 
+                \ 'blacklist': ['refsection'] 
+                \ }
+            \ }
 let g:vimtex_fold_manual = 1  " use FastFold
 " Disable preamble and section folding (I nowadays supply manual folds)
 " let g:vimtex_fold_types = { 'preamble' : {'enabled' : 0}, 'sections' : {'sections' : []} }
@@ -31,6 +36,11 @@ let g:vimtex_syntax_enabled=1
 let g:vimtex_imaps_enabled=0
 " Single-shot compilation using \m (mimics make for rst and run for python)
 nmap <localleader>m <plug>(vimtex-compile-ss)
+
+" Enable forward searching in Skim for MacOS
+if system("uname") == "Darwin\n"
+    let g:vimtex_view_method = "skim"
+endif
 
 " PDF viewer for vimtex in WSL
 if system("uname") == "Linux\n"

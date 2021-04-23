@@ -30,7 +30,7 @@
 
 # Set up default configurations
 if [[ "${WATCH_TYPE}" == "PY_DIRHTML" ]]; then
-    if [ -z "$BUILD_DIR" ]; then BUILD_DIR=docs/dirhtml; fi
+    if [ -z "$BUILD_DIR" ]; then BUILD_DIR=dirhtml; fi
     watch_filetypes=(rst py)
     watch_command="sphinx-build -a -E -b dirhtml ${SOURCE_DIR} ${SOURCE_DIR}/${BUILD_DIR}"
 elif [[ "${WATCH_TYPE}" == "HS_CABAL" ]]; then

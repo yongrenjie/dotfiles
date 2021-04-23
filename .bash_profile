@@ -5,11 +5,13 @@ alias please='sudo $(fc -ln -1)'
 # Don't close with Ctrl-D unless I mash it
 export IGNOREEOF=2
 # typo-proof aliases
+alias l="ls"
 alias sl="ls"
 alias gti="git"
 alias dc="cd"
-# Git autocompletion
+# Add some autocompletion to bash
 source ~/.git-completion.bash
+source ~/.cabal-completion.bash
 # Print 256 terminal colours
 colours () {
     curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash
@@ -88,7 +90,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Python executables
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
     # Ruby executables (prefer brew over system install).
-    PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
+    PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
     # Fzf into vim
     vf () {
@@ -107,6 +109,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # TopSpin path
     export ts=/opt/topspin4.1.1/exp/stan/nmr
     export tsdoc=/opt/topspin4.1.1/prog/docu/english/topspin/pdf
+    # MATLAB root
+    export matlabroot=/Applications/MATLAB_R2020a.app/
     # python site-packages
     sp="$HOME/Library/Python/3.9/lib/python/site-packages"
     # aliases to start/stop JupyterLab launch service
@@ -118,7 +122,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # alias sshcarpwin="ssh jonathan.yong@129.67.68.177 -p 2345"
     # Shortcut for cygnet
     cyg () {
-        cygnet ~/papers/"$1"
+        cygnet ~/papers/"$1" --nodebug
     }
     ## DPhil file management {{{2
     # Default path to NMR data.

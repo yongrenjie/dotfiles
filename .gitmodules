@@ -2,7 +2,7 @@
 	path = .vim/pack/plugins/start/python-syntax
 	url = git@github.com:yongrenjie/python-syntax.git
 [submodule ".vim/pack/plugins/start/vim-octave"]
-	path = .vim/pack/plugins/start/vim-octave
+	path = .vim/pack/plugins/opt/vim-octave
 	url = git@github.com:yongrenjie/vim-octave.git
 [submodule ".vim/pack/plugins/start/vim-sandwich"]
 	path = .vim/pack/plugins/start/vim-sandwich
@@ -106,3 +106,6 @@
 [submodule ".vim/pack/plugins/start/asyncomplete-lsp.vim"]
 	path = .vim/pack/plugins/start/asyncomplete-lsp.vim
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
+[submodule ".vim/pack/plugins/start/vim-haskellFold"]
+	path = .vim/pack/plugins/start/vim-haskellFold
+	url = https://github.com/Twinside/vim-haskellFold

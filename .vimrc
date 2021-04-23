@@ -76,34 +76,16 @@ let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
 " Vim-LSP setup {{{2
 let g:lsp_preview_autoclose=1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
-" Function to scroll in popup windows using C-j and C-k {{{3
-function! ScrollPopup(val)
-    let winid = popup_list()
-    if winid == [] | return 0 | endif
-    let pos = popup_getpos(winid[0])
-    " If there's no scrollbar visible, exit.
-    if pos.scrollbar == 0 | return 0 | endif
-    " Set the first and last lines of the popup buffer.
-    " https://fortime.ws/blog/2020/03/14/20200312-01/
-    let new_firstline = pos.firstline + a:val
-    let new_lastline = str2nr(trim(win_execute(winid[0], "echo line ('$')")))
-    if new_firstline < 1
-        let new_firstline = 1
-    elseif pos.lastline + a:val > new_lastline
-        let new_firstline = new_firstline - a:val + new_lastline - pos.lastline
-    endif
-    call popup_setoptions(winid[0], #{
-        \ firstline: new_firstline,
-        \ minwidth: pos.core_width,
-        \ maxwidth: pos.core_width + 1,
-        \ }) " Constrain min and maxwidth so that they don't change when scrolling.
-endfunction
-" }}}3
 " Haskell Language Server {{{3
 if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server(#{
         \ name: 'hls',
         \ cmd: ['haskell-language-server-wrapper', '--lsp'],
+        \ root_uri: {server_info->lsp#utils#path_to_uri(
+        \     lsp#utils#find_nearest_parent_file_directory(
+        \         lsp#utils#get_buffer_path(),
+        \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
+        \     ))},
         \ allowlist: ['haskell', 'lhaskell'],
         \ })
 endif " }}}3
@@ -145,6 +127,43 @@ if executable('mspyls')
         \ },
         \ })
 endif " }}}3
+" TypeScript Language Server {{{3
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server(#{
+        \ name: 'typescript-language-server',
+        \ cmd: ['typescript-language-server', '--stdio'],
+        \ allowlist: ['typescript', 'typescriptreact', 'javascript'],
+        \ root_uri: {server_info->lsp#utils#path_to_uri(
+        \       lsp#utils#find_nearest_parent_file_directory(
+        \           lsp#utils#get_buffer_path(), [
+        \             '.git/',
+        \             'tsconfig.json',
+        \          ]))},
+        \ })
+endif " }}}3
+" Function to scroll in popup windows using C-j and C-k {{{3
+function! ScrollPopup(val)
+    let winid = popup_list()
+    if winid == [] | return 0 | endif
+    let pos = popup_getpos(winid[0])
+    " If there's no scrollbar visible, exit.
+    if pos.scrollbar == 0 | return 0 | endif
+    " Set the first and last lines of the popup buffer.
+    " https://fortime.ws/blog/2020/03/14/20200312-01/
+    let new_firstline = pos.firstline + a:val
+    let new_lastline = str2nr(trim(win_execute(winid[0], "echo line ('$')")))
+    if new_firstline < 1
+        let new_firstline = 1
+    elseif pos.lastline + a:val > new_lastline
+        let new_firstline = new_firstline - a:val + new_lastline - pos.lastline
+    endif
+    call popup_setoptions(winid[0], #{
+        \ firstline: new_firstline,
+        \ minwidth: pos.core_width,
+        \ maxwidth: pos.core_width + 1,
+        \ }) " Constrain min and maxwidth so that they don't change when scrolling.
+endfunction
+" }}}3
 " Functions to handle location window for diagnostics. {{{3
 function! UpdateDiagnostics()      " This is meant to be called automatically.
     let winid = win_getid()
