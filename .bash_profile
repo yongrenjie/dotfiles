@@ -223,7 +223,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # colourful ls
     alias ls="ls --color=auto"
     # enable to show graphs on Windows
-    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+    export DISPLAY=localhost:0.0 
     # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
     # the way to get around this is: sudo env "PATH=$PATH" tlmgr update --all
     export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
