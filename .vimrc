@@ -141,29 +141,6 @@ if executable('typescript-language-server')
         \          ]))},
         \ })
 endif " }}}3
-" Function to scroll in popup windows using C-j and C-k {{{3
-function! ScrollPopup(val)
-    let winid = popup_list()
-    if winid == [] | return 0 | endif
-    let pos = popup_getpos(winid[0])
-    " If there's no scrollbar visible, exit.
-    if pos.scrollbar == 0 | return 0 | endif
-    " Set the first and last lines of the popup buffer.
-    " https://fortime.ws/blog/2020/03/14/20200312-01/
-    let new_firstline = pos.firstline + a:val
-    let new_lastline = str2nr(trim(win_execute(winid[0], "echo line ('$')")))
-    if new_firstline < 1
-        let new_firstline = 1
-    elseif pos.lastline + a:val > new_lastline
-        let new_firstline = new_firstline - a:val + new_lastline - pos.lastline
-    endif
-    call popup_setoptions(winid[0], #{
-        \ firstline: new_firstline,
-        \ minwidth: pos.core_width,
-        \ maxwidth: pos.core_width + 1,
-        \ }) " Constrain min and maxwidth so that they don't change when scrolling.
-endfunction
-" }}}3
 " Functions to handle location window for diagnostics. {{{3
 function! UpdateDiagnostics()      " This is meant to be called automatically.
     let winid = win_getid()
@@ -204,8 +181,8 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     nmap <buffer><leader>[ :lprevious<CR>
     nmap <buffer><leader>] :lnext<CR>
     " Scroll in popup windows.
-    nnoremap <silent><C-J> :call ScrollPopup(3)<CR>
-    nnoremap <silent><C-K> :call ScrollPopup(-3)<CR>
+    nnoremap <buffer><silent><expr><C-J> lsp#scroll(+3)
+    nnoremap <buffer><silent><expr><C-K> lsp#scroll(-3)
     " Autocompletion using asyncomplete.vim
     let g:asyncomplete_auto_popup = 0
     inoremap <silent><expr> <TAB>
