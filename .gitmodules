@@ -109,3 +109,6 @@
 [submodule ".vim/pack/plugins/start/vim-haskellFold"]
 	path = .vim/pack/plugins/start/vim-haskellFold
 	url = https://github.com/Twinside/vim-haskellFold
+[submodule ".vim/pack/plugins/start/quietlight.vim"]
+	path = .vim/pack/plugins/start/quietlight.vim
+	url = https://github.com/aonemd/quietlight.vim
