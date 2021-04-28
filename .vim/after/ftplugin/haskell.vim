@@ -5,6 +5,7 @@ let maplocalleader='\'
 nnoremap <buffer> <localleader>m :below term ++close ++rows=15 ghci % <CR>
 
 " Formatting.
+set textwidth=100
 set tabstop=2
 set shiftwidth=2
 set formatprg=brittany

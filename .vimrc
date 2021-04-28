@@ -178,6 +178,7 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer>gd        <Plug>(lsp-definition)
     nmap <buffer>K         <Plug>(lsp-hover)
+    nmap <buffer><leader>a <Plug>(lsp-code-action)
     nmap <buffer><leader>[ :lprevious<CR>
     nmap <buffer><leader>] :lnext<CR>
     " Scroll in popup windows.
@@ -249,6 +250,8 @@ if stridx(system("uname"), "Darwin") != -1  " if MacOS
         let g:one_allow_italics = 1
         colorscheme one
         let g:lightline = {'colorscheme': 'one'}
+
+        " colorscheme quietlight
 
         " Vim-search-pulse default colours are meant for dark mode and look
         " horrendous on light mode, so we need to override them.
