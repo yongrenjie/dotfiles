@@ -233,6 +233,23 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
     alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
 fi
+    # Download POISE, dev version.
+    getpoise() {
+        cd ~/nmrpoise
+        git checkout dev
+        git fetch origin dev
+        git reset --hard origin/dev
+        # rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests --exclude "nmrpoise-egg.info"
+        cd -
+    }
+    # Download penguins, dev version
+    getpenguins() {
+        cd ~/penguins
+        git checkout develop
+        git fetch origin develop
+        git reset --hard origin/develop
+        cd -
+    }
 # }}}1
 
 ### fzf setup (needs to come at the bottom) {{{1
