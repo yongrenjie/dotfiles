@@ -98,13 +98,13 @@
 	path = .vim/pack/plugins/opt/vim-one
 	url = https://github.com/rakr/vim-one
 [submodule ".vim/pack/plugins/start/vim-lsp"]
-	path = .vim/pack/plugins/opt/vim-lsp
+	path = .vim/pack/plugins/start/vim-lsp
 	url = https://github.com/yongrenjie/vim-lsp
 [submodule ".vim/pack/plugins/start/asyncomplete.vim"]
 	path = .vim/pack/plugins/start/asyncomplete.vim
 	url = https://github.com/prabirshrestha/asyncomplete.vim
 [submodule ".vim/pack/plugins/start/asyncomplete-lsp.vim"]
-	path = .vim/pack/plugins/opt/asyncomplete-lsp.vim
+	path = .vim/pack/plugins/start/asyncomplete-lsp.vim
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
 [submodule ".vim/pack/plugins/start/vim-haskellFold"]
 	path = .vim/pack/plugins/start/vim-haskellFold
@@ -115,6 +115,3 @@
 [submodule ".vim/pack/plugins/start/abbotsbury.vim"]
 	path = .vim/pack/plugins/start/abbotsbury.vim
 	url = git@github.com:yongrenjie/abbotsbury.vim.git
-[submodule ".vim/pack/plugins/start/vim-lsc"]
-	path = .vim/pack/plugins/start/vim-lsc
-	url = https://github.com/natebosch/vim-lsc

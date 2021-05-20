@@ -243,7 +243,6 @@ augroup lsp_install " *** Turn on LSP. {{{2
     autocmd!
     autocmd User lsp_buffer_enabled call EnableLSPMappings()
 augroup END " }}}2
-endif
 " }}}1
 
 " Colour scheme management {{{1
