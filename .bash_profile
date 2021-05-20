@@ -184,9 +184,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if [[ "$TERMCS" == "dark" ]]; then
         export PS1="${PURPLE}\u${BLUE}@\h:${PINK}\w${RED}\$(git_branch) ${ORANGE}\$ ${RESET}"
         eval "$(gdircolors ~/.dircolors_dark)"
+        export BAT_THEME="OneHalfDark"
     else
         export PS1="${LPURPLE}\u${LBLUE}@\h:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
         eval "$(gdircolors ~/.dircolors_light)"
+        export BAT_THEME="OneHalfLight"
     fi
     ## }}}2
     ## Nix {{{2
@@ -237,10 +239,11 @@ fi
 
 ### fzf setup (needs to come at the bottom) {{{1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND="fd --type file . ~"
+export FZF_DEFAULT_COMMAND='fd -a --type file . $(git rev-parse --show-toplevel || $HOME)'
 export FZF_CTRL_T_COMMAND="fd --type file . ~"
 export FZF_ALT_C_COMMAND="fd --type directory . ~"
 # }}}1
+
 ### direnv setup (needs to come at the bottom) {{{1
 eval "$(direnv hook bash)"
 # }}}1

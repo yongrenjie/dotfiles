@@ -1,5 +1,9 @@
 command Pdflatex :! pdflatex % 
 
+" Read in LaTeX template
+nnoremap <buffer><silent> rtrt gg:<C-U>r ~/dotfiles/latex_template.tex<CR>ggdd
+
+
 " Word count function (relies on pdftotext being installed)
 " ---------------------------------------------------------
 function! WC()
@@ -32,8 +36,6 @@ let g:vimtex_fold_manual = 1  " use FastFold
 let g:vimtex_include_search_enabled = 0
 
 let g:vimtex_syntax_enabled=1
-" Disable imaps
-let g:vimtex_imaps_enabled=0
 " Single-shot compilation using \m (mimics make for rst and run for python)
 nmap <localleader>m <plug>(vimtex-compile-ss)
 
@@ -51,6 +53,17 @@ endif
 let g:vimtex_quickfix_ignore_filters = [
             \ "hyperref Warning: Draft mode on",
             \ "contains only floats",
+            \ ]
+
+
+
+" Add LaTeX quotes to vim-sandwich.
+" This won't always work (e.g. if quotes are around some text with
+" apostrophes), but useful for simple scenarios.
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+            \ {'buns': ['`', "'"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ["`'"]},
+            \ {'buns': ['``', "''"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['`"']},
             \ ]
 
 " vim: foldmethod=marker

@@ -1,3 +1,6 @@
+# git repos I'm really not interested in
+**/progs/
+
 # MS Office backups
 ~$*
 
@@ -9,21 +12,32 @@
 **/NMRSIM_SESSION/*
 **/Pictures/*
 **/Public/*
+/Users/yongrenjie/progs
+/Users/yongrenjie/Desktop
+/Users/yongrenjie/test
+**/*.png
+**/*.svg
+**/*.jpg
+**/*.jpeg
+# this catches all the built sphinx files
+**/_sources/*
+
+# stuff in the ~/dphil folder
+**/exp/**/nmr/*
+**/expn/nmr/*
+**/*urp*.txt
 
 # annoying stuff from a long time ago
 **/PtIIHPLC/*
 **/PtIIIR/*
 **/PtIINMR*/*
 **/Summer attachment 2016/*NMR*/*
-
-# annoying compchem files
 **/SBM Rotation 1/*nmr*/*
 **/SBM Rotation 1/**/shielding/*
 
-# dphil NMR files and URPs
-**/exp/**/nmr/*
-**/expn/nmr/*
-**/*urp*.txt
+# see https://eclecticlight.co/2019/10/11/macos-catalina-boot-volume-layout-revised-for-10-15-release/
+/Systems/Volume/Data/*
+
 # catchall for NMR files outside dphil folder
 # unfortunately there doesn't seem to be an easy way to exclude raw data
 **/pdata/*
@@ -32,9 +46,42 @@
 **/acqu2s
 **/acqus
 **/audita.txt
+**/EA
 **/fid
 **/format.temp
 **/fq1list
+**/gpnam1
+**/gpnam2
+**/gpnam3
+**/gpnam4
+**/gpnam5
+**/gpnam6
+**/gpnam7
+**/gpnam8
+**/gpnam9
+**/gpnam10
+**/gpnam11
+**/gpnam12
+**/gpnam13
+**/gpnam14
+**/gpnam15
+**/gpnam16
+**/gpnam17
+**/gpnam18
+**/gpnam19
+**/gpnam20
+**/gpnam21
+**/gpnam22
+**/gpnam23
+**/gpnam24
+**/gpnam25
+**/gpnam26
+**/gpnam27
+**/gpnam28
+**/gpnam29
+**/gpnam30
+**/gpnam31
+**/gradient_calib
 **/pdata
 **/precom.output
 **/pulseprogram
@@ -42,8 +89,37 @@
 **/ser
 **/shimvalues
 **/specpar
+**/spnam1
+**/spnam2
+**/spnam3
+**/spnam4
+**/spnam5
+**/spnam6
+**/spnam7
+**/spnam8
+**/spnam9
+**/spnam10
+**/spnam11
+**/spnam12
+**/spnam13
+**/spnam14
+**/spnam15
+**/spnam16
+**/spnam17
+**/spnam18
+**/spnam19
+**/spnam20
+**/spnam21
+**/spnam22
+**/spnam23
+**/spnam24
+**/spnam25
+**/spnam26
+**/spnam27
+**/spnam28
+**/spnam29
+**/spnam30
+**/spnam31
 **/uxnmr.info
 **/uxnmr.par
-
-# see https://eclecticlight.co/2019/10/11/macos-catalina-boot-volume-layout-revised-for-10-15-release/
-/Systems/Volume/Data/*
+**/vtc_pid_settings

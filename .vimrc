@@ -69,7 +69,23 @@ autocmd BufEnter /opt/topspin4.1.0/exp/stan/nmr/au/src/* :set filetype=c
 autocmd BufEnter ~/gennoah/scripts/au/* :set filetype=c
 " }}}1
 
+" Function to get the top-level git directory. {{{1
+function! GitTopLevel() abort
+    silent let output = system('git rev-parse --show-toplevel')
+    if v:shell_error
+        return ''
+    else
+        return trim(output)
+    endif
+endfunction
+let g:git_top_level = GitTopLevel()
+" }}}1
+
 " Plugin settings and mappings {{{1
+" abbotsbury.vim
+let g:abbot_use_git_email=1
+let g:abbot_use_default_map=0
+nmap <silent> <leader>e <plug>AbbotExpandDoi
 " netrw
 let g:netrw_liststyle=1         " Use ls -al style by default
 let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
@@ -225,7 +241,7 @@ endif
 " }}}2
 " Disable indentLine by default, but make a mapping to toggle it {{{2
 let g:indentLine_enabled=0
-nnoremap <silent> <leader>i :IndentLinesToggle<CR>
+nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
 " }}}2
 " }}}1
 
@@ -280,41 +296,5 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 "}}}1
-
-" ExpandDOI function {{{1
-" The actual bindings should be implemented in ftplugin/ft.vim.
-function ExpandDOI(type)
-let doi = expand("<cWORD>")
-echo "expanding DOI " .. doi .. "..."
-python3<<EOF
-import vim
-from cygnet import cite
-# get the citation
-doi = vim.eval('expand("<cWORD>")')
-try:
-    citation = cite(doi, type=vim.eval('a:type'))
-    citation = citation.replace("'", "''")
-except Exception as e:
-    citation = "error"
-vim.command("let citation='{}'".format(citation))
-EOF
-if citation != "error"
-    let lineno = line(".")
-    " twiddle with empty lines before citation
-    " if !empty(trim(getline(line(".") - 1)))
-    "     let x = append(line(".") - 1, "")
-    "     let lineno += 1
-    " endif
-    " replace the line with the citation
-    put =citation | redraw
-    " twiddle with empty lines after citation
-    " if !empty(trim(getline(line(".") + 1)))
-    "     let x = append(line("."), "")
-    " endif
-    execute lineno .. " delete _"
-else
-    redraw | echohl ErrorMsg | echo "invalid DOI " .. doi | echohl None
-endif
-endfunction " }}}1
 
 " vim: foldmethod=marker

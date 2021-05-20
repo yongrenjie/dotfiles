@@ -10,7 +10,10 @@ files=(".vimrc" \
     ".bashrc" \
     ".rgignore" \
     ".config" \
-    ".cabal-completion.bash"
+    ".cabal-completion.bash" \
+    ".ghci" \
+    ".zshrc" \
+    ".zsh" \
 )
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 for f in ${files[@]}; do
