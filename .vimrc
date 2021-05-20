@@ -81,7 +81,7 @@ endfunction
 let g:git_top_level = GitTopLevel()
 " }}}1
 
-" Plugin settings and mappings {{{1
+" Plugin settings and mappings (except LSP) {{{1
 " abbotsbury.vim
 let g:abbot_use_git_email=1
 let g:abbot_use_default_map=0
@@ -89,10 +89,37 @@ nmap <silent> <leader>e <plug>AbbotExpandDoi
 " netrw
 let g:netrw_liststyle=1         " Use ls -al style by default
 let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
-" Vim-LSP setup {{{2
+set laststatus=2 noshowmode  " Enable lightline and turn off Vim's default '--INSERT--' prompt.
+let g:tex_flavor='latex'     " Vimtex complains if this isn't in .vimrc.
+let g:fastfold_minlines=0    " Enable FastFold for all files
+" Fzf shortcuts {{{2
+nnoremap <leader>f :Files ~<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :GFiles<CR>
+nnoremap <leader>r :Rg<CR>
+" }}}2
+" Load UltiSnips if python3 is enabled {{{2
+if has('python3')
+    packadd ultisnips
+    " Tab is reserved for VimCompletesMe.
+    let g:UltiSnipsExpandTrigger="<C-S>"
+endif
+" }}}2
+" Load VimCompletesMe if we *aren't* using a language server {{{2
+let s:lsp_filetypes=['haskell', 'lhaskell', 'python']
+if index(s:lsp_filetypes, &filetype) == -1
+    packadd! VimCompletesMe
+endif
+" }}}2
+" Disable indentLine by default, but make a mapping to toggle it {{{2
+let g:indentLine_enabled=0
+nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
+" }}}2
+" }}}1
+
+" LSP setup {{{1
 let g:lsp_preview_autoclose=1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-" Haskell Language Server {{{3
+" Haskell Language Server {{{2
 if executable('haskell-language-server-wrapper')
     au User lsp_setup call lsp#register_server(#{
         \ name: 'hls',
@@ -104,8 +131,8 @@ if executable('haskell-language-server-wrapper')
         \     ))},
         \ allowlist: ['haskell', 'lhaskell'],
         \ })
-endif " }}}3
-" Microsoft Python Language Server {{{3
+endif " }}}2
+" Microsoft Python Language Server {{{2
 if executable('mspyls')
     au User lsp_setup call lsp#register_server(#{
         \ name: 'mspyls',
@@ -142,8 +169,8 @@ if executable('mspyls')
         \   },
         \ },
         \ })
-endif " }}}3
-" TypeScript Language Server {{{3
+endif " }}}2
+" TypeScript Language Server {{{2
 if executable('typescript-language-server')
     au User lsp_setup call lsp#register_server(#{
         \ name: 'typescript-language-server',
@@ -156,8 +183,8 @@ if executable('typescript-language-server')
         \             'tsconfig.json',
         \          ]))},
         \ })
-endif " }}}3
-" Functions to handle location window for diagnostics. {{{3
+endif " }}}2
+" Functions to handle location window for diagnostics. {{{2
 function! UpdateDiagnostics()      " This is meant to be called automatically.
     let winid = win_getid()
     let loclist_isopen = filter(getwininfo(), 'v:val.loclist == 1') != []
@@ -181,16 +208,16 @@ function! ToggleLocationWindow()
         LspDocumentDiagnostics
     endif
     call win_gotoid(l:winid)
-endfunction " }}}3
-function! s:check_back_space() abort " *** Check if the previous character is a space. {{{3
+endfunction " }}}2
+function! s:check_back_space() abort " *** Check if the previous character is a space. {{{2
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
-endfunction " }}}3
-function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
+endfunction " }}}2
+function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{2
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=number
     " Close preview window with K again. (I think Esc only works in neovim)
-	let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
+    let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer>gd        <Plug>(lsp-definition)
     nmap <buffer>K         <Plug>(lsp-hover)
@@ -211,38 +238,12 @@ function! EnableLSPMappings() " *** Things to enable if LSP is available. {{{3
     " Manage diagnostics.
     autocmd User lsp_diagnostics_updated :noautocmd :call UpdateDiagnostics()
     nnoremap <silent><buffer><leader>d :noautocmd :call ToggleLocationWindow()<CR>
-endfunction " }}}3
-augroup lsp_install " *** Turn on LSP. {{{3
+endfunction " }}}2
+augroup lsp_install " *** Turn on LSP. {{{2
     autocmd!
     autocmd User lsp_buffer_enabled call EnableLSPMappings()
-augroup END " }}}3
-" }}}2
-set laststatus=2 noshowmode  " Enable lightline and turn off Vim's default '--INSERT--' prompt.
-let g:tex_flavor='latex'     " Vimtex complains if this isn't in .vimrc.
-let g:fastfold_minlines=0    " Enable FastFold for all files
-" Fzf shortcuts {{{2
-nnoremap <leader>f :Files ~<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>g :GFiles<CR>
-nnoremap <leader>r :Rg<CR>
-" }}}2
-" Load UltiSnips if python3 is enabled {{{2
-if has('python3')
-    packadd ultisnips
-    " Tab is reserved for VimCompletesMe.
-    let g:UltiSnipsExpandTrigger="<C-S>"
+augroup END " }}}2
 endif
-" }}}2
-" Load VimCompletesMe if we *aren't* using a language server {{{2
-let s:lsp_filetypes=['haskell', 'lhaskell', 'python']
-if index(s:lsp_filetypes, &filetype) == -1
-    packadd! VimCompletesMe
-endif
-" }}}2
-" Disable indentLine by default, but make a mapping to toggle it {{{2
-let g:indentLine_enabled=0
-nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
-" }}}2
 " }}}1
 
 " Colour scheme management {{{1
