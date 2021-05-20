@@ -112,3 +112,6 @@
 [submodule ".vim/pack/plugins/start/quietlight.vim"]
 	path = .vim/pack/plugins/start/quietlight.vim
 	url = https://github.com/aonemd/quietlight.vim
+[submodule ".vim/pack/plugins/start/abbotsbury.vim"]
+	path = .vim/pack/plugins/start/abbotsbury.vim
+	url = git@github.com:yongrenjie/abbotsbury.vim.git
