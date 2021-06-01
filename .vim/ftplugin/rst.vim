@@ -1,9 +1,6 @@
 let maplocalleader='\'
 let g:asyncrun_open=20
 
-nnoremap <leader>e :call ExpandDOI('rst') <CR>
-nnoremap <leader>E :call ExpandDOI('Rst') <CR>
-
 " Find the Sphinx source directory, i.e. the directory that conf.py is in.
 function! FindSourceDir()
     " Need two layers of expand(), see :h expand()
@@ -49,9 +46,9 @@ function! OpenFile()
     else
         let pathtype = "relative"
     endif
-    " Next, figure out if it's a plot directive. If so just turn pathtype back
-    " into absolute, since we want to resolve vs the source dir.
-    if match(getline("."), ".. plot::") > -1
+    " Next, figure out if it's a plot or exec directive. If so just turn
+    " pathtype back into absolute, since we want to resolve vs the source dir.
+    if match(getline("."), ".. plot::") > -1 || match(getline("."), ".. exec::") > -1
         let pathtype = "absolute"
     endif
     " Now, we can open the file directly if it's meant to be a relative path.

@@ -25,15 +25,15 @@ endfunction
 autocmd BufWritePre <buffer> call RecalcFolds()
 
 " Import short forms
-iabbrev inp import numpy as np
-iabbrev iplt import matplotlib.pyplot as plt
-iabbrev isns import seaborn as sns
-iabbrev ipg import penguins as pg
-iabbrev ipd import pandas as pd
-iabbrev inmrd from penguins.private import nmrd
-iabbrev iandro from penguins.private import Andrographolide as Andro
-iabbrev izolmi from penguins.private import Zolmitriptan as Zolmi
-iabbrev igrami from penguins.private import Gramicidin as Grami
+iabbrev <buffer> inp import numpy as np
+iabbrev <buffer> iplt import matplotlib.pyplot as plt
+iabbrev <buffer> isns import seaborn as sns
+iabbrev <buffer> ipg import penguins as pg
+iabbrev <buffer> ipd import pandas as pd
+iabbrev <buffer> inmrd from penguins.private import nmrd
+iabbrev <buffer> iandro from penguins.private import Andrographolide as Andro
+iabbrev <buffer> izolmi from penguins.private import Zolmitriptan as Zolmi
+iabbrev <buffer> igrami from penguins.private import Gramicidin as Grami
 
 
 " User completion for directories in nmrd()

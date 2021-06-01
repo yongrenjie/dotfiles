@@ -132,8 +132,34 @@ if executable('haskell-language-server-wrapper')
         \ allowlist: ['haskell', 'lhaskell'],
         \ })
 endif " }}}2
+let g:python_language_server='mspyls'   " or 'pyright'
+" Pyright {{{2
+if executable('pyright-langserver') && g:python_language_server == 'pyright'
+    au User lsp_setup call lsp#register_server(#{
+                \ name: 'pyright-langserver',
+                \ cmd: ['pyright-langserver', '--stdio'],
+                \ allowlist: ['python'],
+                \ root_uri: {server_info->lsp#utils#path_to_uri(
+                \       lsp#utils#find_nearest_parent_file_directory(
+                \           lsp#utils#get_buffer_path(), [
+                \             'setup.py',
+                \             'setup.cfg',
+                \             'pyproject.toml',
+                \             'requirements.txt',
+                \             '.git/'
+                \          ]))},
+                \ workspace_config: {
+                \     'python': {
+                \         'analysis': {
+                \             'useLibraryCodeForTypes': v:true
+                \             },
+                \         },
+                \     },
+                \ })
+endif
+" }}}2
 " Microsoft Python Language Server {{{2
-if executable('mspyls')
+if executable('mspyls') && g:python_language_server == 'mspyls'
     au User lsp_setup call lsp#register_server(#{
         \ name: 'mspyls',
         \ cmd: ['mspyls'],

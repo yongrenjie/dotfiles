@@ -14,12 +14,12 @@ set formatprg=brittany
 
 setlocal iskeyword+=@-@,',$,<,>,\",!,\|,/,~,%,^
 
-iabbrev itext import Data.Text (Text)<CR>import qualified Data.Text as T
-iabbrev itio import qualified Data.Text.IO as TIO
-iabbrev imap import Data.Map (Map)<CR>import qualified Data.Map as M
-iabbrev iset import Data.Set (Set)<CR>import qualified Data.Set as S
-iabbrev iim import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IM
-iabbrev iintmap import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IM
-iabbrev iis import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS
-iabbrev iintset import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS
-iabbrev ine import Data.List.NonEmpty (NonEmpty)<CR>import qualified Data.List.NonEmpty as NE
+iabbrev <buffer> itext import Data.Text (Text)<CR>import qualified Data.Text as T
+iabbrev <buffer> itio import qualified Data.Text.IO as TIO
+iabbrev <buffer> imap import Data.Map (Map)<CR>import qualified Data.Map as M
+iabbrev <buffer> iset import Data.Set (Set)<CR>import qualified Data.Set as S
+iabbrev <buffer> iim import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IM
+iabbrev <buffer> iintmap import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IM
+iabbrev <buffer> iis import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS
+iabbrev <buffer> iintset import Data.IntSet (IntSet)<CR>import qualified Data.IntSet as IS
+iabbrev <buffer> ine import Data.List.NonEmpty (NonEmpty)<CR>import qualified Data.List.NonEmpty as NE
