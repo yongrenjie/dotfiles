@@ -28,6 +28,8 @@ venv () {
         . $(fd -I -p 'bin/activate$' ../../)  # don't suppress errors on the third go
 }
 alias dvenv="deactivate"
+# Vim plugin path
+export vp=$HOME/.vim/pack/plugins/start
 ### }}}1
 
 ### Terminal color setup {{{1
@@ -91,6 +93,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
     # Ruby executables (prefer brew over system install).
     PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
+    # MATLAB
+    PATH=/Applications/MATLAB_R2021a.app/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
     # Fzf into vim
     vf () {

@@ -1,8 +1,5 @@
-command Pdflatex :! pdflatex % 
-
 " Read in LaTeX template
 nnoremap <buffer><silent> rtrt gg:<C-U>r ~/dotfiles/latex_template.tex<CR>ggdd
-
 
 " Word count function (relies on pdftotext being installed)
 " ---------------------------------------------------------
@@ -29,12 +26,9 @@ let g:vimtex_fold_types = {
                 \ 'blacklist': ['refsection'] 
                 \ }
             \ }
-let g:vimtex_fold_manual = 1  " use FastFold
-" Disable preamble and section folding (I nowadays supply manual folds)
-" let g:vimtex_fold_types = { 'preamble' : {'enabled' : 0}, 'sections' : {'sections' : []} }
 " Disable batteries-included autocomplete (let VimCompletesMe handle it)
-let g:vimtex_include_search_enabled = 0
-
+let g:vimtex_include_search_enabled=0
+" Enable vimtex 2.0's syntax highlighting
 let g:vimtex_syntax_enabled=1
 " Single-shot compilation using \m (mimics make for rst and run for python)
 nmap <localleader>m <plug>(vimtex-compile-ss)
@@ -54,8 +48,6 @@ let g:vimtex_quickfix_ignore_filters = [
             \ "hyperref Warning: Draft mode on",
             \ "contains only floats",
             \ ]
-
-
 
 " Add LaTeX quotes to vim-sandwich.
 " This won't always work (e.g. if quotes are around some text with

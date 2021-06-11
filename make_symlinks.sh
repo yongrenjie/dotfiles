@@ -5,7 +5,6 @@ files=(".vimrc" \
     ".dircolors_dark" \
     ".dircolors_light" \
     ".git-completion.bash" \
-    ".gitconfig" \
     ".tmux.conf" \
     ".bashrc" \
     ".rgignore" \

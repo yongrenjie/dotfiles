@@ -6,7 +6,7 @@ setlocal textwidth=79
 " \m behaviour: run script without arguments
 let $PYTHONUNBUFFERED=1
 let g:asyncrun_open=10
-nnoremap <silent><buffer> <localleader>m :w<CR> :AsyncRun -raw python % <CR>
+nnoremap <silent><buffer> <localleader>m :w<CR>:AsyncRun -raw python %<CR>
 nnoremap <silent><buffer> <localleader>q :call AsyncStopAndOrCloseQF()<CR>
 
 " Terminate asyncrun job

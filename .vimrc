@@ -90,7 +90,6 @@ nmap <silent> <leader>e <plug>AbbotExpandDoi
 let g:netrw_liststyle=1         " Use ls -al style by default
 let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
 set laststatus=2 noshowmode  " Enable lightline and turn off Vim's default '--INSERT--' prompt.
-let g:tex_flavor='latex'     " Vimtex complains if this isn't in .vimrc.
 let g:fastfold_minlines=0    " Enable FastFold for all files
 " Fzf shortcuts {{{2
 nnoremap <leader>f :Files ~<CR>
