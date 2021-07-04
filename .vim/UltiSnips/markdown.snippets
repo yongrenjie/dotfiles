@@ -37,8 +37,8 @@ ${0}
 endsnippet
 
 
-snippet expno "Expno heading" b
-### Expno ${1:1}
-
-[${1/(\d+).*/$1/}] ${2:Description}
+snippet lhl "Liquid highlight block" b
+{% highlight ${1:python} %}
+${0}
+{% endhighlight %}
 endsnippet

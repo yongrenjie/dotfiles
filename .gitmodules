@@ -86,8 +86,8 @@
 	path = .vim/pack/plugins/start/vim-move
 	url = https://github.com/matze/vim-move
 [submodule ".vim/pack/plugins/start/VimCompletesMe"]
-	path = .vim/pack/plugins/opt/VimCompletesMe
-	url = https://github.com/ajh17/VimCompletesMe
+	path = .vim/pack/plugins/start/VimCompletesMe
+	url = https://github.com/ackyshake/VimCompletesMe
 [submodule ".vim/pack/plugins/start/vim-nix"]
 	path = .vim/pack/plugins/start/vim-nix
 	url = https://github.com/LnL7/vim-nix

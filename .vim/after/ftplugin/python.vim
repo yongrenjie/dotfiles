@@ -30,10 +30,10 @@ iabbrev <buffer> iplt import matplotlib.pyplot as plt
 iabbrev <buffer> isns import seaborn as sns
 iabbrev <buffer> ipg import penguins as pg
 iabbrev <buffer> ipd import pandas as pd
-iabbrev <buffer> inmrd from penguins.private import nmrd
-iabbrev <buffer> iandro from penguins.private import Andrographolide as Andro
-iabbrev <buffer> izolmi from penguins.private import Zolmitriptan as Zolmi
-iabbrev <buffer> igrami from penguins.private import Gramicidin as Grami
+iabbrev <buffer> inmrd from aptenodytes import nmrd
+iabbrev <buffer> iandro from aptenodytes import Andrographolide as Andro
+iabbrev <buffer> izolmi from aptenodytes import Zolmitriptan as Zolmi
+iabbrev <buffer> igrami from aptenodytes import Gramicidin as Grami
 
 
 " User completion for directories in nmrd()

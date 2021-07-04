@@ -128,6 +128,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     cyg () {
         cygnet ~/papers/"$1" --nodebug
     }
+    # vimtex test
+    alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     ## DPhil file management {{{2
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr

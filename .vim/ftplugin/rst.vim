@@ -1,6 +1,9 @@
 let maplocalleader='\'
 let g:asyncrun_open=20
 
+let g:abbot_cite_style="acs"
+let g:abbot_cite_format="rst"
+
 " Find the Sphinx source directory, i.e. the directory that conf.py is in.
 function! FindSourceDir()
     " Need two layers of expand(), see :h expand()
@@ -66,3 +69,17 @@ function! OpenFile()
 endfunction
 " Override default gf functionality.
 nnoremap <buffer> gf :call OpenFile()<CR>
+
+
+function! ExpandHeading()
+    let length  = len(getline(line(".") - 1))
+    let curline = getline(".")
+    if empty(curline)
+        let char = "="
+    else
+        let char = curline[0]
+    endif
+    execute "normal cc" .. repeat(char, length)
+endfunction
+
+inoremap <silent> <C-L><C-L> <Esc>:call ExpandHeading()<CR>A

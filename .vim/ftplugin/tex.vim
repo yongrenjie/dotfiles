@@ -1,3 +1,4 @@
+set fillchars=fold:\ 
 " Read in LaTeX template
 nnoremap <buffer><silent> rtrt gg:<C-U>r ~/dotfiles/latex_template.tex<CR>ggdd
 
@@ -27,9 +28,9 @@ let g:vimtex_fold_types = {
                 \ }
             \ }
 " Disable batteries-included autocomplete (let VimCompletesMe handle it)
-let g:vimtex_include_search_enabled=0
-" Enable vimtex 2.0's syntax highlighting
-let g:vimtex_syntax_enabled=1
+let g:vimtex_include_search_enabled = 0
+" Use vim to parse bib files (works with sets... bibtex doesn't)
+let g:vimtex_parser_bib_backend = 'vim'
 " Single-shot compilation using \m (mimics make for rst and run for python)
 nmap <localleader>m <plug>(vimtex-compile-ss)
 

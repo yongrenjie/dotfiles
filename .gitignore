@@ -1,3 +1,4 @@
 .vim/.netrwhist
 **/.DS_Store
 .gitconfig
+.config/gh/hosts.yml
