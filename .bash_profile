@@ -9,6 +9,7 @@ alias l="ls"
 alias sl="ls"
 alias gti="git"
 alias dc="cd"
+alias :e="vim"
 # Add some autocompletion to bash
 source ~/.git-completion.bash
 source ~/.cabal-completion.bash

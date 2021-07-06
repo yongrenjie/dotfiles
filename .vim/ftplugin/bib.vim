@@ -1,4 +1,5 @@
 let g:abbot_bib_folding = 0
+let g:vimtex_fold_bib_enabled = 1
 set fillchars=fold:\ 
 
 function! TimeBibFold() abort

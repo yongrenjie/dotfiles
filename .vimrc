@@ -327,4 +327,14 @@ function! <SID>SynStack()
 endfunction
 "}}}1
 
+function! RipgrepFzf(filepaths, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --with-filename -e ''%s'' ' . a:filepaths . ' || true'
+  let initial_command = printf(command_fmt, '')
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang Myrg call RipgrepFzf(<q-args>, <bang>0)
+
 " vim: foldmethod=marker
