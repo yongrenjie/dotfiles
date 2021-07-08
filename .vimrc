@@ -83,14 +83,14 @@ let g:git_top_level = GitTopLevel()
 
 " Plugin settings and mappings (except LSP) {{{1
 " abbotsbury.vim
-let g:abbot_use_git_email=1
-let g:abbot_use_default_map=0
+let g:abbot_use_git_email = 1
+let g:abbot_use_default_map = 0
 nmap <silent> <leader>e <plug>AbbotExpandDoi
 " netrw
-let g:netrw_liststyle=1         " Use ls -al style by default
+let g:netrw_liststyle = 1       " Use ls -al style by default
 let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
-set laststatus=2 noshowmode  " Enable lightline and turn off Vim's default '--INSERT--' prompt.
-let g:fastfold_minlines=0    " Enable FastFold for all files
+set laststatus=2 noshowmode     " Enable lightline and turn off Vim's default '--INSERT--' prompt.
+let g:fastfold_minlines = 0     " Enable FastFold for all files
 " Fzf shortcuts {{{2
 nnoremap <leader>f :Files ~<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -112,13 +112,16 @@ nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
 " }}}1
 
 " LSP setup {{{1
-let g:lsp_plugin = 'vim-lsp'
 function! VimrcInitialiseLSP() abort
-    if g:lsp_plugin == 'vim-lsp'
+    let lsp_plugin = 'vim-lsp'
+    let lsp_filetypes = ['haskell', 'lhaskell', 'python',
+                \ 'typescript', 'javascript']
+    if match(lsp_filetypes, &filetype) == -1 | return | endif
+    if lsp_plugin == 'vim-lsp'
     " vim-lsp setup {{{2
-        packadd! vim-lsp
-        packadd! asyncomplete.vim
-        packadd! asyncomplete-lsp.vim
+        packadd vim-lsp
+        packadd asyncomplete.vim
+        packadd asyncomplete-lsp.vim
         let g:lsp_preview_autoclose=1
         " Haskell Language Server {{{3
         if executable('haskell-language-server-wrapper')
@@ -273,6 +276,9 @@ function! VimrcInitialiseLSP() abort
     " }}}2
     endif
 endfunction
+augroup vimrc_lsp
+    autocmd FileType * call VimrcInitialiseLSP()
+augroup END
 " }}}1
 
 " Colour scheme management {{{1
@@ -326,15 +332,5 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 "}}}1
-
-function! RipgrepFzf(filepaths, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --with-filename -e ''%s'' ' . a:filepaths . ' || true'
-  let initial_command = printf(command_fmt, '')
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang Myrg call RipgrepFzf(<q-args>, <bang>0)
 
 " vim: foldmethod=marker
