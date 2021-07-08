@@ -1,4 +1,4 @@
-let g:abbot_bib_folding = 0
+let b:abbot_replace_text = 'line'
 " must be in bib.vim because when opening bib files, tex.vim is never read
 let g:vimtex_fold_enabled = 1
 set fillchars=fold:\ 
