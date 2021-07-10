@@ -24,15 +24,8 @@ nnoremap <Space> <Nop>
 let mapleader=" "
 " Syntax sync -- for long files where vim gets confused
 nnoremap <leader>ssf :syntax sync fromstart<CR>
-" Open directory containing current file {{{2
-function! OpenCurDir()
-    let l:dir = expand("%:p:h")
-    if !empty(l:dir)
-        execute "e" . l:dir
-    endif
-endfunction
-nnoremap <leader>ls :call OpenCurDir()<CR>
-" }}}2
+" Open directory containing current file
+nnoremap <leader>ls :Explore<CR>
 " Easy system clipboard access with <Space><Space> {{{2
 vnoremap <leader><leader>p "*p
 vnoremap <leader><leader>P "*P
@@ -65,18 +58,14 @@ onoremap al :normal val<CR>
 
 " Basic autocmds {{{1
 " Recognise TopSpin AU programmes as being C.
-autocmd BufEnter /opt/topspin4.1.0/exp/stan/nmr/au/src/* :set filetype=c
-autocmd BufEnter ~/gennoah/scripts/au/* :set filetype=c
+autocmd BufEnter /opt/topspin4.1.3/exp/stan/nmr/au/src/* :set filetype=c
+autocmd BufEnter ~/genesis/scripts/au/* :set filetype=c
 " }}}1
 
 " Function to get the top-level git directory. {{{1
 function! GitTopLevel() abort
     silent let output = system('git rev-parse --show-toplevel')
-    if v:shell_error
-        return ''
-    else
-        return trim(output)
-    endif
+    return v:shell_error ? '' : trim(output)
 endfunction
 let g:git_top_level = GitTopLevel()
 " }}}1
@@ -88,7 +77,7 @@ let g:abbot_use_default_map = 0
 nmap <silent> <leader>e <plug>AbbotExpandDoi
 " netrw
 let g:netrw_liststyle = 1       " Use ls -al style by default
-let g:netrw_localrmdir='rm -r'  " Allow netrw to delete nonempty directories
+let g:netrw_localrmdir = 'rm -r'  " Allow netrw to delete nonempty directories
 set laststatus=2 noshowmode     " Enable lightline and turn off Vim's default '--INSERT--' prompt.
 let g:fastfold_minlines = 0     " Enable FastFold for all files
 " Fzf shortcuts {{{2
@@ -106,18 +95,18 @@ endif
 " }}}2
 " }}}2
 " Disable indentLine by default, but make a mapping to toggle it {{{2
-let g:indentLine_enabled=0
+let g:indentLine_enabled = 0
 nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
 " }}}2
 " }}}1
 
 " LSP setup {{{1
+let g:my_lsp_plugin = 'vim-lsp'
+let g:my_lsp_filetypes = ['haskell', 'lhaskell', 'python',
+            \ 'typescript', 'javascript']
 function! VimrcInitialiseLSP() abort
-    let lsp_plugin = 'vim-lsp'
-    let lsp_filetypes = ['haskell', 'lhaskell', 'python',
-                \ 'typescript', 'javascript']
-    if match(lsp_filetypes, &filetype) == -1 | return | endif
-    if lsp_plugin == 'vim-lsp'
+    if match(g:my_lsp_filetypes, &filetype) == -1 | return | endif
+    if g:my_lsp_plugin == 'vim-lsp'
     " vim-lsp setup {{{2
         packadd vim-lsp
         packadd asyncomplete.vim
@@ -290,7 +279,7 @@ set t_ut=""
 " Detect light/dark mode automatically.
 " Also set terminal escape codes for italic text.
 if stridx(system("uname"), "Darwin") != -1  " if MacOS
-    let g:tar_cmd="/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
+    let g:tar_cmd = "/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
     set t_ZH=[3m
     set t_ZR=[23m
     if $TERMCS ==# "light"
@@ -326,10 +315,8 @@ command Hitest :source $VIMRUNTIME/syntax/hitest.vim
 " Show syntax highlighting groups for word under cursor
 nnoremap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    if !exists("*synstack") | return | endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 "}}}1
 

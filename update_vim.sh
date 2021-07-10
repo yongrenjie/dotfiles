@@ -16,7 +16,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         --enable-luainterp \
         --with-lua-prefix="/usr/local" \
         --enable-rubyinterp \
-        --with-ruby-command="/usr/local/opt/ruby/bin/ruby"
+        --with-ruby-command="/usr/local/opt/ruby/bin/ruby" \
+        --with-compiledby="Jonathan Yong"
     make -j
     sudo make install
 fi

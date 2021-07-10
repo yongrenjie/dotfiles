@@ -112,8 +112,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sed='gsed'
     alias ls='gls --color=auto'
     # TopSpin path
-    export ts=/opt/topspin4.1.1/exp/stan/nmr
-    export tsdoc=/opt/topspin4.1.1/prog/docu/english/topspin/pdf
+    export ts=/opt/topspin4.1.3/exp/stan/nmr
+    export tsdoc=/opt/topspin4.1.3/prog/docu/english/topspin/pdf
     # MATLAB root
     export matlabroot=/Applications/MATLAB_R2020a.app/
     # python site-packages
