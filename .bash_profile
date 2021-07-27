@@ -210,6 +210,7 @@ fi
 
 ### WSL-specific settings {{{1
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export EDITOR=vim
     # Colorscheme is always light, but can be changed via this variable
     export TERMCS=light
     if [[ "$TERMCS" == "dark" ]]; then
@@ -241,6 +242,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # OpenMPI 3.1.15 and ORCA 4.2.1
     export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
     alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
+    # GHC
+    export PATH=/opt/ghc/bin:$PATH
+    export PATH=/home/yongrenjie/.local/bin:$PATH
 fi
     # Download POISE, dev version.
     getpoise() {
