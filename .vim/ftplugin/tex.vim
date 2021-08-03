@@ -17,6 +17,7 @@ command WC :call WC()
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
 let g:vimtex_indent_lists = ['itemize', 'description', 'enumerate', 'thebibliography', 'minted']
+let g:vimtex_indent_ignored_envs = ['document', 'appendices']
 
 " Enable folding
 let g:vimtex_fold_enabled = 1
@@ -25,7 +26,7 @@ let g:vimtex_fold_types = {
             \ 'preamble' : { 'enabled' : 0 },
             \ 'envs': { 
                 \ 'blacklist': ['refsection'] 
-                \ }
+                \ },
             \ }
 " Disable batteries-included autocomplete (let VimCompletesMe handle it)
 let g:vimtex_include_search_enabled = 0
@@ -53,10 +54,13 @@ let g:vimtex_quickfix_ignore_filters = [
 " Add LaTeX quotes to vim-sandwich.
 " This won't always work (e.g. if quotes are around some text with
 " apostrophes), but useful for simple scenarios.
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-let g:sandwich#recipes += [
+let b:sandwich_recipes = deepcopy(g:sandwich#default_recipes)
+let b:sandwich_recipes += [
             \ {'buns': ['`', "'"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ["q"]},
             \ {'buns': ['``', "''"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['Q']},
+            \ {'buns': ['\textbf{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['bb']},
+            \ {'buns': ['\textit{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['ii']},
+            \ {'buns': ['\mathrm{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['rr']},
             \ ]
 
 " vim: foldmethod=marker

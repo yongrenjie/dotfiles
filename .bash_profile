@@ -31,6 +31,8 @@ venv () {
 alias dvenv="deactivate"
 # Vim plugin path
 export vp=$HOME/.vim/pack/plugins/start
+# Email for abbot
+export ABBOT_EMAIL=`git config --get user.email`
 ### }}}1
 
 ### Terminal color setup {{{1
@@ -107,6 +109,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
+    # Inkscape export as 600 dpi png
+    alias ipng='inkscape --export-type=png -D -d 600'
     # Aliases for GNU utils, installed via Homebrew
     alias grep='ggrep --color=auto'
     alias sed='gsed'

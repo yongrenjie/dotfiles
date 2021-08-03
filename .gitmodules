@@ -115,3 +115,6 @@
 [submodule ".vim/pack/plugins/start/abbotsbury.vim"]
 	path = .vim/pack/plugins/start/abbotsbury.vim
 	url = git@github.com:yongrenjie/abbotsbury.vim.git
+[submodule ".vim/pack/plugins/start/vim-bruker"]
+	path = .vim/pack/plugins/start/vim-bruker
+	url = git@github.com:yongrenjie/vim-bruker.git

@@ -26,6 +26,13 @@ let mapleader=" "
 nnoremap <leader>ssf :syntax sync fromstart<CR>
 " Open directory containing current file
 nnoremap <leader>ls :Explore<CR>
+" Change current directory in window
+function! LcdHere() abort
+    let curdir = expand('%:p:h')
+    execute 'lcd ' . curdir
+    echo 'changed local working dir to ' . curdir
+endfunction
+nnoremap <leader>lcd :call LcdHere()<CR>
 " Easy system clipboard access with <Space><Space> {{{2
 vnoremap <leader><leader>p "*p
 vnoremap <leader><leader>P "*P
