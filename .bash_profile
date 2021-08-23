@@ -88,7 +88,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         source /etc/profile
     fi
     # Haskell executables
-    PATH="$HOME/.cabal/bin:$PATH"
+    # PATH="$HOME/.cabal/bin:$PATH"  # The next line already adds this
     [ -f "/Users/yongrenjie/.ghcup/env" ] && source "/Users/yongrenjie/.ghcup/env" # ghcup-env
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"

@@ -69,7 +69,23 @@ autocmd BufEnter /opt/topspin4.1.3/exp/stan/nmr/au/src/* :set filetype=c
 autocmd BufEnter ~/genesis/scripts/au/* :set filetype=c
 " }}}1
 
-" Function to get the top-level git directory. {{{1
+" Automatic parentheses generation {{{1
+" Usage: put the line
+"     inoremap <expr> <C-L><C-L> MkMatchparenMap()
+" in whichever ftplugin file you want to use this in
+function! MkMatchparenMap() abort
+    let l:open = getline('.')[-1:]
+    if l:open == '{'
+        let l:close = '}'
+    elseif l:open == '['
+        let l:close = ']'
+    elseif l:open == '('
+        let l:close = ')'
+    else | return '' | endif
+    return "\<CR>" . l:close . "\<Esc>O"
+endfunction! " }}}1
+
+" Function to get the top-level git directory {{{1
 function! GitTopLevel() abort
     silent let output = system('git rev-parse --show-toplevel')
     return v:shell_error ? '' : trim(output)
@@ -110,7 +126,7 @@ nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
 " LSP setup {{{1
 let g:my_lsp_plugin = 'vim-lsp'
 let g:my_lsp_filetypes = ['haskell', 'lhaskell', 'python',
-            \ 'typescript', 'javascript']
+            \ 'typescript', 'javascript', 'rust']
 function! VimrcInitialiseLSP() abort
     if match(g:my_lsp_filetypes, &filetype) == -1 | return | endif
     if g:my_lsp_plugin == 'vim-lsp'
@@ -210,6 +226,22 @@ function! VimrcInitialiseLSP() abort
                 \          ]))},
                 \ })
         endif " }}}3
+        " Rust Analyzer {{{3
+        if executable('rust-analyzer')
+            au User lsp_setup call lsp#register_server({
+                        \   'name': 'Rust Language Server',
+                        \   'cmd': {server_info->['rust-analyzer']},
+                        \   'whitelist': ['rust'],
+                        \   'initialization_options': {
+                            \     'cargo': {
+                                \       'loadOutDirsFromCheck': v:true,
+                                \     },
+                                \     'procMacro': {
+                                    \       'enable': v:true,
+                                    \     },
+                                    \   },
+                                    \ })
+        endif " }}}3
         " Functions to handle location window for diagnostics. {{{3
         function! UpdateDiagnostics()      " This is meant to be called automatically.
             let winid = win_getid()
@@ -246,6 +278,7 @@ function! VimrcInitialiseLSP() abort
             let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
             if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
             nmap <buffer>gd        <Plug>(lsp-definition)
+            nmap <buffer>gr        <Plug>(lsp-rename)
             nmap <buffer>K         <Plug>(lsp-hover)
             nmap <buffer><leader>a <Plug>(lsp-code-action)
             nmap <buffer><leader>[ :lprevious<CR>
