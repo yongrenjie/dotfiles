@@ -95,6 +95,7 @@ let g:git_top_level = GitTopLevel()
 
 " Plugin settings and mappings (except LSP) {{{1
 " abbotsbury.vim
+let g:abbot_enabled = 0
 let g:abbot_use_git_email = 1
 let g:abbot_use_default_map = 0
 nmap <silent> <leader>e <plug>AbbotExpandDoi
@@ -124,7 +125,11 @@ nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
 " }}}1
 
 " LSP setup {{{1
-let g:my_lsp_plugin = 'vim-lsp'
+if stridx(system("uname"), "Darwin") != -1  " if MacOS
+    let g:my_lsp_plugin = 'vim-lsp'
+else
+    let g:my_lsp_plugin = 'none'
+endif
 let g:my_lsp_filetypes = ['haskell', 'lhaskell', 'python',
             \ 'typescript', 'javascript', 'rust']
 function! VimrcInitialiseLSP() abort
