@@ -318,36 +318,17 @@ augroup END
 " Colour scheme management {{{1
 " Enable truecolor if available.
 if $COLORTERM ==# "truecolor"
-    " Note that over SSH, you have to make sure that the $COLORTERM
-    " environment is sent, see SendEnv and AcceptEnv in ~/.ssh/config
-    " or /etc/ssh/ssh_config
     set termguicolors
-endif
-set t_ut=""
-" Detect light/dark mode automatically.
-" Also set terminal escape codes for italic text.
-if stridx(system("uname"), "Darwin") != -1  " if MacOS
-    let g:tar_cmd = "/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
-    set t_ZH=[3m
-    set t_ZR=[23m
     if $TERMCS ==# "light"
         set background=light
-
-        " colorscheme PaperColor
-        " let g:lightline = {'colorscheme': 'PaperColor'}
-
         let g:one_allow_italics = 1
         colorscheme one
         let g:lightline = {'colorscheme': 'one'}
-
-        " colorscheme quietlight
-
         " Vim-search-pulse default colours are meant for dark mode and look
         " horrendous on light mode, so we need to override them.
         let g:vim_search_pulse_color_list = ['#e4e4e4', '#dadada', '#d0d0d0', '#c6c6c6', '#bcbcbc'] 
     else
         set background=dark
-
         packadd! onedark.vim
         let g:onedark_terminal_italics = 1
         colorscheme onedark
@@ -358,6 +339,14 @@ else  " somewhere else, e.g. WSL
     colorscheme PaperColor
     let g:lightline = {'colorscheme': 'PaperColor'}
 endif
+set t_ut=""
+" Detect light/dark mode automatically.
+" Also set terminal escape codes for italic text.
+if stridx(system("uname"), "Darwin") != -1  " if MacOS
+    let g:tar_cmd = "/usr/local/bin/gtar"   " allow editing tarballs, requires homebrew gnu-tar
+    set t_ZH=[3m
+    set t_ZR=[23m
+end
 " Shortcut for highlighting test
 command Hitest :source $VIMRUNTIME/syntax/hitest.vim
 " Show syntax highlighting groups for word under cursor
