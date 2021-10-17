@@ -317,7 +317,10 @@ augroup END
 
 " Colour scheme management {{{1
 " Enable truecolor if available.
-if $TERM_PROGRAM ==# "iTerm.app"
+if $COLORTERM ==# "truecolor"
+    " Note that over SSH, you have to make sure that the $COLORTERM
+    " environment is sent, see SendEnv and AcceptEnv in ~/.ssh/config
+    " or /etc/ssh/ssh_config
     set termguicolors
 endif
 set t_ut=""
