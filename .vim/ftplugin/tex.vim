@@ -2,6 +2,7 @@ set fillchars=fold:\
 " Read in LaTeX template
 nnoremap <buffer><silent> rtrt gg:<C-U>r ~/dotfiles/latex_template.tex<CR>ggdd
 
+
 " Word count function (relies on pdftotext being installed)
 " ---------------------------------------------------------
 function! WC()
@@ -17,7 +18,7 @@ command WC :call WC()
 " Remove automatic indentation for certain LaTeX environments
 " cmdline and script are user-defined envs for the SBM comp chem tutorial...
 let g:vimtex_indent_lists = ['itemize', 'description', 'enumerate', 'thebibliography', 'minted']
-let g:vimtex_indent_ignored_envs = ['document', 'appendices']
+let g:vimtex_indent_ignored_envs = ['document', 'appendices', 'frame']
 
 " Enable folding
 let g:vimtex_fold_enabled = 1
@@ -49,6 +50,7 @@ endif
 let g:vimtex_quickfix_ignore_filters = [
             \ "hyperref Warning: Draft mode on",
             \ "contains only floats",
+            \ "Font shape declaration has incorrect series value",
             \ ]
 
 " Add LaTeX quotes to vim-sandwich.
@@ -58,6 +60,10 @@ let b:sandwich_recipes = deepcopy(g:sandwich#default_recipes)
 let b:sandwich_recipes += [
             \ {'buns': ['`', "'"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ["q"]},
             \ {'buns': ['``', "''"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['Q']},
+            \ {'buns': ['$', '$'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['7']},
+            \ {'buns': ['\(', '\)'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['8']},
+            \ {'buns': ['$$', '$$'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['9']},
+            \ {'buns': ['\[', '\]'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['0']},
             \ {'buns': ['\textbf{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['bb']},
             \ {'buns': ['\textit{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['ii']},
             \ {'buns': ['\mathrm{', '}'], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ['rr']},

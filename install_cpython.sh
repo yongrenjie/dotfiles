@@ -1,5 +1,5 @@
 # Change version as appropriate
-cd /Users/yongrenjie/progs/cpython/Python-3.10.0b4/
+cd /Users/yongrenjie/progs/cpython/Python-3.10.0/
 export LDFLAGS="-L/usr/local/opt/tcl-tk/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
 export CPPFLAGS="-I/usr/local/opt/tcl-tk/include -I/usr/local/opt/openssl@1.1/include -I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include"
 CXX=clang++ ./configure \

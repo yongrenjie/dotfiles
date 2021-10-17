@@ -93,7 +93,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
     # Python executables
-    PATH=$PATH:/Users/yongrenjie/Library/Python/3.9/bin
+    PATH=$PATH:/Users/yongrenjie/Library/Python/3.10/bin
     # Ruby executables (prefer brew over system install).
     PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
     # MATLAB
@@ -109,8 +109,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
-    # Inkscape export as 600 dpi png
+    # Inkscape export to same folder
     alias ipng='inkscape --export-type=png -D -d 600'
+    # Inkscape export to Desktop
+    ipngd () {
+        for fname in "$@"; do
+            if [ -f "$fname" ]; then
+                inkscape --export-type=png -D -d 600 "$fname" --export-filename="$HOME/Desktop/$(basename -- ${fname%.svg}).png"
+            fi
+        done
+    }
     # Aliases for GNU utils, installed via Homebrew
     alias grep='ggrep --color=auto'
     alias sed='gsed'
@@ -121,7 +129,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # MATLAB root
     export matlabroot=/Applications/MATLAB_R2020a.app/
     # python site-packages
-    sp="$HOME/Library/Python/3.9/lib/python/site-packages"
+    sp="$HOME/Library/Python/3.10/lib/python/site-packages"
     # aliases to start/stop JupyterLab launch service
     alias startjl='launchctl start jupyterlab_3.9'
     alias stopjl='launchctl stop jupyterlab_3.9'
@@ -202,12 +210,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         export BAT_THEME="OneHalfLight"
     fi
     ## }}}2
-    ## Nix {{{2
-    # added by Nix installer
-    if [ -e /Users/yongrenjie/.nix-profile/etc/profile.d/nix.sh ]; then
-        . /Users/yongrenjie/.nix-profile/etc/profile.d/nix.sh
-    fi
-    # }}}2
 fi
 
 ### }}}1

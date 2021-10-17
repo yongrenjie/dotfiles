@@ -83,7 +83,7 @@ function! MkMatchparenMap() abort
         let l:close = ')'
     else | return '' | endif
     return "\<CR>" . l:close . "\<Esc>O"
-endfunction! " }}}1
+endfunction " }}}1
 
 " Function to get the top-level git directory {{{1
 function! GitTopLevel() abort
@@ -148,7 +148,7 @@ function! VimrcInitialiseLSP() abort
                 \ allowlist: ['haskell', 'lhaskell'],
                 \ })
         endif " }}}3
-        let g:python_language_server='mspyls'   " or 'pyright'
+        let g:python_language_server='pyright'   " or 'pyright'
         " Pyright {{{3
         if executable('pyright-langserver') && g:python_language_server == 'pyright'
             au User lsp_setup call lsp#register_server(#{
