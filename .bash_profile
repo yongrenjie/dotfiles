@@ -214,8 +214,9 @@ fi
 
 ### }}}1
 
-### WSL-specific settings {{{1
+### Linux-specific settings {{{1
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # General Linux-related stuff {{{2
     export EDITOR=vim
     # Colorscheme is always light, but can be changed via this variable
     export TERMCS=light
@@ -226,49 +227,61 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         export PS1="${LPURPLE}\u${LBLUE}@\h:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
         eval "$(dircolors ~/.dircolors_light)"
     fi
-    # CMD and PowerShell
-    alias cmd='/mnt/c/Windows/System32/cmd.exe'
-    alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
-    # ghcup
-    [ -f "/home/yongrenjie/.ghcup/env" ] && source "/home/yongrenjie/.ghcup/env"
-    # Windows home directory and desktop
-    export WD='/mnt/c/Users/jonathan.yong/Desktop'
-    export WH='/mnt/c/Users/jonathan.yong'
-    # TopSpin directory
-    export ts='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
     # colourful ls
     alias ls="ls --color=auto"
-    # enable to show graphs on Windows
-    export DISPLAY=localhost:0.0 
-    # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
-    # the way to get around this is: sudo env "PATH=$PATH" tlmgr update --all
-    export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
-    export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
-    export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-    # OpenMPI 3.1.15 and ORCA 4.2.1
-    export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
-    alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
-    # GHC
-    export PATH=/opt/ghc/bin:$PATH
-    export PATH=/home/yongrenjie/.local/bin:$PATH
-fi
-    # Download POISE, dev version.
-    getpoise() {
-        cd ~/nmrpoise
-        git checkout dev
-        git fetch origin dev
-        git reset --hard origin/dev
-        # rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests --exclude "nmrpoise-egg.info"
-        cd -
-    }
-    # Download penguins, dev version
-    getpenguins() {
-        cd ~/penguins
-        git checkout develop
-        git fetch origin develop
-        git reset --hard origin/develop
-        cd -
-    }
+    # }}}2
+
+    if [[ $(hostname) == "dill"* ]]; then
+        # Dill {{{2
+        alias defcon="./configure --prefix=$HOME/progs"
+        # My own compiled binaries
+        export PATH="/home/dill/mf/linc3717/progs/bin:$PATH"
+        # }}}2
+    else
+        # CARP-CRL WSL {{{2
+        # CMD and PowerShell
+        alias cmd='/mnt/c/Windows/System32/cmd.exe'
+        alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
+        # ghcup
+        [ -f "/home/yongrenjie/.ghcup/env" ] && source "/home/yongrenjie/.ghcup/env"
+        # Windows home directory and desktop
+        export WD='/mnt/c/Users/jonathan.yong/Desktop'
+        export WH='/mnt/c/Users/jonathan.yong'
+        # TopSpin directory
+        export ts='/mnt/c/Bruker/topspin4.0.7/exp/stan/nmr'
+        # enable to show graphs on Windows
+        export DISPLAY=localhost:0.0 
+        # TeX paths. Note that tlmgr requires sudo, but sudo resets $PATH and so can't find tlmgr by itself.
+        # the way to get around this is: sudo env "PATH=$PATH" tlmgr update --all
+        export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
+        export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
+        export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+        # OpenMPI 3.1.15 and ORCA 4.2.1
+        export LD_LIBRARY_PATH=/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314:/usr/local/lib:$LD_LIBRARY_PATH
+        alias orca="/usr/local/bin/orca_4_2_1_linux_x86-64_shared_openmpi314/orca" # needs full path to run in parallel
+        # GHC
+        export PATH=/opt/ghc/bin:$PATH
+        export PATH=/home/yongrenjie/.local/bin:$PATH
+    fi
+        # Download POISE, dev version.
+        getpoise() {
+            cd ~/nmrpoise
+            git checkout dev
+            git fetch origin dev
+            git reset --hard origin/dev
+            # rsync -av --progress $HOME/nmrpoise $WD --exclude .git --exclude tests --exclude "nmrpoise-egg.info"
+            cd -
+        }
+        # Download penguins, dev version
+        getpenguins() {
+            cd ~/penguins
+            git checkout develop
+            git fetch origin develop
+            git reset --hard origin/develop
+            cd -
+        }
+        # }}}2
+    fi
 # }}}1
 
 ### fzf setup (needs to come at the bottom) {{{1
@@ -279,7 +292,9 @@ export FZF_ALT_C_COMMAND="fd --type directory . ~"
 # }}}1
 
 ### direnv setup (needs to come at the bottom) {{{1
-eval "$(direnv hook bash)"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    eval "$(direnv hook bash)"
+fi
 # }}}1
 
 # vim: foldmethod=marker
