@@ -316,8 +316,13 @@ augroup END
 " }}}1
 
 " Colour scheme management {{{1
-" Enable truecolor if available.
-if $COLORTERM ==# "truecolor"
+" Enable truecolor if available. This is a bit of a hacky check. Ideally we
+" would check for $COLORTERM; however, this environment variable is not passed
+" over SSH. Also, a quick check of the terminals I currently use show that the
+" ones that don't support truecolor (macOS Terminal.app, Windows Terminal WSL)
+" are labelled 'xterm-256colors', and those that do (macOS iTerm2) are
+" labelled 'xterm'. Since $TERM is passed over SSH, this will reliably work.
+if $TERM ==# "xterm"
     set termguicolors
     if $TERMCS ==# "light"
         set background=light
