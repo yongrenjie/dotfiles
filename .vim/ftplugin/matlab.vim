@@ -23,3 +23,5 @@ endfunction
 " Initialise the path
 let s:matlab_path = GetMatlabPath()
 nnoremap <silent> gd :call GotoDefinition()<CR>
+
+set foldmethod=indent

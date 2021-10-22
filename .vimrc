@@ -61,12 +61,67 @@ onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
 " }}}2
+" <leader>[] to jump around quickfix / location list {{{2
+function! QFLocListPrevNext(next) abort
+    " a:next should be +1 if going forward and -1 if going backwards
+    let l:winfo = getwininfo()
+
+    " Try quickfix list
+    let l:qf_open = !empty(filter(l:winfo, 'v:val.quickfix'))
+    if l:qf_open
+        if a:next == +1 | cnext
+        elseif a:next == -1 | cprev | endif
+        return
+    end
+
+    " Try location list
+    let l:loc_open = !empty(filter(l:winfo, 'v:val.loclist'))
+    if l:loc_open
+        if a:next == +1 | lnext
+        elseif a:next == -1 | lprev | endif
+        return
+    end
+endfunction
+nnoremap <silent> <leader>[ :call QFLocListPrevNext(-1)<CR>
+nnoremap <silent> <leader>] :call QFLocListPrevNext(+1)<CR>
+" }}}2
 " }}}1
 
 " Basic autocmds {{{1
 " Recognise TopSpin AU programmes as being C.
 autocmd BufEnter /opt/topspin4.1.3/exp/stan/nmr/au/src/* :set filetype=c
 autocmd BufEnter ~/genesis/scripts/au/* :set filetype=c
+" }}}1
+
+" Grep setup {{{1
+" Slightly modified from
+" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+if executable('rg')
+    let &grepprg = 'rg --vimgrep '
+    " Grep in current directory, or other specified location
+    function RunGrep(...)
+        " Note that the errorformat here is specialised to rg's output.
+        let l:old_efm = &errorformat
+        let &errorformat = '%f:%l:%c:%m'
+        cgetexpr system(join([&grepprg] + a:000, ' '))
+        let &errorformat = l:old_efm
+        cwindow
+    endfunction
+    command! -nargs=+ -complete=file Grep call RunGrep(<f-args>)
+    " Grep within open buffers
+    function RunGrepInOpenBuffers(...)
+        let l:old_efm = &errorformat
+        let &errorformat = '%f:%l:%c:%m'
+        let l:buffers = getbufinfo()
+                    \ ->map({_, val -> shellescape(val.name)})
+                    \ ->filter({_, val -> !empty(val)})
+        let l:command = join([&grepprg] + a:000 + l:buffers, ' ')
+        cgetexpr system(l:command)
+        let &errorformat = l:old_efm
+        cwindow
+    endfunction
+    command! -nargs=+ Bgrep call RunGrepInOpenBuffers(<f-args>)
+endif
 " }}}1
 
 " Automatic parentheses generation {{{1
@@ -94,11 +149,15 @@ let g:git_top_level = GitTopLevel()
 " }}}1
 
 " Plugin settings and mappings (except LSP) {{{1
+packadd! matchit
 " abbotsbury.vim
-let g:abbot_enabled = 0
-let g:abbot_use_git_email = 1
-let g:abbot_use_default_map = 0
-nmap <silent> <leader>e <plug>AbbotExpandDoi
+if executable('abbot')
+    let g:abbot_use_git_email = 1
+    let g:abbot_use_default_map = 0
+    nmap <silent> <leader>e <plug>AbbotExpandDoi
+else
+    let g:abbot_enabled = 0
+end
 " netrw
 let g:netrw_liststyle = 1       " Use ls -al style by default
 let g:netrw_localrmdir = 'rm -r'  " Allow netrw to delete nonempty directories
@@ -120,7 +179,11 @@ endif
 " }}}2
 " Disable indentLine by default, but make a mapping to toggle it {{{2
 let g:indentLine_enabled = 0
-nnoremap <silent> <leader>ii :IndentLinesToggle<CR>
+function! ToggleIndentLine() abort
+    let g:indentLine_enabled = 1
+    IndentLinesEnable
+endfunction
+nnoremap <silent> <leader>ii :call ToggleIndentLine()<CR>
 " }}}2
 " }}}1
 
@@ -286,8 +349,6 @@ function! VimrcInitialiseLSP() abort
             nmap <buffer>gr        <Plug>(lsp-rename)
             nmap <buffer>K         <Plug>(lsp-hover)
             nmap <buffer><leader>a <Plug>(lsp-code-action)
-            nmap <buffer><leader>[ :lprevious<CR>
-            nmap <buffer><leader>] :lnext<CR>
             " Scroll in popup windows.
             nnoremap <buffer><silent><expr><C-J> lsp#scroll(+3)
             nnoremap <buffer><silent><expr><C-K> lsp#scroll(-3)

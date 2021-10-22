@@ -10,6 +10,7 @@ alias sl="ls"
 alias gti="git"
 alias dc="cd"
 alias :e="vim"
+alias vi="vim"   # It seems unlikely that I ever really want compatibility.
 # Add some autocompletion to bash
 source ~/.git-completion.bash
 source ~/.cabal-completion.bash
