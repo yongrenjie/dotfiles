@@ -128,16 +128,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export ts=/opt/topspin4.1.3/exp/stan/nmr
     export tsdoc=/opt/topspin4.1.3/prog/docu/english/topspin/pdf
     # MATLAB root
-    export matlabroot=/Applications/MATLAB_R2020a.app/
+    export matlabroot=/Applications/MATLAB_R2021a.app/
     # python site-packages
     sp="$HOME/Library/Python/3.10/lib/python/site-packages"
     # aliases to start/stop JupyterLab launch service
     alias startjl='launchctl start jupyterlab_3.9'
     alias stopjl='launchctl stop jupyterlab_3.9'
-    # SSH into WSL on CARP-CRL (not working)
-    # alias sshcarp="ssh yongrenjie@129.67.68.177 -p 2346"
-    # SSH into PowerShell (not working)
-    # alias sshcarpwin="ssh jonathan.yong@129.67.68.177 -p 2345"
     # Shortcut for cygnet
     cyg () {
         cygnet ~/papers/"$1" --nodebug
@@ -145,6 +141,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # vimtex test
     alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     ## DPhil file management {{{2
+    # edit thesis
+    alias et='cd ~/dphil/thesis; vim thesis.tex'
     # Default path to NMR data.
     export nmrd=/Volumes/JonY/dphil/expn/nmr
     # Backup dphil folder to SSD

@@ -91,6 +91,8 @@ nnoremap <silent> <leader>] :call QFLocListPrevNext(+1)<CR>
 " Recognise TopSpin AU programmes as being C.
 autocmd BufEnter /opt/topspin4.1.3/exp/stan/nmr/au/src/* :set filetype=c
 autocmd BufEnter ~/genesis/scripts/au/* :set filetype=c
+" Detect thesis files
+autocmd BufReadPre ~/dphil/thesis/*.tex :let b:is_dphil_thesis=1
 " }}}1
 
 " Grep setup {{{1
