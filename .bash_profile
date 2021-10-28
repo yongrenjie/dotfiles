@@ -230,11 +230,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias ls="ls --color=auto"
     # }}}2
 
-    if [[ $(hostname) == "dill"* ]]; then
-        # Dill {{{2
+    if [[ $(hostname) == "bayleaf"* ]] || [[ $(hostname) == "dill"* ]]; then
+        # Bayleaf / Dill {{{2
         alias defcon="./configure --prefix=$HOME/progs"
         # My own compiled binaries
-        export PATH="/home/dill/mf/linc3717/progs/bin:$PATH"
+        export PATH="/u/mf/linc3717/progs/bin:$PATH"
         # }}}2
     else
         # CARP-CRL WSL {{{2
