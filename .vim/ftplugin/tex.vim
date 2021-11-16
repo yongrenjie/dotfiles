@@ -52,10 +52,9 @@ let g:vimtex_quickfix_ignore_filters = [
             \ "contains only floats",
             \ "Font shape declaration has incorrect series value",
             \ ]
+" }}}1
 
-" Add LaTeX quotes to vim-sandwich.
-" This won't always work (e.g. if quotes are around some text with
-" apostrophes), but useful for simple scenarios.
+" More recipes for vim-sandwich {{{1
 let b:sandwich_recipes = deepcopy(g:sandwich#default_recipes)
 let b:sandwich_recipes += [
             \ {'buns': ['`', "'"], 'filetype': ['tex', 'plaintex'], 'nesting': 0, 'input': ["q"]},
@@ -70,7 +69,9 @@ let b:sandwich_recipes += [
             \ ]
 " }}}1
 
-" Thesis-specific settings {{{1
+" THESIS-SPECIFIC SETTINGS
+" Set $NO_THESIS to any nonempty value to disable
+" ... {{{1
 function! s:thesis_mappings() abort
     if 0 | echomsg 'Hi from ftplugin' | endif
     " Make ToC wider...
@@ -84,7 +85,7 @@ function! s:thesis_mappings() abort
                 \ }
 endfunction
 
-if expand('%:p') =~# 'dphil/thesis'
+if expand('%:p') =~# 'dphil/thesis' && empty($NO_THESIS)
     let b:is_thesis = 1
     call s:thesis_mappings()
 endif

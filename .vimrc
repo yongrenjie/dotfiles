@@ -204,12 +204,17 @@ function! VimrcInitialiseLSP() abort
         packadd vim-lsp
         packadd asyncomplete.vim
         packadd asyncomplete-lsp.vim
-        let g:lsp_preview_autoclose=1
+        let g:lsp_preview_autoclose = 1
         " Haskell Language Server {{{3
+        let g:hls_debug = 1    " Turn on for debugging output
         if executable('haskell-language-server-wrapper')
+            let l:hls_cmd = ['haskell-language-server-wrapper', '--lsp']
+            if g:hls_debug
+                call extend(l:hls_cmd, ['--debug', '--logfile', '/tmp/hls.log'])
+            endif
             au User lsp_setup call lsp#register_server(#{
                 \ name: 'hls',
-                \ cmd: ['haskell-language-server-wrapper', '--lsp'],
+                \ cmd: ['haskell-language-server-wrapper', '--lsp', '--debug', '--logfile', '/tmp/hls.log'],
                 \ root_uri: {server_info->lsp#utils#path_to_uri(
                 \     lsp#utils#find_nearest_parent_file_directory(
                 \         lsp#utils#get_buffer_path(),
@@ -218,7 +223,7 @@ function! VimrcInitialiseLSP() abort
                 \ allowlist: ['haskell', 'lhaskell'],
                 \ })
         endif " }}}3
-        let g:python_language_server='pyright'   " or 'pyright'
+        let g:python_language_server='mspyls'   " or 'pyright'
         " Pyright {{{3
         if executable('pyright-langserver') && g:python_language_server == 'pyright'
             au User lsp_setup call lsp#register_server(#{
