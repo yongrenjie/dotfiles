@@ -100,6 +100,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # MATLAB
     PATH=/Applications/MATLAB_R2021a.app/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
+    # abbotsbury
+    alias adr='abbot -d $HOME/refs'
     # Fzf into vim
     vf () {
         vfname=$(fzf)
@@ -110,6 +112,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
+    # ssh into departmental computers
+    alias bl='ssh -Y linc3717@bayleaf.chem.ox.ac.uk'
     # Inkscape export to same folder
     alias ipng='inkscape --export-type=png -D -d 600'
     # Inkscape export to Desktop
@@ -120,6 +124,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             fi
         done
     }
+    # Make matlab command default to no GUI
+    alias matlab_gui='matlab'
+    alias matlab='matlab -nodesktop -nosplash'
+    # Make emacs colours behave
+    alias emacs='TERM=xterm-256color emacs'
     # Aliases for GNU utils, installed via Homebrew
     alias grep='ggrep --color=auto'
     alias sed='gsed'
