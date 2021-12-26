@@ -246,11 +246,41 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias ls="ls --color=auto"
     # }}}2
 
-    if [[ $(hostname) == "bayleaf"* ]] || [[ $(hostname) == "dill"* ]]; then
-        # Bayleaf / Dill {{{2
+    if [[ $(hostname) == "dill"* ]]; then
+        # Dill {{{2
         alias defcon="./configure --prefix=$HOME/progs"
-        # My own compiled binaries
-        export PATH="/u/mf/linc3717/progs/bin:$PATH"
+        export PATH="/u/mf/linc3717/progs/bin:$PATH"  # My own compiled binaries
+        # }}}2
+    elif [[ $(hostname) == "bayleaf"* ]]; then
+        # Bayleaf {{{2
+        # Matlab requires an uncontaminated path (probably because of
+        # Homebrew's glibc).
+        alias matlab="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin matlab -nodesktop -nosplash"
+        alias matlab_gui="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin matlab"
+        alias defcon="./configure --prefix=$HOME/.local"
+        export PKG_CONFIG_PATH=/usr/share/pkgconfig:$PKG_CONFIG_PATH
+        export PATH="/u/mf/linc3717/.local/bin:$PATH"
+        # Haskell binaries
+        export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+        # Homebrew setup
+        export HOMEBREW_MAKE_JOBS=18
+        export HOMEBREW_PREFIX="/home/bayleaf/mf/linc3717/.linuxbrew";
+        export HOMEBREW_CELLAR="/home/bayleaf/mf/linc3717/.linuxbrew/Cellar";
+        export HOMEBREW_REPOSITORY="/home/bayleaf/mf/linc3717/.linuxbrew";
+        export HOMEBREW_SHELLENV_PREFIX="/home/bayleaf/mf/linc3717/.linuxbrew";
+        export PATH="/home/bayleaf/mf/linc3717/.linuxbrew/bin:/home/bayleaf/mf/linc3717/.linuxbrew/sbin${PATH+:$PATH}";
+        export MANPATH="/home/bayleaf/mf/linc3717/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
+        export INFOPATH="/home/bayleaf/mf/linc3717/.linuxbrew/share/info:${INFOPATH:-}";
+        # Let Homebrew use its own curl and git
+        export HOMEBREW_DEVELOPER=1
+        export HOMEBREW_CURL_PATH="$HOME/.local/bin/curl"
+        export HOMEBREW_GIT_PATH="$HOME/.local/bin/git"
+        # Tell Homebrew to use its own gcc after it gets installed
+        # export HOMEBREW_CC=gcc
+        # # Use Homebrew coreutils over system
+        # export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+        # Bash completion from Homebrew
+        [[ -r "$HOME/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "$HOME/.linuxbrew/etc/profile.d/bash_completion.sh"
         # }}}2
     else
         # CARP-CRL WSL {{{2
@@ -301,7 +331,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 ### fzf setup (needs to come at the bottom) {{{1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='fd -a --type file . $(git rev-parse --show-toplevel || $HOME)'
+export FZF_DEFAULT_COMMAND='(git status >/dev/null 2>&1 && fd --type file . $(git rev-parse --show-toplevel)) || fd -a --type file . $HOME
+'
 export FZF_CTRL_T_COMMAND="fd --type file . ~"
 export FZF_ALT_C_COMMAND="fd --type directory . ~"
 # }}}1
