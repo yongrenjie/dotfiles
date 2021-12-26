@@ -4,8 +4,11 @@
 alias please='sudo $(fc -ln -1)'
 # Don't close with Ctrl-D unless I mash it
 export IGNOREEOF=2
-# typo-proof aliases
+# Super lazy aliases
+alias c="cd"
 alias l="ls"
+alias v="vim"
+# typo-proof aliases
 alias sl="ls"
 alias gti="git"
 alias dc="cd"
@@ -137,7 +140,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export ts=/opt/topspin4.1.3/exp/stan/nmr
     export tsdoc=/opt/topspin4.1.3/prog/docu/english/topspin/pdf
     # MATLAB root
-    export matlabroot=/Applications/MATLAB_R2021a.app/
+    export MATLAB_ROOT=/Applications/MATLAB_R2021a.app/
     # python site-packages
     sp="$HOME/Library/Python/3.10/lib/python/site-packages"
     # aliases to start/stop JupyterLab launch service
@@ -146,6 +149,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Shortcut for cygnet
     cyg () {
         cygnet ~/papers/"$1" --nodebug
+    }
+    # Connect to Switch network
+    switch () {
+        networksetup -setairportnetwork en0 "switch_F24EA00100L" "$1" && open http://192.168.0.1/index.html
     }
     # vimtex test
     alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'

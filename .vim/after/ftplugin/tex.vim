@@ -14,6 +14,9 @@ function! s:after_thesis_mappings() abort
     " For debugging (if necessary)
     if 0 | echomsg 'Hi from after/ftplugin' | endif
 
+    " Mapping to jump back to thesis.tex
+    nnoremap <silent><buffer> <leader>h :e ~/dphil/thesis/thesis.tex<CR>
+
     " Make custom mappings for vimtex TOC
     augroup thesis-after | au!
         " Make CR and Space behave similarly (i.e. don't close the ToC when
@@ -22,16 +25,16 @@ function! s:after_thesis_mappings() abort
         " Make = behave like +, avoiding having to press Shift.
         autocmd User VimtexEventTocCreated nmap <buffer> = +
         " Make { and } move between chapters, [ and ] move between section
-        autocmd User VimtexEventTocCreated nmap <buffer><silent> { ?\v^L0<CR>
-        autocmd User VimtexEventTocCreated nmap <buffer><silent> } /\v^L0<CR>
+        autocmd User VimtexEventTocCreated nmap <buffer><silent><nowait> { ?\v^L0<CR>
+        autocmd User VimtexEventTocCreated nmap <buffer><silent><nowait> } /\v^L0<CR>
         " Disable other mappings beginning with [ and ] to avoid the
         " ttimeoutlen lag (it's not like we're using them...)
-        autocmd User VimtexEventTocCreated nunmap [z
-        autocmd User VimtexEventTocCreated nunmap [%
-        autocmd User VimtexEventTocCreated nunmap ]z
-        autocmd User VimtexEventTocCreated nunmap ]%
-        autocmd User VimtexEventTocCreated nmap <buffer><silent> [ ?\v^L[01]<CR>
-        autocmd User VimtexEventTocCreated nmap <buffer><silent> ] /\v^L[01]<CR>
+        " autocmd User VimtexEventTocCreated nunmap <buffer><silent> [z
+        " autocmd User VimtexEventTocCreated nunmap <buffer><silent> [%
+        " autocmd User VimtexEventTocCreated nunmap <buffer><silent> ]z
+        " autocmd User VimtexEventTocCreated nunmap <buffer><silent> ]%
+        autocmd User VimtexEventTocCreated nmap <buffer><silent><nowait> [ ?\v^L[01]<CR>
+        autocmd User VimtexEventTocCreated nmap <buffer><silent><nowait> ] /\v^L[01]<CR>
     augroup END
 
     " Disable automatic folding

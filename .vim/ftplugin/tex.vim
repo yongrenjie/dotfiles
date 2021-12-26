@@ -38,6 +38,7 @@ nmap <localleader>m <plug>(vimtex-compile-ss)
 " Enable forward searching in Skim for MacOS
 if system("uname") == "Darwin\n"
     let g:vimtex_view_method = "skim"
+    let g:vimtex_view_skim_activate_on_start = 0
 endif
 
 " PDF viewer for vimtex in WSL

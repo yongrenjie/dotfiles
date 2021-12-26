@@ -124,3 +124,6 @@
 [submodule ".vim/pack/plugins/start/vim-tbone"]
 	path = .vim/pack/plugins/start/vim-tbone
 	url = https://github.com/tpope/vim-tbone
+[submodule ".vim/pack/plugins/start/vim-matlab-utils"]
+	path = .vim/pack/plugins/start/vim-matlab-utils
+	url = git@github.com:yongrenjie/vim-matlab-utils.git
