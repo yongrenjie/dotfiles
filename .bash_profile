@@ -8,6 +8,7 @@ export IGNOREEOF=2
 alias c="cd"
 alias l="ls"
 alias v="vim"
+alias g="git"
 # typo-proof aliases
 alias sl="ls"
 alias gti="git"
@@ -113,17 +114,27 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             unset vfname
         fi
     }
+    # Write my thesis :-(
+    alias vt='clear && cd ~/dphil/thesis && vim thesis.tex'
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # ssh into departmental computers
     alias bl='ssh -Y linc3717@bayleaf.chem.ox.ac.uk'
     # Inkscape export to same folder
     alias ipng='inkscape --export-type=png -D -d 600'
+    alias ipdf='inkscape --export-type=pdf -D'
     # Inkscape export to Desktop
     ipngd () {
         for fname in "$@"; do
             if [ -f "$fname" ]; then
                 inkscape --export-type=png -D -d 600 "$fname" --export-filename="$HOME/Desktop/$(basename -- ${fname%.svg}).png"
+            fi
+        done
+    }
+    ipdfd () {
+        for fname in "$@"; do
+            if [ -f "$fname" ]; then
+                inkscape --export-type=pdf -D "$fname" --export-filename="$HOME/Desktop/$(basename -- ${fname%.svg}).pdf"
             fi
         done
     }
@@ -157,6 +168,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # vimtex test
     alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     ## DPhil file management {{{2
+    # Copy Matlab output files back here
+    alias scpout='scp linc3717@bayleaf.chem.ox.ac.uk:~/matlab_nmr_jy/research/*.out ~/matlab_nmr_jy/research/'
     # edit thesis
     alias et='cd ~/dphil/thesis; vim thesis.tex'
     # Default path to NMR data.
@@ -262,6 +275,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         export PATH="/u/mf/linc3717/.local/bin:$PATH"
         # Haskell binaries
         export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+        # Run matlab in batch mode on X file
+        mrun () {
+            cd ~/matlab_nmr_jy/research/
+            # echo matlab -batch \'${1}()\' | tee ${1}.out
+        }
         # Homebrew setup
         export HOMEBREW_MAKE_JOBS=18
         export HOMEBREW_PREFIX="/home/bayleaf/mf/linc3717/.linuxbrew";

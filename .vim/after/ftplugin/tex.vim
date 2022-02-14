@@ -5,7 +5,6 @@ function! VimtexTocToggleAndReturn() abort
 endfunction
 nnoremap <buffer><silent> <localleader>t :call VimtexTocToggleAndReturn()<CR>
 
-
 " Thesis-specific mappings {{{1
 " These depend on the value of b:is_thesis, which is set in
 " .vim/ftplugin/tex.vim. If you want to control when these are triggered, go
@@ -14,8 +13,8 @@ function! s:after_thesis_mappings() abort
     " For debugging (if necessary)
     if 0 | echomsg 'Hi from after/ftplugin' | endif
 
-    " Mapping to jump back to thesis.tex
-    nnoremap <silent><buffer> <leader>h :e ~/dphil/thesis/thesis.tex<CR>
+    " Mapping to reset my view
+    nnoremap <silent><buffer> <leader>h :only<CR>:e ~/dphil/thesis/thesis.tex<CR>:call VimtexTocToggleAndReturn()<CR>
 
     " Make custom mappings for vimtex TOC
     augroup thesis-after | au!
@@ -37,9 +36,6 @@ function! s:after_thesis_mappings() abort
         autocmd User VimtexEventTocCreated nmap <buffer><silent><nowait> ] /\v^L[01]<CR>
     augroup END
 
-    " Disable automatic folding
-    setlocal foldmethod=marker
-
     " Compile and open ToC automatically if it was the first file opened
     if expand('%') =~# 'thesis.tex' && len(getbufinfo()) == 1
         VimtexCompile
@@ -51,6 +47,5 @@ if exists('b:is_thesis')   " set in .vim/ftplugin/tex.vim
     call s:after_thesis_mappings()
 endif
 " }}}1
-
 
 " vim: foldmethod=marker
