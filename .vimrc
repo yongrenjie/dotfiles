@@ -174,6 +174,10 @@ if executable('abbot')
 else
     let g:abbot_enabled = 0
 end
+" matlab-utils
+if !empty($MATLAB_ROOT)
+    let g:matlab_root = $MATLAB_ROOT
+endif
 " netrw
 let g:netrw_liststyle = 1       " Use ls -al style by default
 let g:netrw_localrmdir = 'rm -r'  " Allow netrw to delete nonempty directories
