@@ -302,6 +302,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # }}}2
     else
         # CARP-CRL WSL {{{2
+        alias bl='ssh -Y linc3717@bayleaf.chem.ox.ac.uk'
         # CMD and PowerShell
         alias cmd='/mnt/c/Windows/System32/cmd.exe'
         alias pshell='/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe'
