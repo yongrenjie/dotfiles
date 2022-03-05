@@ -277,8 +277,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
         # Run matlab in batch mode on X file
         mrun () {
-            cd ~/matlab_nmr_jy/research/
-            # echo matlab -batch \'${1}()\' | tee ${1}.out
+            PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin matlab -nodesktop -nosplash -nodesktop -nosplash -batch "$1()" | tee $1.out
         }
         # Homebrew setup
         export HOMEBREW_MAKE_JOBS=18
