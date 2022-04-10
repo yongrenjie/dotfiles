@@ -18,12 +18,14 @@ endsnippet
 
 snippet eqn "quick equation" b
 \begin{equation}
+    \label{eq:$1}
 	$0
 \end{equation}
 endsnippet
 
 snippet aln "quick align" b
 \begin{align}
+    \label{eq:$1}
 	$0
 \end{align}
 endsnippet
@@ -34,6 +36,14 @@ endsnippet
 
 snippet mm "quick displaymaffs"
 \[$1\]$0
+endsnippet
+
+snippet \l( "left parentheses"
+\left($0\right)
+endsnippet
+
+snippet \l[ "left square bracket"
+\left[$0\right]
 endsnippet
 
 # from https://github.com/SirVer/ultisnips/issues/913

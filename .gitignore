@@ -2,3 +2,4 @@
 **/.DS_Store
 .gitconfig
 .config/gh/hosts.yml
+.config/gspread/service_account.json

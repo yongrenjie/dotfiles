@@ -1,11 +1,5 @@
-set nocompatible
-filetype plugin on
-" let &runtimepath = '~/.vim/pack/plugins/start/vimtex,' . &runtimepath
-" let &runtimepath = '~/.vim/pack/plugins/start/vim-commentary,' . &runtimepath
-" let &runtimepath = '~/.vim/pack/plugins/start/targets.vim,' . &runtimepath
+" https://otavio.dev/2018/09/30/migrating-from-vim-to-neovim/
 
-if !has('nvim')
-    " packadd vimtex
-    packadd vim-sandwich
-    " packadd targets.vim
-endif
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc

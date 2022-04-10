@@ -120,6 +120,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # ssh into departmental computers
     alias bl='ssh -Y linc3717@bayleaf.chem.ox.ac.uk'
+    # copy the .out files back (actually copies everything)
+    alias scpout='rsync -r linc3717@bayleaf.chem.ox.ac.uk:~/matlab_nmr_jy/research/ ~/matlab_nmr_jy/research/'
     # Inkscape export to same folder
     alias ipng='inkscape --export-type=png -D -d 600'
     alias ipdf='inkscape --export-type=pdf -D'
@@ -168,8 +170,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # vimtex test
     alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     ## DPhil file management {{{2
-    # Copy Matlab output files back here
-    alias scpout='scp linc3717@bayleaf.chem.ox.ac.uk:~/matlab_nmr_jy/research/*.out ~/matlab_nmr_jy/research/'
     # edit thesis
     alias et='cd ~/dphil/thesis; vim thesis.tex'
     # Default path to NMR data.

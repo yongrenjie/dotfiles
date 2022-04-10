@@ -127,3 +127,6 @@
 [submodule ".vim/pack/plugins/start/vim-matlab-utils"]
 	path = .vim/pack/plugins/start/vim-matlab-utils
 	url = git@github.com:yongrenjie/vim-matlab-utils.git
+[submodule ".vim/pack/plugins/start/melange"]
+	path = .vim/pack/plugins/start/melange
+	url = https://github.com/savq/melange

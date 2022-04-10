@@ -3,7 +3,20 @@ function! VimtexTocToggleAndReturn() abort
     VimtexTocToggle
     " call win_gotoid(l:nr)
 endfunction
-nnoremap <buffer><silent> <localleader>t :call VimtexTocToggleAndReturn()<CR>
+nnoremap <buffer><silent> <leader>t :call VimtexTocToggleAndReturn()<CR>
+
+function! EqToAlign() abort
+    " Modified from vimtex#env#toggle_star. Uses vimtex internals thus liable
+    " to breaking! But that's a risk I'm willing to take
+    let [l:open, l:close] = vimtex#env#get_surrounding('normal')
+    if empty(l:open) | return | endif
+    if l:open.name ==# 'equation'
+        call vimtex#env#change(l:open, l:close, l:open.starred ? 'align*' : 'align')
+    elseif l:open.name ==# 'align'
+        call vimtex#env#change(l:open, l:close, l:open.starred ? 'equation*' : 'equation')
+    endif
+endfunction
+nnoremap <buffer><silent> <leader>e :call EqToAlign()<CR>
 
 " Thesis-specific mappings {{{1
 " These depend on the value of b:is_thesis, which is set in

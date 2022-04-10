@@ -2,7 +2,7 @@ let maplocalleader='\'
 
 " Quickly test in ghci. I think there should be a better way of doing this
 " using something like makeprg, for example.
-nnoremap <buffer> <localleader>m :below term ++close ++rows=15 ghci % <CR>
+nnoremap <buffer> <localleader>m :w<CR> :below term ++close ++rows=15 ghci % <CR>main<CR>
 let g:asyncrun_open=10
 nnoremap <silent><buffer> <localleader>h :w<CR> :AsyncRun cd $SOURCE_DIR; cabal haddock; cd - <CR>
 
