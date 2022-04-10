@@ -34,26 +34,40 @@ function! LcdHere() abort
 endfunction
 nnoremap <leader>lcd :call LcdHere()<CR>
 " Easy system clipboard access with <Space><Space> {{{2
-vnoremap <leader><leader>p "*p
-vnoremap <leader><leader>P "*P
-vnoremap <leader><leader>y "*y
-vnoremap <leader><leader>Y "*Y
-vnoremap <leader><leader>c "*c
-vnoremap <leader><leader>C "*C
-vnoremap <leader><leader>d "*d
-vnoremap <leader><leader>D "*D
-vnoremap <leader><leader>s "*s
-vnoremap <leader><leader>S "*S
-nnoremap <leader><leader>p "*p
-nnoremap <leader><leader>P "*P
-nnoremap <leader><leader>y "*y
-nnoremap <leader><leader>Y "*Y
-nnoremap <leader><leader>c "*c
-nnoremap <leader><leader>C "*C
-nnoremap <leader><leader>d "*d
-nnoremap <leader><leader>D "*D
-nnoremap <leader><leader>s "*s
-nnoremap <leader><leader>S "*S
+if has('clipboard')
+    vnoremap <leader><leader>p "*p
+    vnoremap <leader><leader>P "*P
+    vnoremap <leader><leader>y "*y
+    vnoremap <leader><leader>Y "*Y
+    vnoremap <leader><leader>c "*c
+    vnoremap <leader><leader>C "*C
+    vnoremap <leader><leader>d "*d
+    vnoremap <leader><leader>D "*D
+    vnoremap <leader><leader>s "*s
+    vnoremap <leader><leader>S "*S
+    nnoremap <leader><leader>p "*p
+    nnoremap <leader><leader>P "*P
+    nnoremap <leader><leader>y "*y
+    nnoremap <leader><leader>Y "*Y
+    nnoremap <leader><leader>c "*c
+    nnoremap <leader><leader>C "*C
+    nnoremap <leader><leader>d "*d
+    nnoremap <leader><leader>D "*D
+    nnoremap <leader><leader>s "*s
+    nnoremap <leader><leader>S "*S
+elseif !empty($TMUX)
+    " no system clipboard, but can use tmux clipboard
+    " requires vim-tbone plugin, but note linewise copy/paste only
+    " useful for bayleaf and co...
+    vnoremap <leader><leader>p :Tput<CR>
+    vnoremap <leader><leader>P :Tput<CR>
+    vnoremap <leader><leader>y :Tyank<CR>
+    vnoremap <leader><leader>Y :Tyank<CR>
+    nnoremap <leader><leader>p :Tput<CR>
+    nnoremap <leader><leader>P :Tput<CR>
+    nnoremap <leader><leader>yy :Tyank<CR>
+    nnoremap <leader><leader>Y :Tyank<CR>
+endif
 " }}}2
 " Text motions for lines, cf. https://vi.stackexchange.com/q/6101/ {{{2
 xnoremap il g_o^
