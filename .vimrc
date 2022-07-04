@@ -99,6 +99,8 @@ endfunction
 nnoremap <silent> <leader>[ :call QFLocListPrevNext(-1)<CR>
 nnoremap <silent> <leader>] :call QFLocListPrevNext(+1)<CR>
 " }}}2
+" :Tb for term below
+command Tb below term ++rows=20
 " }}}1
 
 " Basic autocmds {{{1

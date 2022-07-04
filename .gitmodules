@@ -131,3 +131,9 @@
 [submodule ".vim/pack/plugins/start/melange"]
 	path = .vim/pack/plugins/start/melange
 	url = https://github.com/savq/melange
+[submodule ".vim/pack/plugins/start/vim-cpp-modern"]
+	path = .vim/pack/plugins/start/vim-cpp-modern
+	url = https://github.com/bfrg/vim-cpp-modern
+[submodule ".vim/pack/plugins/opt/nvim-treesitter"]
+	path = .vim/pack/plugins/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
