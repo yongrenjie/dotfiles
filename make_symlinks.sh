@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 files=(".vimrc" \
     ".vim" \
+    ".nvim" \
     ".bash_profile" \
     ".dircolors_dark" \
     ".dircolors_light" \

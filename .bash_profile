@@ -9,6 +9,8 @@ alias c="cd"
 alias l="ls"
 alias v="vim"
 alias g="git"
+alias n="nvim"
+alias nv="nvim"
 # typo-proof aliases
 alias sl="ls"
 alias gti="git"

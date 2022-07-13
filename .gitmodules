@@ -108,7 +108,7 @@
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
 [submodule ".vim/pack/plugins/start/vim-haskellFold"]
 	path = .vim/pack/plugins/start/vim-haskellFold
-	url = https://github.com/Twinside/vim-haskellFold
+	url = git@github.com:yongrenjie/vim-haskellFold
 [submodule ".vim/pack/plugins/start/quietlight.vim"]
 	path = .vim/pack/plugins/start/quietlight.vim
 	url = https://github.com/aonemd/quietlight.vim
