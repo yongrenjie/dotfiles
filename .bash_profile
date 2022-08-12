@@ -270,8 +270,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Bayleaf {{{2
         # Matlab requires an uncontaminated path (probably because of
         # Homebrew's glibc).
-        alias matlab="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin matlab -nodesktop -nosplash"
-        alias matlab_gui="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin matlab"
+        alias matlab="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin /usr/local/bin/matlab -nodesktop -nosplash"
+        alias matlab_gui="PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin /usr/local/bin/matlab"
         alias defcon="./configure --prefix=$HOME/.local"
         export PKG_CONFIG_PATH=/usr/share/pkgconfig:$PKG_CONFIG_PATH
         export PATH="/u/mf/linc3717/.local/bin:$PATH"
