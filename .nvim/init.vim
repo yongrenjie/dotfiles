@@ -9,15 +9,30 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-tbone'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
-Plug 'rakr/vim-one'
+Plug 'sainnhe/edge'
 Plug 'itchyny/lightline.vim'
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
-Plug 'yongrenjie/abbotsbury.vim'
-Plug 'yongrenjie/vim-bruker'
 Plug 'itchyny/vim-haskell-indent'
-Plug 'yongrenjie/vim-haskellFold'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'konfekt/FastFold'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'junegunn/vim-easy-align'
 
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-SpellCheck'
+
+Plug 'folke/trouble.nvim'
+Plug 'folke/lsp-colors.nvim'
+
+Plug '~/.vim/pack/plugins/start/abbotsbury.vim'
+Plug '~/.vim/pack/plugins/start/vim-bruker'
+Plug '~/.vim/pack/plugins/start/vim-haskellFold'
+Plug '~/.vim/pack/plugins/opt/vim-one'
 call plug#end()
 
 " I never asked you to change it
@@ -29,7 +44,7 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 source ~/.vimrc
 
 " Terminal mode
-tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 " Treesitter setup (Lua) {{{1
 lua << EOF
@@ -49,7 +64,7 @@ lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<space>m', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -99,5 +114,24 @@ require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 EOF
 " }}}1
+
+nnoremap <leader>d <Cmd>TroubleToggle<CR>
+lua << EOF
+require("trouble").setup {
+    padding = false,
+    icons = false,
+    fold_open = "v", -- icon used for open folds
+    fold_closed = ">", -- icon used for closed folds
+    indent_lines = false, -- add an indent guide below the fold icons
+    signs = {
+        -- icons / text used for a diagnostic
+        error = "error",
+        warning = "warn",
+        hint = "hint",
+        information = "info"
+        },
+    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+    }
+EOF
 
 " vim: foldmethod=marker

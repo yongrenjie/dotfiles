@@ -15,11 +15,11 @@ set nohlsearch                        " Disable search highlighting (defalt in v
 set signcolumn=number                 " Show LSP outputs in place of line number
 set cinkeys-=:                        " Stop automatic deindentation of labels
 augroup vimrc-ishl
-    " This is adapted from `:h incsearch`, except that I changed /,\? to * to
-    " make it work with `:s` and other commands as well.
-    autocmd!
-    autocmd CmdlineEnter * :set hlsearch
-    autocmd CmdlineLeave * :set nohlsearch
+" This is adapted from `:h incsearch`, except that I changed /,\? to * to
+" make it work with `:s` and other commands as well.
+autocmd!
+autocmd CmdlineEnter * :set hlsearch
+autocmd CmdlineLeave * :set nohlsearch
 augroup END
 " }}}1
 
@@ -33,45 +33,45 @@ nnoremap <leader>ssf :syntax sync fromstart<CR>
 nnoremap <leader>ls :Explore<CR>
 " Change current directory in window
 function! LcdHere() abort
-    let curdir = expand('%:p:h')
-    execute 'lcd ' . curdir
-    echo 'changed local working dir to ' . curdir
+let curdir = expand('%:p:h')
+execute 'lcd ' . curdir
+echo 'changed local working dir to ' . curdir
 endfunction
 nnoremap <leader>lcd :call LcdHere()<CR>
 " Easy system clipboard access with <Space><Space> {{{2
 if has('clipboard')
-    vnoremap <leader><leader>p "*p
-    vnoremap <leader><leader>P "*P
-    vnoremap <leader><leader>y "*y
-    vnoremap <leader><leader>Y "*Y
-    vnoremap <leader><leader>c "*c
-    vnoremap <leader><leader>C "*C
-    vnoremap <leader><leader>d "*d
-    vnoremap <leader><leader>D "*D
-    vnoremap <leader><leader>s "*s
-    vnoremap <leader><leader>S "*S
-    nnoremap <leader><leader>p "*p
-    nnoremap <leader><leader>P "*P
-    nnoremap <leader><leader>y "*y
-    nnoremap <leader><leader>Y "*Y
-    nnoremap <leader><leader>c "*c
-    nnoremap <leader><leader>C "*C
-    nnoremap <leader><leader>d "*d
-    nnoremap <leader><leader>D "*D
-    nnoremap <leader><leader>s "*s
-    nnoremap <leader><leader>S "*S
+vnoremap <leader><leader>p "*p
+vnoremap <leader><leader>P "*P
+vnoremap <leader><leader>y "*y
+vnoremap <leader><leader>Y "*Y
+vnoremap <leader><leader>c "*c
+vnoremap <leader><leader>C "*C
+vnoremap <leader><leader>d "*d
+vnoremap <leader><leader>D "*D
+vnoremap <leader><leader>s "*s
+vnoremap <leader><leader>S "*S
+nnoremap <leader><leader>p "*p
+nnoremap <leader><leader>P "*P
+nnoremap <leader><leader>y "*y
+nnoremap <leader><leader>Y "*Y
+nnoremap <leader><leader>c "*c
+nnoremap <leader><leader>C "*C
+nnoremap <leader><leader>d "*d
+nnoremap <leader><leader>D "*D
+nnoremap <leader><leader>s "*s
+nnoremap <leader><leader>S "*S
 elseif !empty($TMUX)
-    " no system clipboard, but can use tmux clipboard
-    " requires vim-tbone plugin, but note linewise copy/paste only
-    " useful for bayleaf and co...
-    vnoremap <leader><leader>p :Tput<CR>
-    vnoremap <leader><leader>P :Tput<CR>
-    vnoremap <leader><leader>y :Tyank<CR>
-    vnoremap <leader><leader>Y :Tyank<CR>
-    nnoremap <leader><leader>p :Tput<CR>
-    nnoremap <leader><leader>P :Tput<CR>
-    nnoremap <leader><leader>yy :Tyank<CR>
-    nnoremap <leader><leader>Y :Tyank<CR>
+" no system clipboard, but can use tmux clipboard
+" requires vim-tbone plugin, but note linewise copy/paste only
+" useful for bayleaf and co...
+vnoremap <leader><leader>p :Tput<CR>
+vnoremap <leader><leader>P :Tput<CR>
+vnoremap <leader><leader>y :Tyank<CR>
+vnoremap <leader><leader>Y :Tyank<CR>
+nnoremap <leader><leader>p :Tput<CR>
+nnoremap <leader><leader>P :Tput<CR>
+nnoremap <leader><leader>yy :Tyank<CR>
+nnoremap <leader><leader>Y :Tyank<CR>
 endif
 " }}}2
 " Text motions for lines, cf. https://vi.stackexchange.com/q/6101/ {{{2
@@ -82,33 +82,33 @@ onoremap al :normal val<CR>
 " }}}2
 " <leader>[] to jump around quickfix / location list {{{2
 function! QFLocListPrevNext(next) abort
-    " a:next should be +1 if going forward and -1 if going backwards
-    let l:winfo = getwininfo()
+" a:next should be +1 if going forward and -1 if going backwards
+let l:winfo = getwininfo()
 
-    " Try quickfix list
-    let l:qf_open = !empty(filter(l:winfo, 'v:val.quickfix'))
-    if l:qf_open
-        if a:next == +1 | cnext
-        elseif a:next == -1 | cprev | endif
-        return
-    end
+" Try quickfix list
+let l:qf_open = !empty(filter(l:winfo, 'v:val.quickfix'))
+if l:qf_open
+    if a:next == +1 | cnext
+    elseif a:next == -1 | cprev | endif
+    return
+end
 
-    " Try location list
-    let l:loc_open = !empty(filter(l:winfo, 'v:val.loclist'))
-    if l:loc_open
-        if a:next == +1 | lnext
-        elseif a:next == -1 | lprev | endif
-        return
-    end
+" Try location list
+let l:loc_open = !empty(filter(l:winfo, 'v:val.loclist'))
+if l:loc_open
+    if a:next == +1 | lnext
+    elseif a:next == -1 | lprev | endif
+    return
+end
 endfunction
 nnoremap <silent> <leader>[ :call QFLocListPrevNext(-1)<CR>
 nnoremap <silent> <leader>] :call QFLocListPrevNext(+1)<CR>
 " }}}2
 " :Tb for term below
 if has('nvim')
-    command Tb 20split | term
+command Tb 20split | term
 else
-    command Tb below term ++rows=20
+command Tb below term ++rows=20
 endif
 " }}}1
 
@@ -124,30 +124,30 @@ autocmd BufReadPre ~/dphil/thesis/*.tex :let b:is_dphil_thesis=1
 " Slightly modified from
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
 if executable('rg')
-    let &grepprg = 'rg --vimgrep '
-    " Grep in current directory, or other specified location
-    function RunGrep(...)
-        " Note that the errorformat here is specialised to rg's output.
-        let l:old_efm = &errorformat
-        let &errorformat = '%f:%l:%c:%m'
-        cgetexpr system(join([&grepprg] + a:000, ' '))
-        let &errorformat = l:old_efm
-        cwindow
-    endfunction
-    command! -nargs=+ -complete=file Grep call RunGrep(<f-args>)
-    " Grep within open buffers
-    function RunGrepInOpenBuffers(...)
-        let l:old_efm = &errorformat
-        let &errorformat = '%f:%l:%c:%m'
-        let l:buffers = getbufinfo()
-                    \ ->map({_, val -> shellescape(val.name)})
-                    \ ->filter({_, val -> !empty(val)})
-        let l:command = join([&grepprg] + a:000 + l:buffers, ' ')
-        cgetexpr system(l:command)
-        let &errorformat = l:old_efm
-        cwindow
-    endfunction
-    command! -nargs=+ Bgrep call RunGrepInOpenBuffers(<f-args>)
+let &grepprg = 'rg --vimgrep '
+" Grep in current directory, or other specified location
+function RunGrep(...)
+    " Note that the errorformat here is specialised to rg's output.
+    let l:old_efm = &errorformat
+    let &errorformat = '%f:%l:%c:%m'
+    cgetexpr system(join([&grepprg] + a:000, ' '))
+    let &errorformat = l:old_efm
+    cwindow
+endfunction
+command! -nargs=+ -complete=file Grep call RunGrep(<f-args>)
+" Grep within open buffers
+function RunGrepInOpenBuffers(...)
+    let l:old_efm = &errorformat
+    let &errorformat = '%f:%l:%c:%m'
+    let l:buffers = getbufinfo()
+                \ ->map({_, val -> shellescape(val.name)})
+                \ ->filter({_, val -> !empty(val)})
+    let l:command = join([&grepprg] + a:000 + l:buffers, ' ')
+    cgetexpr system(l:command)
+    let &errorformat = l:old_efm
+    cwindow
+endfunction
+command! -nargs=+ Bgrep call RunGrepInOpenBuffers(<f-args>)
 endif
 " }}}1
 
@@ -156,15 +156,15 @@ endif
 "     inoremap <expr> <C-L><C-L> MkMatchparenMap()
 " in whichever ftplugin file you want to use this in
 function! MkMatchparenMap() abort
-    let l:open = getline('.')[-1:]
-    if l:open == '{'
-        let l:close = '}'
-    elseif l:open == '['
-        let l:close = ']'
-    elseif l:open == '('
-        let l:close = ')'
-    else | return '' | endif
-    return "\<CR>" . l:close . "\<Esc>O"
+let l:open = getline('.')[-1:]
+if l:open == '{'
+    let l:close = '}'
+elseif l:open == '['
+    let l:close = ']'
+elseif l:open == '('
+    let l:close = ')'
+else | return '' | endif
+return "\<CR>" . l:close . "\<Esc>O"
 endfunction " }}}1
 
 " Function to get the top-level git directory {{{1
@@ -179,16 +179,19 @@ let g:git_top_level = GitTopLevel()
 packadd! matchit
 " abbotsbury.vim
 if executable('abbot')
-    let g:abbot_use_git_email = 1
-    let g:abbot_use_default_map = 0
-    nmap <silent> <leader>e <plug>AbbotExpandDoi
+let g:abbot_use_git_email = 1
+let g:abbot_use_default_map = 0
+nmap <silent> <leader>e <plug>AbbotExpandDoi
 else
-    let g:abbot_enabled = 0
+let g:abbot_enabled = 0
 end
 " matlab-utils
 if !empty($MATLAB_ROOT)
-    let g:matlab_root = $MATLAB_ROOT
+let g:matlab_root = $MATLAB_ROOT
 endif
+" easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 " netrw
 let g:netrw_liststyle = 1       " Use ls -al style by default
 let g:netrw_localrmdir = 'rm -r'  " Allow netrw to delete nonempty directories
@@ -205,23 +208,24 @@ nnoremap <leader>r :Rg<CR>
 " }}}2
 " Load UltiSnips if python3 is enabled {{{2
 if has('python3') && !has('nvim')
+    " For nvim ultisnips is already loaded.
     packadd ultisnips
-    " Tab is reserved for VimCompletesMe.
-    let g:UltiSnipsExpandTrigger="<C-S>"
 endif
+" Use C-S for ultisnips, tab is reserved for VimCompletesMe
+let g:UltiSnipsExpandTrigger="<C-S>"
 " }}}2
 " }}}2
 " Disable indentLine by default, but make a mapping to toggle it {{{2
 let g:indentLine_enabled = 0
 function! ToggleIndentLine() abort
-    let g:indentLine_enabled = 1
-    IndentLinesEnable
+let g:indentLine_enabled = 1
+IndentLinesEnable
 endfunction
 nnoremap <silent> <leader>ii :call ToggleIndentLine()<CR>
 " }}}2
 " LSP {{{2
 if !has('nvim')
-    call my_lsp#InitialiseLSP()
+call my_lsp#InitialiseLSP()
 endif
 " }}}2
 " }}}1
@@ -238,8 +242,8 @@ if $TERM ==# "xterm"
     if $TERMCS ==# "light"
         set background=light
         let g:one_allow_italics = 1
-        colorscheme one
-        let g:lightline = {'colorscheme': 'one'}
+        colorscheme edge
+        let g:lightline = {'colorscheme': 'edge'}
         " Vim-search-pulse default colours are meant for dark mode and look
         " horrendous on light mode, so we need to override them.
         let g:vim_search_pulse_color_list = ['#e4e4e4', '#dadada', '#d0d0d0', '#c6c6c6', '#bcbcbc'] 
@@ -275,5 +279,11 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 "}}}1
+
+" commands to open journal pages quickly
+command -nargs=1 Jmr silent exe '!jmr ' . <args> | redraw!
+command -nargs=1 Jmra silent exe '!jmra ' . <args> | redraw!
+command -nargs=1 Jmrb silent exe '!jmrb ' . <args> | redraw!
+command -nargs=1 Mrc silent exe '!mrc ' . <args> | redraw!
 
 " vim: foldmethod=marker

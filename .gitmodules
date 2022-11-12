@@ -137,3 +137,9 @@
 [submodule ".vim/pack/plugins/opt/nvim-treesitter"]
 	path = .vim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule ".vim/pack/plugins/start/vim-textobj-user"]
+	path = .vim/pack/plugins/start/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user
+[submodule ".vim/pack/plugins/start/edge"]
+	path = .vim/pack/plugins/start/edge
+	url = https://github.com/sainnhe/edge

@@ -31,11 +31,25 @@ snippet aln "quick align" b
 endsnippet
 
 snippet fig "quick figure" b
-\begin{figure}
+\begin{figure}[!ht]
 	\centering
-    \label{fig:$1}
-	\includegraphics[]{$2}
-	\caption{$3}
+	\includegraphics[draft=false]{$1}%
+	\caption[$3]{
+	    $0
+	}
+    \label{fig:$2}
+\end{figure}
+endsnippet
+
+snippet sfig "quick subfigure" b
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[draft=false]{$1}%
+    {\phantomsubcaption\label{fig:$2_$3}}%
+	\caption[$4]{
+        \textbf{(\subref*{fig:$2_$3})} $0
+	}
+    \label{fig:$2}
 \end{figure}
 endsnippet
 
@@ -53,6 +67,18 @@ endsnippet
 
 snippet \l[ "left square bracket"
 \left[$0\right]
+endsnippet
+
+snippet cr "cleveref"
+\cref{$0}
+endsnippet
+
+snippet Cr "Cleveref"
+\Cref{$0}
+endsnippet
+
+snippet ac "autocite"
+\autocite{$0}
 endsnippet
 
 # from https://github.com/SirVer/ultisnips/issues/913

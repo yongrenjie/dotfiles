@@ -28,6 +28,7 @@ autocmd BufWritePre <buffer> call RecalcFolds()
 iabbrev <buffer> inp import numpy as np
 iabbrev <buffer> impl import matplotlib.pyplot as plt
 iabbrev <buffer> iplt import matplotlib.pyplot as plt
+iabbrev <buffer> iapt import aptenodytes as apt
 iabbrev <buffer> isns import seaborn as sns
 iabbrev <buffer> ipg import penguins as pg
 iabbrev <buffer> ipd import pandas as pd
@@ -35,7 +36,6 @@ iabbrev <buffer> inmrd from aptenodytes import nmrd
 iabbrev <buffer> iandro from aptenodytes import Andrographolide as Andro
 iabbrev <buffer> izolmi from aptenodytes import Zolmitriptan as Zolmi
 iabbrev <buffer> igrami from aptenodytes import Gramicidin as Grami
-iabbrev <buffer> pgsf pg.savefig('/Users/yongrenjie/Desktop/a.png', dpi=600)
 
 
 " User completion for directories in nmrd()

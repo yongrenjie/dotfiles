@@ -108,6 +108,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ## Miscellaneous envvars and aliases {{{2
     # abbotsbury
     alias adr='abbot -d $HOME/refs'
+    # Handbrake proofs
+    hb () {
+        OLD_PWD=$(pwd)
+        cd ~/Downloads
+        for fname in *.MOV; do
+            HandBrakeCLI -i "${fname}" -o "${fname%.MOV}.mp4" --preset-import-file "/Volumes/JonY/poke_proofs/filter.json" -Z "proofs"
+        done
+        cd $OLD_PWD
+    }
     # Fzf into vim
     vf () {
         vfname=$(fzf)

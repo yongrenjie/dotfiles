@@ -27,6 +27,24 @@
 **/expn/nmr/*
 **/*urp*.txt
 
+# Latex ignores
+**/_minted*
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.ptc
+*.toc
+*.swp
+*.synctex.gz
+*.synctex(busy)
+*.xdv
+*.xml
+
 # annoying stuff from a long time ago
 **/PtIIHPLC/*
 **/PtIIIR/*

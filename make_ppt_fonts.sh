@@ -16,3 +16,5 @@ cp Arial.xml IBMPlexSans.xml
 /usr/bin/sed -i '' 's/Arial/IBM Plex Sans/g' IBMPlexSans.xml
 cp Arial.xml NotoSans.xml
 /usr/bin/sed -i '' 's/Arial/Noto Sans/g' NotoSans.xml
+cp Arial.xml Foundry.xml
+/usr/bin/sed -i '' 's/Arial/FoundrySterling/g' Foundry.xml

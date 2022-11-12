@@ -2,6 +2,7 @@ set fillchars=fold:\
 " Read in LaTeX template
 nnoremap <buffer><silent> rtrt gg:<C-U>r ~/dotfiles/latex_template.tex<CR>ggdd
 
+if 1
 " iQ, iq, aQ, aq text objects {{{1
 function! s:QuotesTextObj(textobj_type, quote_type) abort
     " textobj_type: 'i' for inner, 'a' for around
@@ -78,6 +79,7 @@ omap <buffer><silent> iq :normal viq<CR>
 omap <buffer><silent> aQ :normal vaQ<CR>
 omap <buffer><silent> aq :normal vaq<CR>
 " }}}1
+endif
 
 " Word count function (relies on pdftotext being installed) {{{1
 function! WC()
@@ -102,7 +104,7 @@ let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_types = { 
             \ 'preamble' : { 'enabled' : 0 },
             \ 'envs': { 
-                \ 'blacklist': ['refsection'] 
+                \ 'blacklist': ['refsection'],
                 \ },
             \ }
 " Disable batteries-included autocomplete (let VimCompletesMe handle it)
@@ -122,13 +124,16 @@ if system("uname") == "Linux\n"
     let g:vimtex_view_general_viewer = "okular"
 endif
 
-" Silence useless hyperref warning
+" Silence unwanted warnings
 let g:vimtex_quickfix_ignore_filters = [
-            \ "hyperref Warning: Draft mode on",
-            \ "microtype Warning: `draft' option active.",
-            \ "contains only floats",
-            \ "Font shape declaration has incorrect series value",
-            \ "LaTeX hooks Warning",
+            \ 'hyperref Warning: Draft mode on',
+            \ 'microtype Warning: `draft'' option active.',
+            \ 'contains only floats',
+            \ 'Font shape declaration has incorrect series value',
+            \ 'LaTeX hooks Warning',
+            \ 'There were multiply-defined labels',
+            \ 'Label `\d\+'' multiply defined',
+            \ 'Label `.\+@cref'' multiply defined',
             \ ]
 " }}}1
 
@@ -161,6 +166,7 @@ function! s:thesis_mappings() abort
                 \ 'split_width': vimtex_toc_width,
                 \ 'show_help': 0,
                 \ 'indent_levels': 1,
+                \ 'tocdepth': 2,
                 \ }
     " Overwrite folding settings - most folding is not needed because I have
     " separated sections into their own files
