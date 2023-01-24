@@ -129,7 +129,7 @@ fi
 ### }}}1
 
 ### Home macOS specific settings {{{1
-if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon" ]]; then
+if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     # Haskell executables
     # PATH="$HOME/.cabal/bin:$PATH"  # The next line already adds this
     [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
