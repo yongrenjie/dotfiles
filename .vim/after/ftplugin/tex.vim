@@ -105,20 +105,11 @@ function! s:after_thesis_mappings() abort
     " too much prose
 	setlocal spell
     setlocal spelllang=en_gb
-    setlocal spellfile=/Users/yongrenjie/dphil/thesis/spellcheck.utf-8.add
+    setlocal spellfile=$HOME/dphil/thesis/spellcheck.utf-8.add
 
     " Don't show subsubsections in TOC
     let g:vimtex_toc_config.fold_level_start = 2
     let g:vimtex_toc_config.tocdepth = 2
-
-    " tex is a bloody pain to write without a mouse IMO
-    set mouse=nv
-    " disable mouse scrolling -- it's too easy to accidentally do
-    " so, just use mouse for pointing and clicking
-    map <ScrollWheelUp> <Nop>
-    map <S-ScrollWheelUp> <Nop>
-    map <ScrollWheelDown> <Nop>
-    map <S-ScrollWheelDown> <Nop>
 
     " Mapping to reset my view
     nnoremap <silent><buffer> <leader>h :only<CR>:e ~/dphil/thesis/thesis.tex<CR>:VimtexTocToggle<CR>

@@ -96,11 +96,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
     # Haskell executables
     # PATH="$HOME/.cabal/bin:$PATH"  # The next line already adds this
-    [ -f "/Users/yongrenjie/.ghcup/env" ] && source "/Users/yongrenjie/.ghcup/env" # ghcup-env
+    [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
     # Python executables
-    PATH=$PATH:/Users/yongrenjie/Library/Python/3.10/bin
+    PATH=$PATH:$HOME/Library/Python/3.10/bin
     # Ruby executables (prefer brew over system install).
     PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
     # MATLAB
@@ -127,6 +127,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
     # Write my thesis :-(
     alias vt='clear && cd ~/dphil/thesis && vim thesis.tex'
+    alias nt='clear && cd ~/dphil/thesis && nvim thesis.tex'
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # ssh into departmental computers
