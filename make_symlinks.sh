@@ -24,3 +24,6 @@ for f in ${files[@]}; do
         printf "non-symlink file was detected:   %s\n" ${f}
     fi
 done
+
+# One more line to ensure nvim config is correctly detected
+ln -s ${HOME}/.nvim ${HOME}/.config/nvim

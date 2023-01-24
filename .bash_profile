@@ -86,25 +86,50 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 ### }}}1
 
-### macOS specific settings {{{1
+# Reset $PATH to avoid chaos with tmux on macOS {{{1
+# see https://superuser.com/questions/544989
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    ## $PATH {{{2
-    # Avoid $PATH chaos with tmux, see https://superuser.com/questions/544989
     if [ -f /etc/profile ]; then
         PATH=""
         source /etc/profile
     fi
-    # Haskell executables
-    # PATH="$HOME/.cabal/bin:$PATH"  # The next line already adds this
-    [ -f "/Users/yongrenjie/.ghcup/env" ] && source "/Users/yongrenjie/.ghcup/env" # ghcup-env
-    # Rust executables.
-    PATH="$HOME/.cargo/bin:$PATH"
-    # Python executables
-    PATH=$PATH:/Users/yongrenjie/Library/Python/3.10/bin
-    # Ruby executables (prefer brew over system install).
-    PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
-    # MATLAB
-    PATH=/Applications/MATLAB_R2021a.app/bin:$PATH
+fi
+### }}}1
+
+### Turing macOS Homebrew setup {{{1
+if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
+    ## Homebrew setup {{{2
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+fi
+### }}}1
+
+### macOS stuff (both home and Turing) {{{1
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Aliases for GNU utils, installed via Homebrew {{{2
+    alias grep='ggrep --color=auto'
+    alias sed='gsed'
+    alias ls='gls --color=auto'
+    ## Set terminal colors according to dark/light mode {{{2
+    # In iTerm the $TERMCS envvar is tied to the iTerm profiles already.
+    # We only need to account for other terminals. Here is Terminal.app:
+    if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+        if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+            export TERMCS="dark"
+        else
+            export TERMCS="light"
+        fi
+    fi
+    ## }}}2
+fi
+### }}}1
+
+### Home macOS specific settings {{{1
+if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon" ]]; then
     ## Miscellaneous envvars and aliases {{{2
     # abbotsbury
     alias adr='abbot -d $HOME/refs'
@@ -156,10 +181,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias matlab='matlab -nodesktop -nosplash'
     # Make emacs colours behave
     alias emacs='TERM=xterm-256color emacs'
-    # Aliases for GNU utils, installed via Homebrew
-    alias grep='ggrep --color=auto'
-    alias sed='gsed'
-    alias ls='gls --color=auto'
     # TopSpin path
     export ts=/opt/topspin4.1.3/exp/stan/nmr
     export tsdoc=/opt/topspin4.1.3/prog/docu/english/topspin/pdf
@@ -250,7 +271,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
     ## }}}2
 fi
+### }}}1
 
+### Turing macOS specific settings {{{1
+if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
+    # Colours (always assume light mode) {{{2
+    export PS1="${LPURPLE}pysm${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
+    eval "$(gdircolors ~/.dircolors_light)"
+    export BAT_THEME="OneHalfLight"
+    ## }}}2
+fi
 ### }}}1
 
 ### Linux-specific settings {{{1
