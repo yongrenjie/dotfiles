@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         --with-lua-prefix="/usr/local" \
         --enable-rubyinterp \
         --with-ruby-command="$(brew --prefix ruby)/bin/ruby" \
-        --with-compiledby="Jonathan Yong"
+        --with-compiledby="$(whoami)"
     make -j
     sudo make install
 fi

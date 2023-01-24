@@ -21,6 +21,12 @@ autocmd!
 autocmd CmdlineEnter * :set hlsearch
 autocmd CmdlineLeave * :set nohlsearch
 augroup END
+" Enable mouse, but disable mouse wheel scrolling
+set mouse=nv
+map <ScrollWheelUp> <Nop>
+map <S-ScrollWheelUp> <Nop>
+map <ScrollWheelDown> <Nop>
+map <S-ScrollWheelDown> <Nop>
 " }}}1
 
 " Basic mappings {{{1
@@ -285,5 +291,8 @@ command -nargs=1 Jmr silent exe '!jmr ' . <args> | redraw!
 command -nargs=1 Jmra silent exe '!jmra ' . <args> | redraw!
 command -nargs=1 Jmrb silent exe '!jmrb ' . <args> | redraw!
 command -nargs=1 Mrc silent exe '!mrc ' . <args> | redraw!
+
+" fix Reddit lists
+nnoremap <leader>ll :g/^$/d<CR>:%norm0dw<CR>
 
 " vim: foldmethod=marker

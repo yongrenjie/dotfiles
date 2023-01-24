@@ -130,6 +130,17 @@ fi
 
 ### Home macOS specific settings {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon" ]]; then
+    # Haskell executables
+    # PATH="$HOME/.cabal/bin:$PATH"  # The next line already adds this
+    [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+    # Rust executables.
+    PATH="$HOME/.cargo/bin:$PATH"
+    # Python executables
+    PATH=$PATH:$HOME/Library/Python/3.10/bin
+    # Ruby executables (prefer brew over system install).
+    PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
+    # MATLAB
+    PATH=/Applications/MATLAB_R2021a.app/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
     # abbotsbury
     alias adr='abbot -d $HOME/refs'
@@ -152,6 +163,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon" ]]; then
     }
     # Write my thesis :-(
     alias vt='clear && cd ~/dphil/thesis && vim thesis.tex'
+    alias nt='clear && cd ~/dphil/thesis && nvim thesis.tex'
     # Skimpdf tool
     alias skimpdf='/Applications/Skim.app/Contents/SharedSupport/skimpdf'
     # ssh into departmental computers

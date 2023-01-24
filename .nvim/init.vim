@@ -1,33 +1,35 @@
 " Plugins. The directory is gitignored.
 call plug#begin('~/.nvim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neovim/nvim-lspconfig'
+if !exists('g:vscode')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'folke/trouble.nvim'
+    Plug 'folke/lsp-colors.nvim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'skywind3000/asyncrun.vim'
+endif
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-tbone'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'sainnhe/edge'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'SirVer/ultisnips'
 Plug 'lervag/vimtex'
 Plug 'itchyny/vim-haskell-indent'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'konfekt/FastFold'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'skywind3000/asyncrun.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-SpellCheck'
-
-Plug 'folke/trouble.nvim'
-Plug 'folke/lsp-colors.nvim'
 
 Plug '~/.vim/pack/plugins/start/abbotsbury.vim'
 Plug '~/.vim/pack/plugins/start/vim-bruker'
@@ -47,6 +49,7 @@ source ~/.vimrc
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 " Treesitter setup (Lua) {{{1
+if !exists('g:vscode')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
@@ -57,9 +60,11 @@ require'nvim-treesitter.configs'.setup {
     }
 }
 EOF
+endif
 " }}}1
 
 " LSP setup (Lua) {{{1
+if !exists('g:vscode')
 lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -113,8 +118,10 @@ require'lspconfig'.clangd.setup{on_attach = on_attach}
 require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 EOF
+endif
 " }}}1
 
+if !exists('g:vscode')
 nnoremap <leader>d <Cmd>TroubleToggle<CR>
 lua << EOF
 require("trouble").setup {
@@ -133,5 +140,6 @@ require("trouble").setup {
     use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
     }
 EOF
+endif
 
 " vim: foldmethod=marker
