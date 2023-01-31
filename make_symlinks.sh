@@ -27,4 +27,6 @@ for f in ${files[@]}; do
 done
 
 # One more line to ensure nvim config is correctly detected
-ln -s ${HOME}/.nvim ${HOME}/.config/nvim
+if [[ ! -d ${HOME}/.config/nvim ]]; then
+    ln -s ${HOME}/.nvim ${HOME}/.config/nvim
+fi
