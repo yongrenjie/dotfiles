@@ -7,3 +7,6 @@
 
 # that's a symlink which make_symlinks.sh creates
 .config/nvim
+
+# work
+.config/nowwhat
