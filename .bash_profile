@@ -98,7 +98,11 @@ fi
 
 ### Turing macOS Homebrew setup {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
-    ## Homebrew setup {{{2
+    # environment setup for various languages
+    [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
+    source "${HOME}/.cargo/env"
+    alias pip="python -m pip"
+    # Homebrew setup {{{2
     export HOMEBREW_PREFIX="/opt/homebrew";
     export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
     export HOMEBREW_REPOSITORY="/opt/homebrew";
@@ -415,3 +419,6 @@ fi
 # }}}1
 
 # vim: foldmethod=marker
+
+# opam configuration
+test -r /Users/jyong/.opam/opam-init/init.sh && . /Users/jyong/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
