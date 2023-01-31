@@ -14,6 +14,7 @@ set incsearch                         " Enable incremental search
 set nohlsearch                        " Disable search highlighting (defalt in vim but not nvim)
 set signcolumn=number                 " Show LSP outputs in place of line number
 set cinkeys-=:                        " Stop automatic deindentation of labels
+set completeopt-=preview              " Don't show preview window when autocompleting
 augroup vimrc-ishl
 " This is adapted from `:h incsearch`, except that I changed /,\? to * to
 " make it work with `:s` and other commands as well.
@@ -294,5 +295,12 @@ command -nargs=1 Mrc silent exe '!mrc ' . <args> | redraw!
 
 " fix Reddit lists
 nnoremap <leader>ll :g/^$/d<CR>:%norm0dw<CR>
+
+" load Merlin for OCaml. This should possibly be in a ftplugin file but I'll
+" figure it out another day.
+if !has('nvim')
+    let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+    execute "set rtp+=" . g:opamshare . "/merlin/vim"
+endif
 
 " vim: foldmethod=marker
