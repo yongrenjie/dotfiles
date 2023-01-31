@@ -4,3 +4,6 @@
 .config/gh/hosts.yml
 .config/gspread/service_account.json
 .nvim/plugged
+
+# that's a symlink which make_symlinks.sh creates
+.config/nvim

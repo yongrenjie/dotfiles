@@ -53,7 +53,7 @@ if !exists('g:vscode')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-        "python", "haskell", "typescript", "javascript", "html", "css", "c", "cpp", "vim", "lua", "ocaml"
+        "help", "python", "haskell", "typescript", "javascript", "html", "css", "c", "cpp", "vim", "lua", "ocaml"
     },
     highlight = {
         enable = true
@@ -117,6 +117,7 @@ require'lspconfig'.pyright.setup{on_attach = on_attach}
 require'lspconfig'.clangd.setup{on_attach = on_attach}
 require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
+require'lspconfig'.ocamllsp.setup{on_attach = on_attach}
 EOF
 endif
 " }}}1
