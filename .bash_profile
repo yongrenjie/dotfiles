@@ -102,6 +102,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
     [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
     source "${HOME}/.cargo/env"
     alias pip="python -m pip"
+    alias bask="ssh uwls2817@login.baskerville.ac.uk"
     # Homebrew setup {{{2
     export HOMEBREW_PREFIX="/opt/homebrew";
     export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
@@ -129,6 +130,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         fi
     fi
     ## }}}2
+    # fzf into (neo)vim
+    vf () {
+        vfname=$(fzf)
+        if [ ! -z $vfname ]; then vim $vfname; unset vfname; fi
+    }
+    nf () {
+        vfname=$(fzf)
+        if [ ! -z $vfname ]; then nvim $vfname; unset vfname; fi
+    }
 fi
 ### }}}1
 
@@ -158,14 +168,6 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
             HandBrakeCLI -i "${fname}" -o "${fname%.MOV}.mp4" --preset-import-file "/Volumes/JonY/poke_proofs/filter.json" -Z "proofs"
         done
         cd $OLD_PWD
-    }
-    # Fzf into vim
-    vf () {
-        vfname=$(fzf)
-        if [ ! -z $vfname ]; then
-            vim $vfname
-            unset vfname
-        fi
     }
     # Write my thesis :-(
     alias vt='clear && cd ~/dphil/thesis && vim thesis.tex'
@@ -293,6 +295,8 @@ fi
 
 ### Turing macOS specific settings {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
+    # PATH etc
+    test -r "${HOME}/.opam/opam-init/init.sh" && . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
     # Colours (always assume light mode) {{{2
     export PS1="${LPURPLE}pysm${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
     eval "$(gdircolors ~/.dircolors_light)"
@@ -421,6 +425,3 @@ fi
 # }}}1
 
 # vim: foldmethod=marker
-
-# opam configuration
-test -r /Users/jyong/.opam/opam-init/init.sh && . /Users/jyong/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
