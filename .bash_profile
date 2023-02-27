@@ -144,7 +144,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         vfname=$(fzf)
         if [ ! -z $vfname ]; then nvim $vfname; unset vfname; fi
     }
->>>>>>> origin/master
 fi
 ### }}}1
 
