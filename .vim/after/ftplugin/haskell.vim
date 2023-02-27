@@ -10,7 +10,6 @@ nnoremap <silent><buffer> <localleader>h :w<CR> :AsyncRun cd $SOURCE_DIR; cabal 
 set textwidth=80
 set tabstop=2
 set shiftwidth=2
-set formatprg=brittany
 
 setlocal iskeyword+=@-@,',$,<,>,\",!,\|,/,~,%,^
 

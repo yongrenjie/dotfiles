@@ -129,6 +129,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         fi
     fi
     ## }}}2
+    alias R='R --no-save'
+    alias r='R --no-save'
 fi
 ### }}}1
 
@@ -146,7 +148,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     # Ruby executables (prefer brew over system install).
     PATH=$HOME/.gem/ruby/3.0.0/bin:/usr/local/lib/ruby/gems/3.0.0/bin:/usr/local/opt/ruby/bin:$PATH
     # MATLAB
-    PATH=/Applications/MATLAB_R2021a.app/bin:$PATH
+    PATH=/Applications/MATLAB_R2023a.app/bin:$PATH
     ## Miscellaneous envvars and aliases {{{2
     # abbotsbury
     alias adr='abbot -d $HOME/refs'
