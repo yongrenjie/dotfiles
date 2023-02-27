@@ -30,6 +30,8 @@ map <ScrollWheelDown> <Nop>
 map <S-ScrollWheelDown> <Nop>
 " }}}1
 
+set diffopt+=internal,algorithm:patience
+
 " Basic mappings {{{1
 " Leader key
 nnoremap <Space> <Nop>

@@ -1,3 +1,58 @@
+:}
+    mapf = traverse f
+    mapf :: Monad m => [In] -> m [Out]
+    -- I don't know how many Ins I need to turn into Outs, and
+    -- This is the function I really care about. I need this because
+    f (InInt i) = pure $ OutInt i
+    f (InStr s) = pure $ OutStr s
+    f :: Monad m => In -> m Out
+    data Out = OutStr String | OutInt Int deriving Show
+    data In = InStr String | InInt Int deriving Show
+:{
+:}
+    mapf = traverse f
+    mapf :: Monad m => [m In] -> m [Out]
+    -- I don't know how many Ins I need to turn into Outs, and
+    -- This is the function I really care about. I need this because
+    f (InInt i) = pure $ OutInt i
+    f (InStr s) = pure $ OutStr s
+    f :: Monad m => In -> m Out
+    data Out = OutStr String | OutInt Int deriving Show
+    data In = InStr String | InInt Int deriving Show
+:{
+:t traverse
+f (InStr "hello")
+:}
+    f (InInt i) = OutInt i
+    f (InStr s) = OutStr s
+    f :: In -> Out
+    data Out = OutStr String | OutInt Int deriving Show
+    data In = InStr String | InInt Int deriving Show
+:{
+:}
+    f (InInt i) -> OutInt i
+    f (InStr s) -> OutStr s
+    f :: In -> Out
+    data Out = OutStr String | OutInt Int deriving Show
+    data In = InStr String | InInt Int deriving Show
+:{
+f []
+    f :: [In] -> [Out]; f = undefined
+    data Out = OutStr String | OutInt Int deriving Show
+    data In = InStr String | InInt Int deriving Show
+f []
+f
+    f :: [In] -> [Out]; f = undefined
+    data Out = OutStr String | OutInt Int
+    data In = InStr String | InInt Int
+    f = undefined
+    f :: [In] -> [Out]
+    data Out = OutStr String | OutInt Int
+     data In = InStr String | InInt Int
+    f :: [In] -> [Out]
+    f :: [In] -> [Out]
+    data Out = OutStr String | OutInt Int
+    data In = InStr String | InInt Int
 scanl (+) 0 [1, 2, 3, 4]
 :t foldl
 foldl (+) 0 [1, 2, 3, 4]
