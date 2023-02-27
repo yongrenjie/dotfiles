@@ -9,6 +9,9 @@ if !exists('g:vscode')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'skywind3000/asyncrun.vim'
+    Plug 'quarto-dev/quarto-vim'
+    Plug 'quarto-dev/quarto-nvim'
+    Plug 'jmbuhr/otter.nvim'
 endif
 
 Plug 'tpope/vim-commentary'
@@ -27,6 +30,7 @@ Plug 'konfekt/FastFold'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'junegunn/vim-easy-align'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-SpellCheck'
@@ -35,6 +39,8 @@ Plug '~/.vim/pack/plugins/start/abbotsbury.vim'
 Plug '~/.vim/pack/plugins/start/vim-bruker'
 Plug '~/.vim/pack/plugins/start/vim-haskellFold'
 Plug '~/.vim/pack/plugins/opt/vim-one'
+" Not working with nvim
+" Plug '~/.vim/pack/plugins/start/vim-search-pulse'
 call plug#end()
 
 " I never asked you to change it
@@ -53,11 +59,29 @@ if !exists('g:vscode')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-        "help", "python", "haskell", "typescript", "javascript", "html", "css", "c", "cpp", "vim", "lua", "ocaml"
+        "help",
+        "python",
+        "haskell",
+        "typescript",
+        "javascript",
+        "html",
+        "css",
+        "c",
+        "cpp",
+        "vim",
+        "lua",
+        "ocaml",
+        "markdown",
+        "r"
     },
     highlight = {
-        enable = true
-    }
+        enable = true,
+        additional_vim_regex_highlighting = true,
+    },
+    indent = {
+        enable = true,
+        disable = {"python"},
+    },
 }
 EOF
 endif
@@ -115,14 +139,25 @@ local on_attach_no_formatexpr = function(client, bufnr)
 end
 
 -- Servers.
+-- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require'lspconfig'.pyright.setup{on_attach = on_attach}
 require'lspconfig'.clangd.setup{on_attach = on_attach}
 require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 require'lspconfig'.ocamllsp.setup{on_attach = on_attach}
+require'lspconfig'.r_language_server.setup{on_attach = on_attach}
 EOF
 endif
 " }}}1
+
+lua << EOF
+vim.g['pandoc#syntax#conceal#use'] = false
+require'quarto'.setup{
+  lspFeatures = {
+    enabled = true,
+  }
+}
+EOF
 
 if !exists('g:vscode')
 nnoremap <leader>d <Cmd>TroubleToggle<CR>

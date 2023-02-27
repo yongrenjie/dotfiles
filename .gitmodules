@@ -143,3 +143,9 @@
 [submodule ".vim/pack/plugins/start/edge"]
 	path = .vim/pack/plugins/start/edge
 	url = https://github.com/sainnhe/edge
+[submodule ".vim/pack/plugins/start/vim-pandoc-syntax"]
+	path = .vim/pack/plugins/start/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
+[submodule ".vim/pack/plugins/start/quarto-vim"]
+	path = .vim/pack/plugins/start/quarto-vim
+	url = https://github.com/quarto-dev/quarto-vim

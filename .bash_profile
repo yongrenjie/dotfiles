@@ -101,6 +101,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
     # environment setup for various languages
     [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
     source "${HOME}/.cargo/env"
+    export PATH=$PATH:$HOME/Library/Python/3.10/bin
     alias pip="python -m pip"
     alias bask="ssh uwls2817@login.baskerville.ac.uk"
     # Homebrew setup {{{2
@@ -119,6 +120,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias grep='ggrep --color=auto'
     alias sed='gsed'
     alias ls='gls --color=auto'
+    alias r='R --no-save'
+    alias R='R --no-save'
     ## Set terminal colors according to dark/light mode {{{2
     # In iTerm the $TERMCS envvar is tied to the iTerm profiles already.
     # We only need to account for other terminals. Here is Terminal.app:
