@@ -160,6 +160,7 @@ EOF
 endif
 " }}}1
 
+if !exists('g:vscode')
 lua << EOF
 vim.g['pandoc#syntax#conceal#use'] = false
 require'quarto'.setup{
@@ -168,6 +169,8 @@ require'quarto'.setup{
   }
 }
 EOF
+command QP QuartoPreview
+endif
 
 if !exists('g:vscode')
 nnoremap <leader>d <Cmd>TroubleToggle<CR>
