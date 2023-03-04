@@ -7,14 +7,14 @@ make clean
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # make doesn't know where to find the Homebrew installation, so must be manually specified.
-    CPPFLAGS="-I$(brew --prefix ruby)/include -I/Library/Frameworks/Python.framework/Headers/" \
+    CPPFLAGS="-I$(brew --prefix ruby)/include -I/Library/Frameworks/Python.framework/Headers/ -I$(brew --prefix lua)/include/lua" \
         LDFLAGS="-L$(brew --prefix ruby)/lib" \
         ./configure \
         --enable-cscope \
         --enable-python3interp \
         --enable-perlinterp \
         --enable-luainterp \
-        --with-lua-prefix="/usr/local" \
+        --with-lua-prefix="$(brew --prefix lua)" \
         --enable-rubyinterp \
         --with-ruby-command="$(brew --prefix ruby)/bin/ruby" \
         --with-compiledby="$(whoami)"

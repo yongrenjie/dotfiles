@@ -1,20 +1,70 @@
+" Plugins {{{1
+call plug#begin('~/.vim/plugged')
+
+" Vim only
+if !has('nvim')
+    Plug '~/.vim/pack/plugins/start/vim-search-pulse'
+endif
+
+" Both vim and nvim
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-tbone'
+Plug 'wellle/targets.vim'
+Plug 'machakann/vim-sandwich'
+Plug 'sainnhe/edge'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'itchyny/lightline.vim'
+Plug 'SirVer/ultisnips'
+Plug 'lervag/vimtex'
+Plug 'itchyny/vim-haskell-indent'
+Plug 'tmhedberg/SimpylFold'
+Plug 'konfekt/FastFold'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'kana/vim-textobj-user'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'yongrenjie/abbotsbury.vim'
+Plug 'yongrenjie/vim-bruker'
+Plug 'yongrenjie/vim-haskellFold'
+Plug 'yongrenjie/vim-one'
+
+" Nvim only (and not vscode-nvim)
+if has('nvim') && !exists('g:vscode')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'folke/trouble.nvim'
+    Plug 'folke/lsp-colors.nvim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'quarto-dev/quarto-vim'
+    Plug 'quarto-dev/quarto-nvim'
+    Plug 'jmbuhr/otter.nvim'
+endif
+call plug#end()
+" }}}1
+
 " Basic settings {{{1
-set number                            " Enable line numbers
-set autoindent                        " Automatically indent when starting a new line
-set hidden                            " Don't unload buffers when switching to another
-filetype plugin indent on             " Enable filetype-specific plugins and indent scripts
-syntax on                             " Enable syntax highlighting
-set backspace=indent,eol,start        " Make Backspace work at the start of a line
-set splitright splitbelow             " Default sides for split windows.
-set display+=lastline                 " Show as much of the last line as possible
-set shiftwidth=4 tabstop=4 expandtab  " Default indentation style
-set ttimeoutlen=50                    " Timeout after hitting Esc, fixes a common tmux issue
-set ignorecase smartcase              " Make search case-insensitive if only small letters
-set incsearch                         " Enable incremental search
-set nohlsearch                        " Disable search highlighting (defalt in vim but not nvim)
-set signcolumn=number                 " Show LSP outputs in place of line number
-set cinkeys-=:                        " Stop automatic deindentation of labels
-set completeopt-=preview              " Don't show preview window when autocompleting
+set number                                " Enable line numbers
+set autoindent                            " Automatically indent when starting a new line
+set hidden                                " Don't unload buffers when switching to another
+filetype plugin indent on                 " Enable filetype-specific plugins and indent scripts
+syntax on                                 " Enable syntax highlighting
+set backspace=indent,eol,start            " Make Backspace work at the start of a line
+set splitright splitbelow                 " Default sides for split windows.
+set display+=lastline                     " Show as much of the last line as possible
+set shiftwidth=4 tabstop=4 expandtab      " Default indentation style
+set ttimeoutlen=50                        " Timeout after hitting Esc, fixes a common tmux issue
+set ignorecase smartcase                  " Make search case-insensitive if only small letters
+set incsearch                             " Enable incremental search
+set nohlsearch                            " Disable search highlighting (defalt in vim but not nvim)
+set signcolumn=number                     " Show LSP outputs in place of line number
+set cinkeys-=:                            " Stop automatic deindentation of labels
+set completeopt-=preview                  " Don't show preview window when autocompleting
+set diffopt+=internal,algorithm:patience  " Improve diff algorithm
 augroup vimrc-ishl
 " This is adapted from `:h incsearch`, except that I changed /,\? to * to
 " make it work with `:s` and other commands as well.
@@ -29,8 +79,6 @@ map <S-ScrollWheelUp> <Nop>
 map <ScrollWheelDown> <Nop>
 map <S-ScrollWheelDown> <Nop>
 " }}}1
-
-set diffopt+=internal,algorithm:patience
 
 " Basic mappings {{{1
 " Leader key
@@ -115,10 +163,12 @@ nnoremap <silent> <leader>] :call QFLocListPrevNext(+1)<CR>
 " }}}2
 " :Tb for term below
 if has('nvim')
-command Tb 20split | term
+    command Tb 20split | term
 else
-command Tb below term ++rows=20
+    command Tb below term ++rows=20
 endif
+" fix Reddit lists
+nnoremap <leader>ll :g/^$/d<CR>:%norm0dw<CR>
 " }}}1
 
 " Basic autocmds {{{1
@@ -239,6 +289,7 @@ endif
 " }}}2
 " }}}1
 
+let g:mycolor = 'catppuccin'
 " Colour scheme management {{{1
 " Enable truecolor if available. This is a bit of a hacky check. Ideally we
 " would check for $COLORTERM; however, this environment variable is not passed
@@ -248,14 +299,27 @@ endif
 " labelled 'xterm'. Since $TERM is passed over SSH, this will reliably work.
 if $TERM ==# "xterm"
     set termguicolors
+
     if $TERMCS ==# "light"
         set background=light
-        let g:one_allow_italics = 1
-        colorscheme edge
-        let g:lightline = {'colorscheme': 'edge'}
+
         " Vim-search-pulse default colours are meant for dark mode and look
         " horrendous on light mode, so we need to override them.
         let g:vim_search_pulse_color_list = ['#e4e4e4', '#dadada', '#d0d0d0', '#c6c6c6', '#bcbcbc'] 
+
+        if !exists('g:mycolor') || g:mycolor == 'edge'
+            colorscheme edge
+            let g:lightline = {'colorscheme': 'edge'}
+        elseif g:mycolor == 'one'
+            colorscheme one
+            let g:one_allow_italics = 1
+        elseif g:mycolor == 'catppuccin'
+            colorscheme catppuccin
+            let g:lightline = {'colorscheme': 'catppuccin'}
+        else
+            echoerr 'Unrecognised g:mycolor "' . g:mycolor . '"'
+        endif
+
     else
         " Note that `sudo vim` doesn't pick up the $TERMCS envvar, so gets
         " thrown into dark mode. This can be fixed with sudo --preserve-env
@@ -288,21 +352,5 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 "}}}1
-
-" commands to open journal pages quickly
-command -nargs=1 Jmr silent exe '!jmr ' . <args> | redraw!
-command -nargs=1 Jmra silent exe '!jmra ' . <args> | redraw!
-command -nargs=1 Jmrb silent exe '!jmrb ' . <args> | redraw!
-command -nargs=1 Mrc silent exe '!mrc ' . <args> | redraw!
-
-" fix Reddit lists
-nnoremap <leader>ll :g/^$/d<CR>:%norm0dw<CR>
-
-" load Merlin for OCaml. This should possibly be in a ftplugin file but I'll
-" figure it out another day.
-if !has('nvim')
-    let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-    execute "set rtp+=" . g:opamshare . "/merlin/vim"
-endif
 
 " vim: foldmethod=marker
