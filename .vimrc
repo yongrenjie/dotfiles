@@ -12,6 +12,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-tbone'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
+Plug 'yongrenjie/pasteledge'
 Plug 'sainnhe/edge'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'NLKNguyen/papercolor-theme'
@@ -30,17 +31,21 @@ Plug 'yongrenjie/vim-bruker'
 Plug 'yongrenjie/vim-haskellFold'
 Plug 'yongrenjie/vim-one'
 
+" Both, but not vscode-nvim
+if !exists('g:vscode')
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'quarto-dev/quarto-vim'
+endif
+
 " Nvim only (and not vscode-nvim)
 if has('nvim') && !exists('g:vscode')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'neovim/nvim-lspconfig'
     Plug 'folke/trouble.nvim'
     Plug 'folke/lsp-colors.nvim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    Plug 'skywind3000/asyncrun.vim'
-    Plug 'quarto-dev/quarto-vim'
     Plug 'quarto-dev/quarto-nvim'
     Plug 'jmbuhr/otter.nvim'
 endif
@@ -265,11 +270,6 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>r :Rg<CR>
 " }}}2
-" Load UltiSnips if python3 is enabled {{{2
-if has('python3') && !has('nvim')
-    " For nvim ultisnips is already loaded.
-    packadd ultisnips
-endif
 " Use C-S for ultisnips, tab is reserved for VimCompletesMe
 let g:UltiSnipsExpandTrigger="<C-S>"
 " }}}2
@@ -289,7 +289,7 @@ endif
 " }}}2
 " }}}1
 
-let g:mycolor = 'catppuccin'
+let g:mycolor = 'pasteledge'
 " Colour scheme management {{{1
 " Enable truecolor if available. This is a bit of a hacky check. Ideally we
 " would check for $COLORTERM; however, this environment variable is not passed
@@ -310,6 +310,9 @@ if $TERM ==# "xterm"
         if !exists('g:mycolor') || g:mycolor == 'edge'
             colorscheme edge
             let g:lightline = {'colorscheme': 'edge'}
+        elseif g:mycolor == 'pasteledge'
+            colorscheme pasteledge
+            let g:lightline = {'colorscheme': 'pasteledge'}
         elseif g:mycolor == 'one'
             colorscheme one
             let g:one_allow_italics = 1
@@ -325,7 +328,6 @@ if $TERM ==# "xterm"
         " thrown into dark mode. This can be fixed with sudo --preserve-env
         " if really necessary
         set background=dark
-        packadd! onedark.vim
         let g:onedark_terminal_italics = 1
         colorscheme onedark
         let g:lightline = {'colorscheme': 'one'}

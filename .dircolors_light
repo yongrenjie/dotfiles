@@ -106,20 +106,22 @@ TERM xterm-termite
 # 38;5;COLOR_NUMBER
 # Background 256 color coding:
 # 48;5;COLOR_NUMBER
+#
+# Truecolor (but unfortunately vim doesn't show it properly):
+# 00;38;2;R;G;B
 
 # Special files
-NORMAL 00;38;5;233 # global default
-FILE   00;38;5;233 # normal file
-DIR               01;38;5;56 # directory
-OTHER_WRITABLE    01;38;5;56 # directories, for WSL
-LINK   00;38;5;33 # symbolic link. ('target'=the color for the file pointed to)
-ORPHAN 00;38;5;196 # symlink to nonexistent file
-FIFO   07;38;5;29 # pipe
-EXEC   01;38;5;34  # executable
-SOCK   01;38;5;143 # socket
-DOOR   01;38;5;143 # door
-BLK    01;38;5;137 # block device driver
-CHR    01;38;5;137 # character device driver
+NORMAL          00;38;2;138;113;120  # Global text default; should line up with terminal foreground
+FILE            00;38;2;138;113;120  # normal file
+DIR             01;38;2;48;138;220   # directory
+LINK            00;38;2;184;108;235  # symbolic link. ('target'=the color for the file pointed to)
+ORPHAN          00;38;5;197          # symlink to nonexistent file
+FIFO            07;38;5;29           # pipe
+EXEC            01;38;2;83;184;101   # executable
+SOCK            01;38;5;143          # socket
+DOOR            01;38;5;143          # door
+BLK             01;38;5;137          # block device driver
+CHR             01;38;5;137          # character device driver
 
 # Archives or compressed
 .tar    00;38;5;173
@@ -155,34 +157,34 @@ CHR    01;38;5;137 # character device driver
 .gem    00;38;5;173
 
 # Image formats
-.jpg    00;38;5;36
-.JPG    00;38;5;36
-.jpeg   00;38;5;36
-.gif    00;38;5;36
-.bmp    00;38;5;36
-.pbm    00;38;5;36
-.pgm    00;38;5;36
-.ppm    00;38;5;36
-.tga    00;38;5;36
-.xbm    00;38;5;36
-.xpm    00;38;5;36
-.tif    00;38;5;36
-.tiff   00;38;5;36
-.png    00;38;5;36
-.PNG    00;38;5;36
-.svg    00;38;5;36
-.svgz   00;38;5;36
-.mng    00;38;5;36
-.pcx    00;38;5;36
-.dl     00;38;5;36
-.xcf    00;38;5;36
-.xwd    00;38;5;36
-.yuv    00;38;5;36
-.cgm    00;38;5;36
-.emf    00;38;5;36
-.eps    00;38;5;36
-.CR2    00;38;5;36
-.ico    00;38;5;36
+.jpg    00;38;5;37
+.JPG    00;38;5;37
+.jpeg   00;38;5;37
+.gif    00;38;5;37
+.bmp    00;38;5;37
+.pbm    00;38;5;37
+.pgm    00;38;5;37
+.ppm    00;38;5;37
+.tga    00;38;5;37
+.xbm    00;38;5;37
+.xpm    00;38;5;37
+.tif    00;38;5;37
+.tiff   00;38;5;37
+.png    00;38;5;37
+.PNG    00;38;5;37
+.svg    00;38;5;37
+.svgz   00;38;5;37
+.mng    00;38;5;37
+.pcx    00;38;5;37
+.dl     00;38;5;37
+.xcf    00;38;5;37
+.xwd    00;38;5;37
+.yuv    00;38;5;37
+.cgm    00;38;5;37
+.emf    00;38;5;37
+.eps    00;38;5;37
+.CR2    00;38;5;37
+.ico    00;38;5;37
 
 # Video
 .mov    00;38;5;78
@@ -226,17 +228,17 @@ CHR    01;38;5;137 # character device driver
 .m4a    00;38;5;68
 
 # Documents/Readables
-.pdf  00;38;5;109
-.PDF  00;38;5;109
-.html 00;38;5;109
-.HTML 00;38;5;109
-.doc  00;38;5;109
-.docx 00;38;5;109
-.ppt  00;38;5;109
-.pptx 00;38;5;109
-.odt  00;38;5;109
-.odp  00;38;5;109
-.epub 00;38;5;109
+.pdf     00;38;5;103
+.PDF     00;38;5;103
+.html    00;38;5;103
+.HTML    00;38;5;103
+.doc     00;38;5;103
+.docx    00;38;5;103
+.ppt     00;38;5;103
+.pptx    00;38;5;103
+.odt     00;38;5;103
+.odp     00;38;5;103
+.epub    00;38;5;103
 
 # Source code files
 .pl     00;38;5;172
@@ -270,26 +272,28 @@ CHR    01;38;5;137 # character device driver
 .Rmd    00;38;5;137
 
 # Special sources/configs
-*Makefile 00;38;5;217
-*do       00;38;5;217
-*Doxyfile 00;38;5;217
-*config   00;38;5;217
-.conf     00;38;5;217
-.cfg      00;38;5;217
-.vimrc        00;38;5;217
-.inputrc      00;38;5;217
-.bash_profile 00;38;5;217
-.bashrc       00;38;5;217
-.dircolors    00;38;5;217
-.dircolors_light    00;38;5;217
-.dircolors_dark    00;38;5;217
-.gitignore    00;38;5;217
-.gitmodules   00;38;5;217
-.profile      00;38;5;217
+*Makefile        00;38;2;233;142;142
+*do              00;38;2;233;142;142
+*Doxyfile        00;38;2;233;142;142
+*config          00;38;2;233;142;142
+.conf            00;38;2;233;142;142
+.cfg             00;38;2;233;142;142
+.vimrc           00;38;2;233;142;142
+.inputrc         00;38;2;233;142;142
+.bash_profile    00;38;2;233;142;142
+.bashrc          00;38;2;233;142;142
+.utoprc          00;38;2;233;142;142
+.zshrc           00;38;2;233;142;142
+.dircolors       00;38;2;233;142;142
+.dircolors_light 00;38;2;233;142;142
+.dircolors_dark  00;38;2;233;142;142
+.gitignore       00;38;2;233;142;142
+.gitmodules      00;38;2;233;142;142
+.profile         00;38;2;233;142;142
 
 # Plain text
-.txt 00;38;5;241
-.md  00;38;5;241
+.txt 00;38;5;240
+.md  00;38;5;240
 
 # Other readables
 .xlm   00;38;5;246
@@ -320,37 +324,38 @@ CHR    01;38;5;137 # character device driver
 *note             07;38;5;245
 
 # "unimportant" files (logs and backups)
-.log        00;38;5;250
-.bak        00;38;5;250
-.aux        00;38;5;250
-.lof        00;38;5;250
-.lol        00;38;5;250
-.lot        00;38;5;250
-.out        00;38;5;250
-.toc        00;38;5;250
-.bbl        00;38;5;250
-.blg        00;38;5;250
-.nav        00;38;5;250
-.snm        00;38;5;250
-*~          00;38;5;250
-*#          00;38;5;250
-.part       00;38;5;250
-.incomplete 00;38;5;250
-.swp        00;38;5;250
-.tmp        00;38;5;250
-.temp       00;38;5;250
-.o          00;38;5;250
-.pyc        00;38;5;250
-.class      00;38;5;250
-.cache      00;38;5;250
-.DS_Store   00;38;5;250
-.Xauthority 00;38;5;250
-.drjava     00;38;5;250
-.bash_history     00;38;5;250
-.bash_logout      00;38;5;250
-.python_history   00;38;5;250
-.git-completion.bash   00;38;5;250
-.viminfo    00;38;5;250
-.sudo_as_admin_successful    00;38;5;250
+.log                       00;38;5;241
+.bak                       00;38;5;241
+.aux                       00;38;5;241
+.lof                       00;38;5;241
+.lol                       00;38;5;241
+.lot                       00;38;5;241
+.out                       00;38;5;241
+.toc                       00;38;5;241
+.bbl                       00;38;5;241
+.blg                       00;38;5;241
+.nav                       00;38;5;241
+.snm                       00;38;5;241
+*~                         00;38;5;241
+*#                         00;38;5;241
+.part                      00;38;5;241
+.incomplete                00;38;5;241
+.swp                       00;38;5;241
+.tmp                       00;38;5;241
+.temp                      00;38;5;241
+.o                         00;38;5;241
+.pyc                       00;38;5;241
+.class                     00;38;5;241
+.cache                     00;38;5;241
+.DS_Store                  00;38;5;241
+.Xauthority                00;38;5;241
+.drjava                    00;38;5;241
+.bash_history              00;38;5;241
+.bash_logout               00;38;5;241
+.python_history            00;38;5;241
+.git-completion.bash       00;38;5;241
+.cabal-completion.bash     00;38;5;241
+.viminfo                   00;38;5;241
+.sudo_as_admin_successful  00;38;5;241
 
 # vim: set ft=dircolors:
