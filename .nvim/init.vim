@@ -1,49 +1,7 @@
-" Plugins. The directory is gitignored.
-call plug#begin('~/.nvim/plugged')
-if !exists('g:vscode')
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'folke/trouble.nvim'
-    Plug 'folke/lsp-colors.nvim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    Plug 'skywind3000/asyncrun.vim'
-    Plug 'quarto-dev/quarto-vim'
-    Plug 'quarto-dev/quarto-nvim'
-    Plug 'jmbuhr/otter.nvim'
-endif
+" Note: Plugins are loaded in ~/.vimrc.
+" This file only contains nvim-specific configuration.
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-tbone'
-Plug 'wellle/targets.vim'
-Plug 'machakann/vim-sandwich'
-Plug 'sainnhe/edge'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'itchyny/lightline.vim'
-Plug 'SirVer/ultisnips'
-Plug 'lervag/vimtex'
-Plug 'itchyny/vim-haskell-indent'
-Plug 'tmhedberg/SimpylFold'
-Plug 'konfekt/FastFold'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'kana/vim-textobj-user'
-Plug 'junegunn/vim-easy-align'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
-Plug 'inkarkat/vim-ingo-library'
-Plug 'inkarkat/vim-SpellCheck'
-
-Plug '~/.vim/pack/plugins/start/abbotsbury.vim'
-Plug '~/.vim/pack/plugins/start/vim-bruker'
-Plug '~/.vim/pack/plugins/start/vim-haskellFold'
-Plug '~/.vim/pack/plugins/opt/vim-one'
-" Not working with nvim
-" Plug '~/.vim/pack/plugins/start/vim-search-pulse'
-call plug#end()
-
-" I never asked you to change it
+" Revert some new nvim defaults
 set guicursor=a:blinkon0
 set inccommand=
 
@@ -54,8 +12,10 @@ source ~/.vimrc
 " Terminal mode
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
-" Treesitter setup (Lua) {{{1
-if !exists('g:vscode')
+" The rest is plugin setup and configuration.
+if exists('g:vscode') | finish | endif
+
+" Treesitter {{{1
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
@@ -84,11 +44,8 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
-endif
 " }}}1
-
-" LSP setup (Lua) {{{1
-if !exists('g:vscode')
+" LSP {{{1
 lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -157,10 +114,8 @@ require'lspconfig'.tsserver.setup{on_attach = on_attach}
 require'lspconfig'.ocamllsp.setup{on_attach = on_attach}
 require'lspconfig'.r_language_server.setup{on_attach = on_attach}
 EOF
-endif
 " }}}1
-
-if !exists('g:vscode')
+" Quarto {{{1
 lua << EOF
 vim.g['pandoc#syntax#conceal#use'] = false
 require'quarto'.setup{
@@ -171,9 +126,8 @@ require'quarto'.setup{
 EOF
 command QP QuartoPreview
 command QCP QuartoClosePreview
-endif
-
-if !exists('g:vscode')
+" }}}1
+" Trouble {{{1
 nnoremap <leader>d <Cmd>TroubleToggle<CR>
 lua << EOF
 require("trouble").setup {
@@ -192,6 +146,6 @@ require("trouble").setup {
     use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
     }
 EOF
-endif
+" }}}1
 
 " vim: foldmethod=marker

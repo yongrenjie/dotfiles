@@ -44,7 +44,7 @@ export ABBOT_EMAIL=`git config --get user.email`
 
 ### Terminal color setup {{{1
 git_branch() { 
-    git symbolic-ref HEAD --short 2>/dev/null | sed -E 's/.+/ (&)/'
+    git symbolic-ref HEAD --short 2>/dev/null | /usr/bin/sed -E 's/.+/ (&)/'
 }
 RESET='\[$(tput sgr0)\]'
 # True color
@@ -58,11 +58,11 @@ if [[ $COLORTERM =~ ^(truecolor|24bit)$ ]]; then
     PINK='\[\033[38;2;242;114;204m\]'
     RED='\[\033[38;2;227;104;98m\]'
     # For light mode
-    LPURPLE='\[\033[38;2;159;10;209m\]'
-    LBLUE='\[\033[38;2;53;85;230m\]'
-    LORANGE='\[\033[38;2;186;107;13m\]'
-    LPINK='\[\033[38;2;219;39;166m\]'
-    LRED='\[\033[38;2;224;28;18m\]'
+    LPURPLE='\[\033[38;2;204;137;217m\]'
+    LBLUE='\[\033[38;2;93;173;226m\]'
+    LPINK='\[\033[38;2;232;121;197m\]'
+    LRED='\[\033[38;2;235;108;127m\]'
+    LORANGE='\[\033[38;2;237;164;69m\]'
 else
     PURPLE='\[\033[38;5;135m\]'
     BLUE='\[\033[38;5;27m\]'
