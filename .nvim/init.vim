@@ -170,6 +170,7 @@ require'quarto'.setup{
 }
 EOF
 command QP QuartoPreview
+command QCP QuartoClosePreview
 endif
 
 if !exists('g:vscode')

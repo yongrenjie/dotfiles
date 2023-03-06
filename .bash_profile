@@ -101,7 +101,8 @@ if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
     # environment setup for various languages
     [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
     source "${HOME}/.cargo/env"
-    export PATH=$PATH:$HOME/Library/Python/3.10/bin
+    export PATH=${HOME}/Library/Python/3.10/bin:${PATH}
+    export PATH=/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.2.0/bin:${PATH}
     alias pip="python -m pip"
     alias bask="ssh uwls2817@login.baskerville.ac.uk"
     # Homebrew setup {{{2
