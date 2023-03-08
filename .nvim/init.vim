@@ -124,8 +124,13 @@ require'quarto'.setup{
   }
 }
 EOF
-command QP QuartoPreview
-command QCP QuartoClosePreview
+command! QP QuartoPreview
+command! QCP QuartoClosePreview
+function! s:QRP() abort
+    QuartoClosePreview
+    QuartoPreview
+endfunction
+command! QRP call s:QRP()
 " }}}1
 " Trouble {{{1
 nnoremap <leader>d <Cmd>TroubleToggle<CR>
