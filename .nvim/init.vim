@@ -153,4 +153,19 @@ require("trouble").setup {
 EOF
 " }}}1
 
+lua << EOF
+require("telescope").setup({
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown { }
+    }
+  }
+})
+require("telescope").load_extension("ui-select")
+require('litee.lib').setup()
+require('litee.gh').setup()
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+EOF
+
 " vim: foldmethod=marker

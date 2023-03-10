@@ -48,6 +48,11 @@ if has('nvim') && !exists('g:vscode')
     Plug 'folke/lsp-colors.nvim'
     Plug 'quarto-dev/quarto-nvim'
     Plug 'jmbuhr/otter.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-ui-select.nvim'
+    Plug 'ldelossa/litee.nvim'
+    Plug 'ldelossa/gh.nvim'
 endif
 call plug#end()
 " }}}1
