@@ -37,6 +37,7 @@ if !exists('g:vscode')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'skywind3000/asyncrun.vim'
+    Plug 'hrsh7th/nvim-cmp'
     Plug 'quarto-dev/quarto-vim'
 endif
 
@@ -48,9 +49,6 @@ if has('nvim') && !exists('g:vscode')
     Plug 'folke/lsp-colors.nvim'
     Plug 'quarto-dev/quarto-nvim'
     Plug 'jmbuhr/otter.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-telescope/telescope-ui-select.nvim'
     Plug 'ldelossa/litee.nvim'
     Plug 'ldelossa/gh.nvim'
 endif
@@ -94,6 +92,9 @@ map <S-ScrollWheelDown> <Nop>
 " Leader key
 nnoremap <Space> <Nop>
 let mapleader=" "
+" I find I do this a lot
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
 " Syntax sync -- for long files where vim gets confused
 nnoremap <leader>ssf :syntax sync fromstart<CR>
 " Open directory containing current file
@@ -278,14 +279,6 @@ nnoremap <leader>r :Rg<CR>
 " Use C-S for ultisnips, tab is reserved for VimCompletesMe
 let g:UltiSnipsExpandTrigger="<C-S>"
 " }}}2
-" }}}2
-" Disable indentLine by default, but make a mapping to toggle it {{{2
-let g:indentLine_enabled = 0
-function! ToggleIndentLine() abort
-let g:indentLine_enabled = 1
-IndentLinesEnable
-endfunction
-nnoremap <silent> <leader>ii :call ToggleIndentLine()<CR>
 " }}}2
 " LSP {{{2
 if !has('nvim')

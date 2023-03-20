@@ -3,6 +3,7 @@
 .gitconfig
 .config/gh/hosts.yml
 .config/gspread/service_account.json
+.config/ghc/ghci_history
 .nvim/plugged
 .vim/plugged
 
