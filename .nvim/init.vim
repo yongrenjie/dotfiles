@@ -148,4 +148,14 @@ require("trouble").setup {
 EOF
 " }}}1
 
+if 0
+" Nvim-tree {{{1
+lua << EOF
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
+EOF
+" }}}1
+endif
+
 " vim: foldmethod=marker

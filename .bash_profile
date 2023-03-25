@@ -4,6 +4,8 @@
 alias please='sudo $(fc -ln -1)'
 # Don't close with Ctrl-D unless I mash it
 export IGNOREEOF=2
+# Well... may as well.
+alias vim="nvim"
 # Super lazy aliases
 alias c="cd"
 alias l="ls"
