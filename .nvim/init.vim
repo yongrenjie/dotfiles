@@ -87,7 +87,7 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>x', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>F', function()
@@ -124,8 +124,13 @@ require'quarto'.setup{
   }
 }
 EOF
-command QP QuartoPreview
-command QCP QuartoClosePreview
+command! QP QuartoPreview
+command! QCP QuartoClosePreview
+function! s:QRP() abort
+    QuartoClosePreview
+    QuartoPreview
+endfunction
+command! QRP call s:QRP()
 " }}}1
 " Trouble {{{1
 nnoremap <leader>d <Cmd>TroubleToggle<CR>
