@@ -3,7 +3,7 @@
 # I, for one, welcome our new robot overlords
 alias please='sudo $(fc -ln -1)'
 # Don't close with Ctrl-D unless I mash it
-export IGNOREEOF=2
+export IGNOREEOF=1
 # Super lazy aliases
 alias c="cd"
 alias l="ls"
@@ -11,6 +11,7 @@ alias v="vim"
 alias g="git"
 alias n="nvim"
 alias nv="nvim"
+alias t="tmux"
 # typo-proof aliases
 alias sl="ls"
 alias gti="git"
@@ -40,6 +41,9 @@ alias dvenv="deactivate"
 export vp=$HOME/.vim/pack/plugins/start
 # Email for abbot
 export ABBOT_EMAIL=`git config --get user.email`
+# I'm lazy
+alias de='dune exec --display=quiet -- '
+alias dbw='dune build --watch'
 ### }}}1
 
 ### Terminal color setup {{{1
@@ -155,8 +159,8 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
-    # OCaml
-    test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+    # OCaml executables
+    test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
     # Python executables
     PATH=$PATH:$HOME/Library/Python/3.10/bin
     # Ruby executables (prefer brew over system install).
@@ -301,8 +305,8 @@ fi
 
 ### Turing macOS specific settings {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
-    # PATH etc
-    test -r "${HOME}/.opam/opam-init/init.sh" && . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+    # OCaml executables
+    test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
     # Colours (always assume light mode) {{{2
     export PS1="${LPURPLE}pysm${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
     eval "$(gdircolors ~/.dircolors_light)"
@@ -431,3 +435,5 @@ fi
 # }}}1
 
 # vim: foldmethod=marker
+
+# opam configuration

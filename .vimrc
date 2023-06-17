@@ -45,12 +45,14 @@ endif
 if has('nvim') && !exists('g:vscode')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'neovim/nvim-lspconfig'
+    Plug 'ray-x/lsp_signature.nvim'
     Plug 'folke/trouble.nvim'
     Plug 'folke/lsp-colors.nvim'
     Plug 'quarto-dev/quarto-nvim'
     Plug 'jmbuhr/otter.nvim'
     Plug 'ldelossa/litee.nvim'
     Plug 'ldelossa/gh.nvim'
+    Plug 'github/copilot.vim'
 endif
 call plug#end()
 " }}}1
@@ -93,8 +95,8 @@ map <S-ScrollWheelDown> <Nop>
 nnoremap <Space> <Nop>
 let mapleader=" "
 " I find I do this a lot
-nnoremap <C-j> <C-e>
-nnoremap <C-k> <C-y>
+nnoremap <C-j> 3<C-e>
+nnoremap <C-k> 3<C-y>
 " Syntax sync -- for long files where vim gets confused
 nnoremap <leader>ssf :syntax sync fromstart<CR>
 " Open directory containing current file

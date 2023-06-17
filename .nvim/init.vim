@@ -15,6 +15,11 @@ tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 " The rest is plugin setup and configuration.
 if exists('g:vscode') | finish | endif
 
+if exists('g:loaded_copilot')
+    imap <C-9> <Cmd>:call copilot#Next()<CR>
+    imap <C-0> <Cmd>:call copilot#Previous()<CR>
+endif
+
 " Treesitter {{{1
 lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -32,7 +37,8 @@ require'nvim-treesitter.configs'.setup {
         "lua",
         "ocaml",
         "markdown",
-        "r"
+        "r",
+        "svelte"
     },
     highlight = {
         enable = true,
@@ -54,9 +60,6 @@ vim.keymap.set('n', '<space>m', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-
-
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -113,6 +116,9 @@ require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 require'lspconfig'.ocamllsp.setup{on_attach = on_attach}
 require'lspconfig'.r_language_server.setup{on_attach = on_attach}
+require'lspconfig'.svelte.setup{on_attach = on_attach}
+require'lspconfig'.svelte.setup{on_attach = on_attach}
+require'lspconfig'.eslint.setup{on_attach = on_attach}
 EOF
 " }}}1
 " Quarto {{{1
@@ -152,5 +158,12 @@ require("trouble").setup {
     }
 EOF
 " }}}1
+
+lua << EOF
+require "lsp_signature".setup({
+    hint_prefix = "🐧 ",
+    trigger_on_newline = false,
+})
+EOF
 
 " vim: foldmethod=marker

@@ -10,6 +10,9 @@
 # that's a symlink which make_symlinks.sh creates
 .config/nvim
 
+# looks like it's storing my token ._.
+.config/github-copilot/
+
 # work
 .config/nowwhat
 .config/whatwhat
