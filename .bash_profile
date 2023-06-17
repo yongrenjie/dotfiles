@@ -13,6 +13,7 @@ alias v="vim"
 alias g="git"
 alias n="nvim"
 alias nv="nvim"
+alias t="tmux"
 # typo-proof aliases
 alias sl="ls"
 alias gti="git"
@@ -157,6 +158,8 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
     # Rust executables.
     PATH="$HOME/.cargo/bin:$PATH"
+    # Docker
+    PATH="$HOME/.docker/bin:$PATH"
     # OCaml
     test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
     # Python executables

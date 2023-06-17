@@ -32,7 +32,8 @@ require'nvim-treesitter.configs'.setup {
         "lua",
         "ocaml",
         "markdown",
-        "r"
+        "r",
+        "svelte",
     },
     highlight = {
         enable = true,
