@@ -3,6 +3,11 @@
 
 " Revert some new nvim defaults
 set guicursor=a:blinkon0
+if exists('g:vscode')
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+                \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+                \,sm:block-blinkwait175-blinkoff150-blinkon175
+endif
 set inccommand=
 
 " Load original vim config
@@ -14,6 +19,11 @@ tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 " The rest is plugin setup and configuration.
 if exists('g:vscode') | finish | endif
+
+if exists('g:loaded_copilot')
+    imap <C-9> <Cmd>:call copilot#Next()<CR>
+    imap <C-0> <Cmd>:call copilot#Previous()<CR>
+endif
 
 " Treesitter {{{1
 lua << EOF
@@ -34,6 +44,7 @@ require'nvim-treesitter.configs'.setup {
         "markdown",
         "r",
         "svelte",
+        "rust",
     },
     highlight = {
         enable = true,
@@ -55,9 +66,6 @@ vim.keymap.set('n', '<space>m', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-
-
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -101,19 +109,18 @@ local on_attach = function(client, bufnr)
   -- )
 end
 
-local on_attach_no_formatexpr = function(client, bufnr)
-  on_attach(client, bufnr)
-  vim.api.nvim_buf_set_option(0, 'formatexpr', '')
-end
-
 -- Servers.
 -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require'lspconfig'.pyright.setup{on_attach = on_attach}
 require'lspconfig'.clangd.setup{on_attach = on_attach}
-require'lspconfig'.hls.setup{on_attach = on_attach_no_formatexpr}
+require'lspconfig'.hls.setup{on_attach = on_attach}
 require'lspconfig'.tsserver.setup{on_attach = on_attach}
 require'lspconfig'.ocamllsp.setup{on_attach = on_attach}
 require'lspconfig'.r_language_server.setup{on_attach = on_attach}
+require'lspconfig'.svelte.setup{on_attach = on_attach}
+require'lspconfig'.svelte.setup{on_attach = on_attach}
+require'lspconfig'.eslint.setup{on_attach = on_attach}
+require'lspconfig'.rust_analyzer.setup{on_attach = on_attach}
 EOF
 " }}}1
 " Quarto {{{1
@@ -154,14 +161,11 @@ require("trouble").setup {
 EOF
 " }}}1
 
-if 0
-" Nvim-tree {{{1
 lua << EOF
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup()
+require "lsp_signature".setup({
+    hint_prefix = "🐧 ",
+    trigger_on_newline = false,
+})
 EOF
-" }}}1
-endif
 
 " vim: foldmethod=marker
