@@ -32,3 +32,5 @@ venv () {
 }
 alias dvenv="deactivate"
 ### }}}1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

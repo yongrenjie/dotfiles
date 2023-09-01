@@ -179,7 +179,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
         OLD_PWD=$(pwd)
         cd ~/Downloads
         for fname in *.MOV; do
-            HandBrakeCLI -i "${fname}" -o "${fname%.MOV}.mp4" --preset-import-file "/Volumes/JonY/poke_proofs/filter.json" -Z "proofs"
+            HandBrakeCLI -i "${fname}" -o "${fname%.MOV}.mp4" --preset-import-file "/Volumes/PorygonZ/poke_proofs/filter.json" -Z "proofs"
         done
         cd $OLD_PWD
     }
@@ -212,7 +212,7 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     # vimtex test
     alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     # Default path to NMR data.
-    export nmrd=/Volumes/JonY/dphil/expn/nmr
+    export nmrd=/Volumes/PorygonZ/dphil/expn/nmr
     # PS1 and other colorscheme-related stuff
     if [[ "$TERMCS" == "dark" ]]; then
         export PS1="${PURPLE}\u${BLUE}@\h:${PINK}\w${RED}\$(git_branch) ${ORANGE}\$ ${RESET}"
