@@ -30,6 +30,7 @@ Plug 'yongrenjie/abbotsbury.vim'
 Plug 'yongrenjie/vim-bruker'
 Plug 'yongrenjie/vim-haskellFold'
 Plug 'yongrenjie/vim-one'
+Plug 'purescript-contrib/purescript-vim'
 
 " Both, but not vscode-nvim
 if !exists('g:vscode')
@@ -270,9 +271,6 @@ let g:netrw_localrmdir = 'rm -r'  " Allow netrw to delete nonempty directories
 set laststatus=2 noshowmode     " Enable lightline and turn off Vim's default '--INSERT--' prompt.
 let g:fastfold_minlines = 0     " Enable FastFold for all files
 " Fzf {{{2
-if $HOSTNAME =~ 'bayleaf'
-    set rtp+=/home/bayleaf/mf/linc3717/.linuxbrew/opt/fzf
-endif
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :GFiles<CR>

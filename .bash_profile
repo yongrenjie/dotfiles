@@ -142,6 +142,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ## }}}2
     alias R='R --no-save'
     alias r='R --no-save'
+    # Ocaml
+    test -r "${HOME}/.opam/opam-init/init.sh" && . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
     # fzf into (neo)vim
     vf () {
         vfname=$(fzf)
@@ -229,10 +231,10 @@ fi
 
 ### Turing macOS specific settings {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
-    # OCaml executables
-    test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+    # Work envvars
+    export DEMOLAND_DATA="/Users/jyong/Library/CloudStorage/OneDrive-TheAlanTuringInstitute/demoland_data"
     # Colours (always assume light mode) {{{2
-    export PS1="${LPURPLE}pysm${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
+    export PS1="${LPURPLE}${ME}${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
     eval "$(gdircolors ~/.dircolors_light)"
     export BAT_THEME="OneHalfLight"
     ## }}}2

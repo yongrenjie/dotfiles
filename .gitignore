@@ -1,14 +1,10 @@
 .vim/.netrwhist
 **/.DS_Store
 .gitconfig
-.config/gh/hosts.yml
-.config/gspread/service_account.json
-.config/ghc/ghci_history
+
+.config/*
+!.config/fd
+!.config/lambda-term-inputrc
+
 .nvim/plugged
 .vim/plugged
-
-# that's a symlink which make_symlinks.sh creates
-.config/nvim
-
-# looks like it's storing my token ._.
-.config/github-copilot/
