@@ -10,6 +10,7 @@ alias l="ls"
 alias v="vim"
 alias g="git"
 alias n="nvim"
+alias nn="nvim --"
 alias nv="nvim"
 alias t="tmux"
 # typo-proof aliases
