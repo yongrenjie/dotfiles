@@ -31,6 +31,7 @@ Plug 'yongrenjie/vim-bruker'
 Plug 'yongrenjie/vim-haskellFold'
 Plug 'yongrenjie/vim-one'
 Plug 'purescript-contrib/purescript-vim'
+Plug 'andymass/vim-matchup'
 
 " Both, but not vscode-nvim
 if !exists('g:vscode')
@@ -249,7 +250,6 @@ let g:git_top_level = GitTopLevel()
 " }}}1
 
 " Plugin settings and mappings {{{1
-packadd! matchit
 " abbotsbury.vim
 if executable('abbot')
 let g:abbot_use_git_email = 1

@@ -45,6 +45,7 @@ require'nvim-treesitter.configs'.setup {
         "r",
         "svelte",
         "rust",
+        "astro",
     },
     highlight = {
         enable = true,
@@ -121,6 +122,7 @@ require'lspconfig'.svelte.setup{on_attach = on_attach}
 require'lspconfig'.svelte.setup{on_attach = on_attach}
 require'lspconfig'.eslint.setup{on_attach = on_attach}
 require'lspconfig'.rust_analyzer.setup{on_attach = on_attach}
+require'lspconfig'.astro.setup{on_attach = on_attach}
 EOF
 " }}}1
 " Quarto {{{1

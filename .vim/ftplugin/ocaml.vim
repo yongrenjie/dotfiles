@@ -1,1 +1,1 @@
-let g:ocaml_folding=1
+" let g:ocaml_folding=1
