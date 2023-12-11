@@ -144,11 +144,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias r='R --no-save'
     # Ocaml
     test -r "${HOME}/.opam/opam-init/init.sh" && . "${HOME}/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
-    # fzf into (neo)vim
-    vf () {
-        vfname=$(fzf)
-        if [ ! -z $vfname ]; then vim $vfname; unset vfname; fi
-    }
+    # other binaries
+    export PATH="${HOME}/.local/bin:${PATH}"
+    # fzf into neovim
     nf () {
         vfname=$(fzf)
         if [ ! -z $vfname ]; then nvim $vfname; unset vfname; fi
@@ -212,8 +210,6 @@ if [[ "$OSTYPE" == "darwin"* && "$(hostname)" == "Empoleon"* ]]; then
     switch () {
         networksetup -setairportnetwork en0 "switch_F24EA00100L" "$1" && open http://192.168.0.1/index.html
     }
-    # vimtex test
-    alias vtt='MYVIM="vim -T dumb --not-a-term --noplugin -n" make'
     # Default path to NMR data.
     export nmrd=/Volumes/PorygonZ/dphil/expn/nmr
     # PS1 and other colorscheme-related stuff
@@ -231,8 +227,6 @@ fi
 
 ### Turing macOS specific settings {{{1
 if [[ "$OSTYPE" == "darwin"* && "$(whoami)" == "jyong" ]]; then
-    # Work envvars
-    export DEMOLAND_DATA="/Users/jyong/Library/CloudStorage/OneDrive-TheAlanTuringInstitute/demoland_data"
     # Colours (always assume light mode) {{{2
     export PS1="${LPURPLE}${ME}${LBLUE}@ati:${LPINK}\w${LRED}\$(git_branch) ${LORANGE}\$ ${RESET}"
     eval "$(gdircolors ~/.dircolors_light)"

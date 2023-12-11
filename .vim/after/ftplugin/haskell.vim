@@ -14,7 +14,8 @@ set shiftwidth=2
 setlocal iskeyword+=@-@,',$,<,>,\",!,\|,/,~,%,^
 
 iabbrev <buffer> itext import Data.Text (Text)<CR>import qualified Data.Text as T
-iabbrev <buffer> itio import qualified Data.Text.IO as TIO
+iabbrev <buffer> itio import qualified Data.Text.IO as T
+iabbrev <buffer> ite import qualified Data.Text.Encoding as TE
 iabbrev <buffer> imap import Data.Map (Map)<CR>import qualified Data.Map as M
 iabbrev <buffer> iset import Data.Set (Set)<CR>import qualified Data.Set as S
 iabbrev <buffer> iim import Data.IntMap (IntMap)<CR>import qualified Data.IntMap as IM
